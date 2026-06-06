@@ -4,21 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Omen Trip — Japan Travel Specialist</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ice:#e8f2f8;--ice-mid:#c5dff0;--ice-deep:#8ab8d8;--ice-dark:#2a5f80;
-  --snow:#f7fafc;--white:#ffffff;--ink:#0d1f2d;--muted:#5a7a8e;--border:#d4e7f2;
-  --gold:#b8a070;--gold-light:#fdf6e8;
-  --spring:#3d8b5e;--spring-light:#e8f5ee;
-  --summer:#c0392b;--summer-light:#fdecea;
-  --autumn:#c0622a;--autumn-light:#fdf0e8;
-  --winter:#2a5f80;--winter-light:#e8f2f8;
-  --radius:16px;--radius-sm:8px;--shadow:0 4px 32px rgba(42,95,128,.12)
+  --ice-50:#fbfdfe;--ice-100:#f3f8fb;--ice-200:#e6f0f6;--ice-300:#cfe2ed;--ice-400:#a8c8db;
+  --ice-500:#7aa5bf;--ice-600:#4a7d99;--ice-700:#2a5a78;--ice-800:#1a3a52;--ice-900:#0d1f2d;
+  --snow:#fbfdfe;--white:#ffffff;--ink:#0d1f2d;--muted:#6b8595;--border:#e0ecf3;
+  --gold:#b8a070;--gold-light:#fdf8ec;
+  --spring:#5a9b6e;--spring-light:#eef6f0;
+  --summer:#c46c5e;--summer-light:#fbeeec;
+  --autumn:#b8763e;--autumn-light:#fbf2ea;
+  --winter:#2a5a78;--winter-light:#e6f0f6;
+  --radius:14px;--radius-sm:8px;--radius-lg:20px;
+  --shadow-sm:0 1px 2px rgba(13,31,45,.04),0 1px 3px rgba(13,31,45,.06);
+  --shadow:0 4px 24px rgba(42,90,120,.08);
+  --shadow-lg:0 12px 48px rgba(42,90,120,.12)
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--snow);color:var(--ink);overflow-x:hidden}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'DM Sans',sans-serif;background:var(--snow);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
 /* PAGE SYSTEM */
 .page{display:none;min-height:100vh}
@@ -26,205 +30,224 @@ body{font-family:'DM Sans',sans-serif;background:var(--snow);color:var(--ink);ov
 .page-enter{animation:pageIn .4s ease both}
 @keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
+/* ICONS - line-art minimalis */
+.ico{display:inline-block;width:1em;height:1em;stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;vertical-align:-2px}
+
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.1rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(247,250,252,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--ice-dark);letter-spacing:.05em;cursor:pointer}
-.nav-logo span{color:var(--gold)}
-.nav-right{display:flex;align-items:center;gap:1.25rem}
-.lang-toggle{display:flex;border:1px solid var(--border);border-radius:20px;overflow:hidden;font-size:.78rem}
-.lang-btn{padding:4px 12px;cursor:pointer;background:transparent;border:none;font-family:'DM Sans',sans-serif;color:var(--muted);transition:.2s}
-.lang-btn.active{background:var(--ice-dark);color:white}
-.nav-back{display:none;align-items:center;gap:.5rem;background:none;border:1px solid var(--border);color:var(--muted);padding:.45rem 1rem;border-radius:20px;font-size:.8rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s}
-.nav-back:hover{border-color:var(--ice-dark);color:var(--ice-dark)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.1rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(251,253,254,.82);backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);border-bottom:1px solid rgba(224,236,243,.6);transition:padding .3s}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:500;color:var(--ice-800);letter-spacing:.04em;cursor:pointer;display:flex;align-items:center;gap:.1em}
+.nav-logo span{color:var(--gold);font-style:italic}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.lang-toggle{display:flex;border:1px solid var(--border);border-radius:24px;overflow:hidden;font-size:.74rem;background:white}
+.lang-btn{padding:5px 14px;cursor:pointer;background:transparent;border:none;font-family:'DM Sans',sans-serif;color:var(--muted);transition:.2s;letter-spacing:.05em}
+.lang-btn.active{background:var(--ice-800);color:white}
+.nav-back{display:none;align-items:center;gap:.5rem;background:white;border:1px solid var(--border);color:var(--muted);padding:.5rem 1rem;border-radius:24px;font-size:.78rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s}
+.nav-back:hover{border-color:var(--ice-700);color:var(--ice-800)}
 .nav-back.show{display:flex}
-.nav-cta{background:var(--ice-dark);color:white;padding:.5rem 1.2rem;border-radius:20px;font-size:.85rem;text-decoration:none;font-weight:500;transition:.2s;border:none;cursor:pointer;font-family:'DM Sans',sans-serif}
-.nav-cta:hover{background:var(--ink)}
+.nav-cta{background:var(--ice-800);color:white;padding:.55rem 1.3rem;border-radius:24px;font-size:.82rem;text-decoration:none;font-weight:500;transition:.25s;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.02em}
+.nav-cta:hover{background:var(--ink);transform:translateY(-1px)}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:7rem 2rem 4rem;position:relative;overflow:hidden;background:linear-gradient(175deg,var(--white) 0%,var(--ice) 60%,var(--ice-mid) 100%)}
-.hero-pattern{position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(0deg,var(--ice-dark) 0,var(--ice-dark) 1px,transparent 1px,transparent 60px),repeating-linear-gradient(90deg,var(--ice-dark) 0,var(--ice-dark) 1px,transparent 1px,transparent 60px)}
-.hero-tag{display:inline-block;background:var(--ice);border:1px solid var(--ice-mid);color:var(--ice-dark);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;padding:.4rem 1.1rem;border-radius:20px;margin-bottom:2rem;font-weight:500}
-.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,6rem);font-weight:300;line-height:1.05;color:var(--ink);margin-bottom:1rem}
-.hero h1 em{font-style:italic;color:var(--ice-dark)}
-.hero-sub{font-size:1rem;color:var(--muted);max-width:480px;line-height:1.75;margin-bottom:2.5rem}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
-.btn-main{background:var(--ice-dark);color:white;padding:.85rem 2rem;border-radius:30px;text-decoration:none;font-weight:500;font-size:.92rem;transition:.25s;border:none;cursor:pointer;font-family:'DM Sans',sans-serif}
-.btn-main:hover{background:var(--ink);transform:translateY(-2px)}
-.btn-outline{background:transparent;color:var(--ice-dark);padding:.85rem 2rem;border-radius:30px;text-decoration:none;font-weight:500;font-size:.92rem;border:1.5px solid var(--ice-mid);transition:.25s;cursor:pointer;font-family:'DM Sans',sans-serif}
-.btn-outline:hover{border-color:var(--ice-dark);background:var(--ice)}
-.hero-stats{display:flex;gap:3rem;margin-top:4rem;flex-wrap:wrap;justify-content:center}
-.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:var(--ice-dark)}
-.stat-label{font-size:.75rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 2rem 5rem;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--white) 0%,var(--ice-50) 25%,var(--ice-100) 55%,var(--ice-200) 85%,var(--ice-300) 100%)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(168,200,219,.35) 0%,transparent 60%);pointer-events:none}
+.hero-pattern{position:absolute;inset:0;opacity:.025;background-image:repeating-linear-gradient(0deg,var(--ice-800) 0,var(--ice-800) 1px,transparent 1px,transparent 80px),repeating-linear-gradient(90deg,var(--ice-800) 0,var(--ice-800) 1px,transparent 1px,transparent 80px);pointer-events:none}
+.hero-snowflake{position:absolute;color:var(--ice-400);opacity:.35;pointer-events:none;animation:floatSlow 8s ease-in-out infinite}
+.hero-snowflake:nth-child(2){top:18%;left:12%;font-size:1.5rem;animation-delay:0s}
+.hero-snowflake:nth-child(3){top:25%;right:14%;font-size:1.2rem;animation-delay:2s}
+.hero-snowflake:nth-child(4){bottom:30%;left:10%;font-size:1rem;animation-delay:4s}
+.hero-snowflake:nth-child(5){bottom:20%;right:11%;font-size:1.4rem;animation-delay:1s}
+@keyframes floatSlow{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-12px) rotate(180deg)}}
+.hero>*{position:relative;z-index:2}
+.hero-tag{display:inline-block;background:rgba(255,255,255,.6);backdrop-filter:blur(6px);border:1px solid rgba(42,90,120,.15);color:var(--ice-800);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;padding:.5rem 1.3rem;border-radius:24px;margin-bottom:2.25rem;font-weight:500}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,8.5vw,6.5rem);font-weight:300;line-height:1;color:var(--ink);margin-bottom:1.5rem;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--ice-700);font-weight:400}
+.hero-sub{font-family:'DM Sans',sans-serif;font-size:1.02rem;color:var(--muted);max-width:480px;line-height:1.8;margin-bottom:2.75rem;font-weight:400}
+.hero-actions{display:flex;gap:.85rem;flex-wrap:wrap;justify-content:center}
+.btn-main{background:var(--ice-800);color:white;padding:.95rem 2.2rem;border-radius:32px;text-decoration:none;font-weight:500;font-size:.92rem;transition:.3s cubic-bezier(.2,.7,.3,1);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.02em;box-shadow:0 4px 16px rgba(26,58,82,.18)}
+.btn-main:hover{background:var(--ink);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,58,82,.28)}
+.btn-outline{background:rgba(255,255,255,.6);backdrop-filter:blur(6px);color:var(--ice-800);padding:.95rem 2.2rem;border-radius:32px;text-decoration:none;font-weight:500;font-size:.92rem;border:1px solid rgba(42,90,120,.25);transition:.3s cubic-bezier(.2,.7,.3,1);cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.02em}
+.btn-outline:hover{border-color:var(--ice-800);background:white;transform:translateY(-2px)}
+.hero-stats{display:flex;gap:3.5rem;margin-top:4.5rem;flex-wrap:wrap;justify-content:center;padding-top:2.5rem;border-top:1px solid rgba(42,90,120,.12);max-width:480px;margin-left:auto;margin-right:auto}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.3rem;font-weight:500;color:var(--ice-700);line-height:1;letter-spacing:-.02em}
+.stat-label{font-size:.68rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-top:6px;font-weight:500}
 
 /* SECTIONS */
-section{padding:6rem 2rem}
-.section-inner{max-width:1100px;margin:0 auto}
-.section-tag{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ice-deep);font-weight:500;margin-bottom:.75rem}
-.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:400;color:var(--ink);margin-bottom:.75rem;line-height:1.2}
-.section-title em{font-style:italic;color:var(--ice-dark)}
-.section-sub{color:var(--muted);font-size:.92rem;line-height:1.75;max-width:520px}
-.section-head{margin-bottom:3.5rem}
+section{padding:6.5rem 2rem}
+.section-inner{max-width:1140px;margin:0 auto}
+.section-tag{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ice-600);font-weight:500;margin-bottom:1rem}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4.2vw,3.2rem);font-weight:400;color:var(--ink);margin-bottom:1rem;line-height:1.15;letter-spacing:-.01em}
+.section-title em{font-style:italic;color:var(--ice-700)}
+.section-sub{color:var(--muted);font-size:.93rem;line-height:1.8;max-width:540px}
+.section-head{margin-bottom:4rem}
+
+/* INCLUSIONS STRIP */
+.inclusions{background:var(--ice-800);padding:3.5rem 2rem;position:relative;overflow:hidden}
+.inclusions::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(184,160,112,.08) 0%,transparent 70%)}
+.inclusions-inner{max-width:1140px;margin:0 auto;position:relative}
+.inc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2rem}
+.inc-item{text-align:center;color:white}
+.inc-icon-wrap{width:44px;height:44px;margin:0 auto .85rem;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.22);border-radius:50%;color:rgba(255,255,255,.92)}
+.inc-icon-wrap svg{width:20px;height:20px}
+.inc-label{font-size:.8rem;font-weight:500;line-height:1.4;opacity:.95;letter-spacing:.02em}
+.inc-sub{font-size:.7rem;opacity:.55;margin-top:4px;letter-spacing:.04em}
 
 /* ABOUT */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
-.about-img{aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;position:relative}
-.img-ph{width:100%;height:100%;background:linear-gradient(135deg,var(--ice-mid),var(--ice-deep));display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ice-dark)}
-.img-ph-icon{font-size:2.5rem;margin-bottom:.5rem;opacity:.5}
-.img-ph-text{font-size:.72rem;opacity:.45;letter-spacing:.1em;text-transform:uppercase}
-.about-badge{position:absolute;bottom:1.5rem;left:1.5rem;background:white;border-radius:var(--radius-sm);padding:.8rem 1.1rem;box-shadow:var(--shadow)}
-.about-badge-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:var(--ice-dark)}
-.about-badge-text{font-size:.72rem;color:var(--muted);margin-top:1px}
-.feature-row{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.25rem}
-.feature-dot{width:32px;height:32px;border-radius:50%;background:var(--ice);border:1px solid var(--ice-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.85rem}
-.feature-text h4{font-size:.9rem;font-weight:500;margin-bottom:2px}
-.feature-text p{font-size:.82rem;color:var(--muted);line-height:1.6}
-
-/* INCLUSIONS STRIP */
-.inclusions{background:var(--ice-dark);padding:3rem 2rem}
-.inclusions-inner{max-width:1100px;margin:0 auto}
-.inc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1.5rem}
-.inc-item{text-align:center;color:white}
-.inc-icon{font-size:1.8rem;margin-bottom:.6rem}
-.inc-label{font-size:.78rem;font-weight:500;line-height:1.4;opacity:.9}
-.inc-sub{font-size:.7rem;opacity:.6;margin-top:2px}
+.about-img{aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:var(--shadow-lg)}
+.img-ph{width:100%;height:100%;background:linear-gradient(135deg,var(--ice-200),var(--ice-400));display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ice-800);position:relative}
+.img-ph::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top left,rgba(255,255,255,.4),transparent 50%)}
+.img-ph-icon{font-size:2.5rem;margin-bottom:.5rem;opacity:.4;position:relative}
+.img-ph-text{font-size:.7rem;opacity:.4;letter-spacing:.12em;text-transform:uppercase;position:relative;font-weight:500}
+.about-badge{position:absolute;bottom:1.5rem;left:1.5rem;background:white;border-radius:var(--radius-sm);padding:.85rem 1.2rem;box-shadow:var(--shadow)}
+.about-badge-num{font-family:'Cormorant Garamond',serif;font-size:1.85rem;font-weight:600;color:var(--ice-800);line-height:1}
+.about-badge-text{font-size:.68rem;color:var(--muted);margin-top:3px;letter-spacing:.08em;text-transform:uppercase}
+.feature-row{display:flex;align-items:flex-start;gap:1.1rem;margin-bottom:1.4rem}
+.feature-icon{width:38px;height:38px;border-radius:50%;background:var(--ice-100);border:1px solid var(--ice-200);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--ice-700)}
+.feature-icon svg{width:18px;height:18px}
+.feature-text h4{font-size:.92rem;font-weight:500;margin-bottom:4px;color:var(--ink);letter-spacing:-.005em}
+.feature-text p{font-size:.83rem;color:var(--muted);line-height:1.65}
 
 /* PACKAGES */
 .packages-bg{background:var(--white)}
-.pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.pkg-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:.25s;cursor:pointer}
-.pkg-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--ice-mid)}
-.pkg-img{height:220px;overflow:hidden;position:relative}
-.pkg-badge-wrap{position:absolute;top:1rem;left:1rem}
-.pkg-badge{display:inline-block;background:white;color:var(--ice-dark);font-size:.7rem;font-weight:500;padding:3px 10px;border-radius:20px}
-.pkg-body{padding:1.4rem 1.5rem}
-.pkg-tag{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
-.pkg-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:.5rem}
-.pkg-desc{font-size:.82rem;color:var(--muted);line-height:1.65;margin-bottom:1.1rem}
-.pkg-footer{display:flex;justify-content:space-between;align-items:center}
-.pkg-price{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ice-dark)}
-.pkg-price small{font-size:.75rem;font-family:'DM Sans',sans-serif;color:var(--muted);font-weight:400}
-.pkg-dp{font-size:.72rem;background:var(--ice);color:var(--ice-dark);padding:3px 10px;border-radius:20px;font-weight:500}
-.pkg-coming{opacity:.7;cursor:default}
-.pkg-coming:hover{transform:none;box-shadow:none}
-.coming-overlay{position:absolute;inset:0;background:rgba(42,95,128,.35);display:flex;align-items:center;justify-content:center}
-.coming-badge{background:white;color:var(--ice-dark);font-size:.78rem;font-weight:500;padding:.4rem 1rem;border-radius:20px}
-.pkg-explore{font-size:.78rem;color:var(--ice-dark);font-weight:500;margin-top:.85rem;display:flex;align-items:center;gap:4px}
+.pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.75rem}
+.pkg-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:.35s cubic-bezier(.2,.7,.3,1);cursor:pointer}
+.pkg-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--ice-300)}
+.pkg-img{height:240px;overflow:hidden;position:relative}
+.pkg-badge-wrap{position:absolute;top:1rem;left:1rem;z-index:2}
+.pkg-badge{display:inline-block;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);color:var(--ice-800);font-size:.68rem;font-weight:500;padding:4px 12px;border-radius:24px;letter-spacing:.06em}
+.pkg-body{padding:1.6rem 1.6rem 1.5rem}
+.pkg-tag{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.55rem;font-weight:500}
+.pkg-name{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:500;margin-bottom:.6rem;color:var(--ink);letter-spacing:-.01em}
+.pkg-desc{font-size:.83rem;color:var(--muted);line-height:1.7;margin-bottom:1.2rem}
+.pkg-footer{display:flex;justify-content:space-between;align-items:center;padding-top:1rem;border-top:1px solid var(--border)}
+.pkg-price{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:500;color:var(--ice-800)}
+.pkg-price small{font-size:.72rem;font-family:'DM Sans',sans-serif;color:var(--muted);font-weight:400;display:block;margin-top:1px}
+.pkg-dp{font-size:.68rem;background:var(--ice-100);color:var(--ice-800);padding:4px 10px;border-radius:24px;font-weight:500;letter-spacing:.05em}
+.pkg-coming{opacity:.65;cursor:default}
+.pkg-coming:hover{transform:none;box-shadow:none;border-color:var(--border)}
+.coming-overlay{position:absolute;inset:0;background:rgba(26,58,82,.4);backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;z-index:1}
+.coming-badge{background:white;color:var(--ice-800);font-size:.78rem;font-weight:500;padding:.45rem 1.1rem;border-radius:24px;letter-spacing:.05em}
+.pkg-explore{font-size:.78rem;color:var(--ice-700);font-weight:500;margin-top:.9rem;display:flex;align-items:center;gap:6px;letter-spacing:.02em}
+.pkg-explore svg{width:14px;height:14px;transition:transform .25s}
+.pkg-card:hover .pkg-explore svg{transform:translateX(3px)}
 
 /* HOW */
-.how-bg{background:var(--ice)}
+.how-bg{background:var(--ice-100)}
 .steps-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;position:relative}
-.steps-row::before{content:'';position:absolute;top:24px;left:12%;right:12%;height:1px;background:var(--ice-mid)}
+.steps-row::before{content:'';position:absolute;top:26px;left:12%;right:12%;height:1px;background:var(--ice-300)}
 .step-item{text-align:center;position:relative;z-index:1}
-.step-circle{width:48px;height:48px;border-radius:50%;background:var(--white);border:1px solid var(--ice-mid);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--ice-dark)}
-.step-item h4{font-size:.9rem;font-weight:500;margin-bottom:.4rem}
-.step-item p{font-size:.78rem;color:var(--muted);line-height:1.6}
+.step-circle{width:52px;height:52px;border-radius:50%;background:var(--white);border:1px solid var(--ice-300);display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem;font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ice-800);box-shadow:0 4px 12px rgba(42,90,120,.06)}
+.step-item h4{font-size:.92rem;font-weight:500;margin-bottom:.45rem;color:var(--ink)}
+.step-item p{font-size:.8rem;color:var(--muted);line-height:1.65}
 
 /* TEAM */
 .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
-.team-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;text-align:center}
-.team-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--ice),var(--ice-mid));margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--ice-dark);font-weight:600}
-.team-name{font-weight:500;margin-bottom:.25rem}
-.team-role{font-size:.78rem;color:var(--muted);margin-bottom:.75rem}
-.team-tags{display:flex;flex-wrap:wrap;gap:4px;justify-content:center}
-.team-tag{background:var(--ice);color:var(--ice-dark);font-size:.68rem;padding:2px 8px;border-radius:20px}
+.team-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:2rem 1.75rem;text-align:center;transition:.25s}
+.team-card:hover{border-color:var(--ice-300);transform:translateY(-2px);box-shadow:var(--shadow)}
+.team-avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--ice-100),var(--ice-300));margin:0 auto 1.15rem;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--ice-800);font-weight:500;letter-spacing:.02em}
+.team-name{font-weight:500;margin-bottom:.3rem;font-size:1.02rem;color:var(--ink)}
+.team-role{font-size:.78rem;color:var(--muted);margin-bottom:.9rem}
+.team-tags{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.team-tag{background:var(--ice-100);color:var(--ice-800);font-size:.66rem;padding:3px 9px;border-radius:24px;letter-spacing:.03em}
 
-/* =================== BOOKING FORM =================== */
+/* BOOKING FORM */
 .booking-bg{background:var(--white)}
 .booking-wrap{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:start}
-.booking-info h2{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:400;line-height:1.2;margin-bottom:1rem}
-.booking-info p{color:var(--muted);font-size:.88rem;line-height:1.75;margin-bottom:1.5rem}
-.contact-items{display:flex;flex-direction:column;gap:.8rem}
-.contact-item{display:flex;align-items:center;gap:.75rem;font-size:.85rem;color:var(--muted)}
-.contact-icon{width:32px;height:32px;border-radius:50%;background:var(--ice);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
-.booking-card{background:var(--snow);border:1px solid var(--border);border-radius:var(--radius);padding:2rem 2.25rem}
-.form-steps{display:flex;gap:.5rem;margin-bottom:2rem;align-items:center}
-.fs{display:flex;align-items:center;gap:.4rem;font-size:.78rem;color:var(--muted)}
-.fs-num{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.72rem;transition:.25s}
-.fs.active .fs-num{background:var(--ice-dark);border-color:var(--ice-dark);color:white}
-.fs.done .fs-num{background:var(--ice-mid);border-color:var(--ice-mid);color:white}
-.fs.active .fs-label{color:var(--ice-dark);font-weight:500}
+.booking-info h2{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:400;line-height:1.15;margin-bottom:1.1rem;color:var(--ink);letter-spacing:-.01em}
+.booking-info p{color:var(--muted);font-size:.89rem;line-height:1.8;margin-bottom:1.75rem}
+.contact-items{display:flex;flex-direction:column;gap:.9rem}
+.contact-item{display:flex;align-items:center;gap:.85rem;font-size:.86rem;color:var(--muted)}
+.contact-icon{width:36px;height:36px;border-radius:50%;background:var(--ice-100);border:1px solid var(--ice-200);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--ice-700)}
+.contact-icon svg{width:16px;height:16px}
+.booking-card{background:var(--snow);border:1px solid var(--border);border-radius:var(--radius);padding:2rem 2.25rem;box-shadow:var(--shadow-sm)}
+.form-steps{display:flex;gap:.4rem;margin-bottom:2.25rem;align-items:center}
+.fs{display:flex;align-items:center;gap:.45rem;font-size:.76rem;color:var(--muted)}
+.fs-num{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.72rem;transition:.25s;background:white;flex-shrink:0}
+.fs.active .fs-num{background:var(--ice-800);border-color:var(--ice-800);color:white}
+.fs.done .fs-num{background:var(--ice-500);border-color:var(--ice-500);color:white}
+.fs.active .fs-label{color:var(--ice-800);font-weight:500}
 .fs-sep{flex:1;height:1px;background:var(--border)}
 .form-sec{display:none}
 .form-sec.active{display:block}
-.fg{margin-bottom:1.1rem}
-.fg label{display:block;font-size:.8rem;font-weight:500;margin-bottom:.4rem}
-.fg input,.fg select,.fg textarea{width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--ink);background:var(--white);outline:none;transition:.2s}
-.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--ice-deep)}
+.fg{margin-bottom:1.15rem}
+.fg label{display:block;font-size:.8rem;font-weight:500;margin-bottom:.45rem;color:var(--ink)}
+.fg input,.fg select,.fg textarea{width:100%;padding:.78rem 1rem;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--ink);background:var(--white);outline:none;transition:.2s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--ice-600);box-shadow:0 0 0 3px rgba(74,125,153,.1)}
 .fg textarea{resize:none;height:75px}
 .fg-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
-.fg-hint{font-size:.73rem;color:var(--muted);margin-top:4px}
-.form-pkg-grid{display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.25rem}
-.form-pkg{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:.9rem 1rem;cursor:pointer;transition:.2s;position:relative;background:white}
-.form-pkg:hover{border-color:var(--ice-mid)}
-.form-pkg.sel{border-color:var(--ice-dark);background:var(--ice)}
-.form-pkg-name{font-size:.9rem;font-weight:500;margin-bottom:1px}
+.fg-hint{font-size:.72rem;color:var(--muted);margin-top:5px}
+.form-pkg-grid{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.4rem}
+.form-pkg{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:.95rem 1.1rem;cursor:pointer;transition:.2s;position:relative;background:white}
+.form-pkg:hover{border-color:var(--ice-400)}
+.form-pkg.sel{border-color:var(--ice-800);background:var(--ice-100)}
+.form-pkg-name{font-size:.92rem;font-weight:500;margin-bottom:2px;color:var(--ink)}
 .form-pkg-dur{font-size:.73rem;color:var(--muted)}
-.form-pkg-price{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--ice-dark);font-weight:600;margin-top:.3rem}
-.form-pkg-chk{display:none;position:absolute;top:.75rem;right:.75rem;width:22px;height:22px;background:var(--ice-dark);border-radius:50%;color:white;font-size:.72rem;align-items:center;justify-content:center}
+.form-pkg-price{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--ice-800);font-weight:600;margin-top:.4rem}
+.form-pkg-chk{display:none;position:absolute;top:.75rem;right:.75rem;width:22px;height:22px;background:var(--ice-800);border-radius:50%;color:white;font-size:.72rem;align-items:center;justify-content:center}
 .form-pkg.sel .form-pkg-chk{display:flex}
-.sum-card{background:var(--ice);border-radius:var(--radius-sm);padding:1rem 1.1rem;margin-bottom:1.1rem}
-.sum-row{display:flex;justify-content:space-between;font-size:.83rem;padding:.3rem 0;border-bottom:1px solid var(--ice-mid)}
+.sum-card{background:var(--ice-100);border-radius:var(--radius-sm);padding:1.1rem 1.2rem;margin-bottom:1.1rem;border:1px solid var(--ice-200)}
+.sum-row{display:flex;justify-content:space-between;font-size:.83rem;padding:.35rem 0;border-bottom:1px solid var(--ice-200)}
 .sum-row:last-child{border-bottom:none}
 .sum-row .sl{color:var(--muted)}
-.sum-row .sv{font-weight:500}
-.dp-bar{background:var(--ice-dark);border-radius:var(--radius-sm);padding:.85rem 1rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem}
-.dp-label{color:rgba(255,255,255,.8);font-size:.8rem}
-.dp-amount{color:white;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600}
-.bank-card{background:white;border:1.5px dashed var(--ice-mid);border-radius:var(--radius-sm);padding:1rem 1.1rem;margin-bottom:1rem}
-.bank-title{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ice-deep);margin-bottom:.75rem;font-weight:500}
-.bank-row{display:flex;justify-content:space-between;font-size:.83rem;padding:.25rem 0}
+.sum-row .sv{font-weight:500;color:var(--ink)}
+.dp-bar{background:var(--ice-800);border-radius:var(--radius-sm);padding:.95rem 1.1rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem}
+.dp-label{color:rgba(255,255,255,.82);font-size:.8rem}
+.dp-amount{color:white;font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:600}
+.bank-card{background:white;border:1.5px dashed var(--ice-400);border-radius:var(--radius-sm);padding:1.1rem 1.2rem;margin-bottom:1rem}
+.bank-title{font-size:.68rem;text-transform:uppercase;letter-spacing:.15em;color:var(--ice-600);margin-bottom:.85rem;font-weight:500}
+.bank-row{display:flex;justify-content:space-between;font-size:.84rem;padding:.28rem 0}
 .bank-row .bk{color:var(--muted)}
-.bank-row .bv{font-weight:500}
-.bank-row.norek .bv{color:var(--ice-dark);font-size:1rem;font-weight:600}
-.copy-btn{background:none;border:1px solid var(--ice-deep);color:var(--ice-deep);border-radius:5px;font-size:.68rem;padding:2px 7px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-left:6px}
-.copy-btn:hover{background:var(--ice-dark);color:white;border-color:var(--ice-dark)}
-.btn-form{width:100%;padding:.82rem;border:none;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:500;cursor:pointer;transition:.2s}
-.btn-form-primary{background:var(--ice-dark);color:white}
+.bank-row .bv{font-weight:500;color:var(--ink)}
+.bank-row.norek .bv{color:var(--ice-800);font-size:1rem;font-weight:600}
+.copy-btn{background:none;border:1px solid var(--ice-600);color:var(--ice-700);border-radius:6px;font-size:.68rem;padding:3px 8px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-left:8px;transition:.2s}
+.copy-btn:hover{background:var(--ice-800);color:white;border-color:var(--ice-800)}
+.btn-form{width:100%;padding:.88rem;border:none;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:.92rem;font-weight:500;cursor:pointer;transition:.25s;letter-spacing:.01em}
+.btn-form-primary{background:var(--ice-800);color:white}
 .btn-form-primary:hover{background:var(--ink)}
 .btn-form-primary:disabled{background:var(--border);color:var(--muted);cursor:not-allowed}
 .btn-form-wa{background:#25d366;color:white;display:flex;align-items:center;justify-content:center;gap:8px}
 .btn-form-wa:hover{background:#1fb85a}
-.btn-form-back{background:transparent;border:1.5px solid var(--border);color:var(--muted);margin-bottom:.65rem}
-.btn-form-back:hover{border-color:var(--ice-dark);color:var(--ice-dark)}
-.form-note{font-size:.75rem;color:var(--muted);text-align:center;margin-top:.6rem;line-height:1.6}
+.btn-form-back{background:transparent;border:1.5px solid var(--border);color:var(--muted);margin-bottom:.7rem}
+.btn-form-back:hover{border-color:var(--ice-700);color:var(--ice-800)}
+.form-note{font-size:.74rem;color:var(--muted);text-align:center;margin-top:.7rem;line-height:1.65}
 .success-wrap{text-align:center;padding:1.5rem 0}
-.success-icon{width:72px;height:72px;border-radius:50%;background:var(--ice);border:1px solid var(--ice-mid);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
-.next-steps{background:var(--ice);border-radius:var(--radius-sm);padding:1.1rem 1.25rem;text-align:left;margin:1.25rem 0}
-.next-steps h4{color:var(--ice-dark);font-size:.82rem;font-weight:500;margin-bottom:.5rem}
-.next-steps ol{font-size:.8rem;color:var(--muted);padding-left:1.1rem;line-height:2}
+.success-icon{width:76px;height:76px;border-radius:50%;background:var(--ice-100);border:1px solid var(--ice-300);display:flex;align-items:center;justify-content:center;margin:0 auto 1.35rem}
+.next-steps{background:var(--ice-100);border-radius:var(--radius-sm);padding:1.15rem 1.3rem;text-align:left;margin:1.25rem 0;border:1px solid var(--ice-200)}
+.next-steps h4{color:var(--ice-800);font-size:.82rem;font-weight:500;margin-bottom:.6rem}
+.next-steps ol{font-size:.8rem;color:var(--muted);padding-left:1.15rem;line-height:2}
 
 /* FOOTER */
-footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
-.footer-inner{max-width:1100px;margin:0 auto}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
-.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:white;margin-bottom:.6rem}
-.footer-brand span{color:var(--gold)}
-.footer-desc{font-size:.8rem;line-height:1.7}
-.footer-col h5{color:white;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem}
-.footer-col a{display:block;color:rgba(255,255,255,.55);font-size:.8rem;text-decoration:none;margin-bottom:.4rem;transition:.15s;cursor:pointer}
+footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2rem}
+.footer-inner{max-width:1140px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3.5rem;margin-bottom:2.5rem}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:white;margin-bottom:.7rem;letter-spacing:.04em}
+.footer-brand span{color:var(--gold);font-style:italic}
+.footer-desc{font-size:.82rem;line-height:1.75}
+.footer-col h5{color:white;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.95rem;font-weight:500}
+.footer-col a{display:block;color:rgba(255,255,255,.55);font-size:.82rem;text-decoration:none;margin-bottom:.5rem;transition:.2s;cursor:pointer}
 .footer-col a:hover{color:white}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:1.25rem;display:flex;justify-content:space-between;font-size:.75rem;flex-wrap:wrap;gap:.5rem}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1.3rem;display:flex;justify-content:space-between;font-size:.74rem;flex-wrap:wrap;gap:.6rem}
 
-/* =================== DETAIL PAGE =================== */
+/* DETAIL PAGE */
 .detail-hero{height:70vh;min-height:480px;position:relative;overflow:hidden;display:flex;align-items:flex-end}
 .detail-hero-bg{position:absolute;inset:0}
-.detail-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,31,45,.85) 0%,rgba(13,31,45,.2) 60%,transparent 100%)}
+.detail-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,31,45,.88) 0%,rgba(13,31,45,.25) 60%,transparent 100%)}
 .detail-hero-content{position:relative;z-index:2;padding:3rem 3rem 3.5rem;color:white;max-width:800px}
-.detail-hero-tag{display:inline-block;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);color:white;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;padding:.35rem 1rem;border-radius:20px;margin-bottom:1rem}
-.detail-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:300;line-height:1.05;margin-bottom:.75rem}
-.detail-hero h1 em{font-style:italic}
-.detail-hero-sub{font-size:.95rem;opacity:.85;line-height:1.7;max-width:520px}
-.detail-hero-badges{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.25rem}
-.detail-hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:white;font-size:.75rem;padding:.35rem .9rem;border-radius:20px}
+.detail-hero-tag{display:inline-block;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);color:white;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;padding:.4rem 1.1rem;border-radius:24px;margin-bottom:1.1rem;font-weight:500}
+.detail-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,6vw,4.6rem);font-weight:300;line-height:1.05;margin-bottom:.85rem;letter-spacing:-.01em}
+.detail-hero h1 em{font-style:italic;font-weight:400}
+.detail-hero-sub{font-size:.96rem;opacity:.9;line-height:1.7;max-width:520px}
+.detail-hero-badges{display:flex;gap:.55rem;flex-wrap:wrap;margin-top:1.4rem}
+.detail-hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);color:white;font-size:.74rem;padding:.4rem .95rem;border-radius:24px;letter-spacing:.03em}
+.detail-hero-badge svg{width:14px;height:14px}
 
 /* DETAIL BODY */
-.detail-body{max-width:1100px;margin:0 auto;padding:4rem 2rem 5rem}
+.detail-body{max-width:1140px;margin:0 auto;padding:4rem 2rem 5rem}
 .detail-grid{display:grid;grid-template-columns:1fr 360px;gap:4rem;align-items:start}
-.detail-main{}
 .detail-sidebar{position:sticky;top:90px}
 
 /* PHOTO GALLERY */
-.gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:3rem}
+.gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:3rem}
 .gallery-grid .g-main{grid-column:1/3}
 .gallery-item{border-radius:var(--radius-sm);overflow:hidden;aspect-ratio:16/9}
 .gallery-item.tall{aspect-ratio:4/3}
@@ -232,96 +255,101 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
 
 /* DESTINATIONS */
 .dest-section{margin-bottom:3rem}
-.dest-section h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin-bottom:1.5rem}
+.dest-section h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:500;margin-bottom:1.5rem;color:var(--ink);letter-spacing:-.01em}
 .dest-cards{display:flex;flex-direction:column;gap:1.25rem}
-.dest-card{display:grid;grid-template-columns:120px 1fr;gap:1.25rem;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
+.dest-card{display:grid;grid-template-columns:130px 1fr;gap:1.4rem;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;transition:.25s}
+.dest-card:hover{border-color:var(--ice-300);box-shadow:var(--shadow-sm)}
 .dest-img{aspect-ratio:1;overflow:hidden}
-.dest-body{padding:1rem 1.1rem 1rem 0}
-.dest-order{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ice-deep);margin-bottom:.3rem}
-.dest-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;margin-bottom:.4rem}
-.dest-desc{font-size:.8rem;color:var(--muted);line-height:1.6}
-.dest-time{display:inline-block;background:var(--ice);color:var(--ice-dark);font-size:.7rem;padding:2px 8px;border-radius:20px;margin-top:.5rem}
+.dest-body{padding:1.1rem 1.2rem 1.1rem 0}
+.dest-order{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ice-600);margin-bottom:.35rem;font-weight:500}
+.dest-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:500;margin-bottom:.45rem;color:var(--ink)}
+.dest-desc{font-size:.82rem;color:var(--muted);line-height:1.65}
+.dest-time{display:inline-block;background:var(--ice-100);color:var(--ice-800);font-size:.7rem;padding:3px 9px;border-radius:24px;margin-top:.55rem;font-weight:500}
 
 /* ITINERARY */
 .itin-section{margin-bottom:3rem}
-.itin-section h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin-bottom:1.5rem}
+.itin-section h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:500;margin-bottom:1.5rem;color:var(--ink);letter-spacing:-.01em}
 .itin-timeline{position:relative;padding-left:2rem}
-.itin-timeline::before{content:'';position:absolute;left:7px;top:6px;bottom:6px;width:1px;background:var(--ice-mid)}
-.itin-item{position:relative;margin-bottom:1.5rem}
-.itin-dot{position:absolute;left:-2rem;top:4px;width:15px;height:15px;border-radius:50%;background:var(--ice-dark);border:2.5px solid white;box-shadow:0 0 0 1.5px var(--ice-mid)}
-.itin-time{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ice-deep);margin-bottom:.25rem}
-.itin-title{font-weight:500;font-size:.92rem;margin-bottom:.25rem}
-.itin-desc{font-size:.8rem;color:var(--muted);line-height:1.6}
+.itin-timeline::before{content:'';position:absolute;left:7px;top:6px;bottom:6px;width:1px;background:var(--ice-300)}
+.itin-item{position:relative;margin-bottom:1.6rem}
+.itin-dot{position:absolute;left:-2rem;top:4px;width:15px;height:15px;border-radius:50%;background:var(--ice-800);border:2.5px solid white;box-shadow:0 0 0 1.5px var(--ice-300)}
+.itin-time{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ice-600);margin-bottom:.3rem;font-weight:500}
+.itin-title{font-weight:500;font-size:.93rem;margin-bottom:.3rem;color:var(--ink)}
+.itin-desc{font-size:.82rem;color:var(--muted);line-height:1.65}
 
-/* DEPARTURE OPTIONS */
+/* DEPARTURE */
 .departure-section{margin-bottom:3rem}
-.departure-section h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin-bottom:1.5rem}
-.dep-cards{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
-.dep-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:1.1rem;cursor:pointer;transition:.2s;position:relative}
-.dep-card:hover{border-color:var(--ice-mid)}
-.dep-card.base-card{border-color:var(--ice-dark);background:var(--ice)}
-.dep-card-city{font-weight:500;font-size:.95rem;margin-bottom:.2rem}
-.dep-card-point{font-size:.75rem;color:var(--muted);margin-bottom:.5rem}
-.dep-card-price{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--ice-dark);font-weight:600}
-.dep-card-note{font-size:.68rem;color:var(--muted);margin-top:.2rem}
-.dep-base-tag{position:absolute;top:.6rem;right:.6rem;background:var(--ice-dark);color:white;font-size:.62rem;padding:2px 7px;border-radius:20px}
+.departure-section h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:500;margin-bottom:1.5rem;color:var(--ink);letter-spacing:-.01em}
+.dep-cards{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.dep-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:1.2rem;cursor:pointer;transition:.2s;position:relative}
+.dep-card:hover{border-color:var(--ice-400)}
+.dep-card.base-card{border-color:var(--ice-800);background:var(--ice-100)}
+.dep-card-city{font-weight:500;font-size:.98rem;margin-bottom:.25rem;color:var(--ink)}
+.dep-card-point{font-size:.76rem;color:var(--muted);margin-bottom:.55rem}
+.dep-card-price{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--ice-800);font-weight:600}
+.dep-card-note{font-size:.7rem;color:var(--muted);margin-top:.25rem}
+.dep-base-tag{position:absolute;top:.65rem;right:.65rem;background:var(--ice-800);color:white;font-size:.62rem;padding:3px 8px;border-radius:24px;letter-spacing:.06em;font-weight:500}
 
-/* SEASON ITINERARY (Private) */
+/* SEASON TABS */
 .season-tabs{display:flex;gap:.5rem;margin-bottom:1.75rem;flex-wrap:wrap}
-.season-tab{padding:.5rem 1.25rem;border-radius:20px;border:1.5px solid var(--border);font-size:.82rem;cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif;background:white;font-weight:500}
+.season-tab{padding:.55rem 1.3rem;border-radius:24px;border:1.5px solid var(--border);font-size:.83rem;cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif;background:white;font-weight:500;letter-spacing:.02em;display:inline-flex;align-items:center;gap:.45rem}
+.season-tab svg{width:15px;height:15px}
 .season-tab[data-season="spring"].active,.season-tab[data-season="spring"]:hover{background:var(--spring-light);border-color:var(--spring);color:var(--spring)}
 .season-tab[data-season="summer"].active,.season-tab[data-season="summer"]:hover{background:var(--summer-light);border-color:var(--summer);color:var(--summer)}
 .season-tab[data-season="autumn"].active,.season-tab[data-season="autumn"]:hover{background:var(--autumn-light);border-color:var(--autumn);color:var(--autumn)}
 .season-tab[data-season="winter"].active,.season-tab[data-season="winter"]:hover{background:var(--winter-light);border-color:var(--winter);color:var(--winter)}
 .season-content{display:none}
 .season-content.active{display:block}
-.season-header{padding:1.25rem 1.5rem;border-radius:var(--radius-sm) var(--radius-sm) 0 0;margin-bottom:0}
-.season-header[data-s="spring"]{background:var(--spring-light);border:1px solid #a8d5b8;border-bottom:none}
-.season-header[data-s="summer"]{background:var(--summer-light);border:1px solid #f5b8b0;border-bottom:none}
-.season-header[data-s="autumn"]{background:var(--autumn-light);border:1px solid #f0c8a0;border-bottom:none}
-.season-header[data-s="winter"]{background:var(--winter-light);border:1px solid var(--ice-mid);border-bottom:none}
-.season-header h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;margin-bottom:.2rem}
+.season-header{padding:1.3rem 1.5rem;border-radius:var(--radius-sm) var(--radius-sm) 0 0;margin-bottom:0}
+.season-header[data-s="spring"]{background:var(--spring-light);border:1px solid #b0d4bb;border-bottom:none}
+.season-header[data-s="summer"]{background:var(--summer-light);border:1px solid #f0c0b8;border-bottom:none}
+.season-header[data-s="autumn"]{background:var(--autumn-light);border:1px solid #ebc8a5;border-bottom:none}
+.season-header[data-s="winter"]{background:var(--winter-light);border:1px solid var(--ice-300);border-bottom:none}
+.season-header h4{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:500;margin-bottom:.25rem;letter-spacing:-.005em}
 .season-header[data-s="spring"] h4{color:var(--spring)}
 .season-header[data-s="summer"] h4{color:var(--summer)}
 .season-header[data-s="autumn"] h4{color:var(--autumn)}
 .season-header[data-s="winter"] h4{color:var(--winter)}
 .season-header p{font-size:.78rem;color:var(--muted)}
 .season-itin{background:white;border-radius:0 0 var(--radius-sm) var(--radius-sm)}
-.season-itin[data-s="spring"]{border:1px solid #a8d5b8;border-top:none}
-.season-itin[data-s="summer"]{border:1px solid #f5b8b0;border-top:none}
-.season-itin[data-s="autumn"]{border:1px solid #f0c8a0;border-top:none}
-.season-itin[data-s="winter"]{border:1px solid var(--ice-mid);border-top:none}
-.sday{padding:.9rem 1.5rem;border-bottom:1px solid var(--border);display:grid;grid-template-columns:80px 1fr;gap:1rem;align-items:start}
+.season-itin[data-s="spring"]{border:1px solid #b0d4bb;border-top:none}
+.season-itin[data-s="summer"]{border:1px solid #f0c0b8;border-top:none}
+.season-itin[data-s="autumn"]{border:1px solid #ebc8a5;border-top:none}
+.season-itin[data-s="winter"]{border:1px solid var(--ice-300);border-top:none}
+.sday{padding:.95rem 1.5rem;border-bottom:1px solid var(--border);display:grid;grid-template-columns:90px 1fr;gap:1rem;align-items:start}
 .sday:last-child{border-bottom:none}
-.sday-time{font-size:.72rem;font-weight:500;color:var(--muted);padding-top:2px}
-.sday-content h5{font-size:.88rem;font-weight:500;margin-bottom:.2rem}
-.sday-content p{font-size:.78rem;color:var(--muted);line-height:1.55}
+.sday-time{font-size:.72rem;font-weight:500;color:var(--muted);padding-top:2px;letter-spacing:.05em}
+.sday-content h5{font-size:.88rem;font-weight:500;margin-bottom:.25rem;color:var(--ink)}
+.sday-content p{font-size:.79rem;color:var(--muted);line-height:1.6}
 
-/* SIDEBAR BOOKING CARD */
-.sidebar-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;margin-bottom:1.25rem}
-.sidebar-price{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--ice-dark);margin-bottom:.2rem}
-.sidebar-price-note{font-size:.75rem;color:var(--muted);margin-bottom:1.25rem}
-.sidebar-inc{margin-bottom:1.25rem}
-.sidebar-inc h4{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.75rem}
-.sidebar-inc-item{display:flex;align-items:center;gap:.6rem;font-size:.82rem;margin-bottom:.5rem}
-.sidebar-inc-icon{color:var(--ice-dark);font-size:.9rem}
-.btn-book{width:100%;padding:.9rem;background:var(--ice-dark);color:white;border:none;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-weight:500;font-size:.95rem;cursor:pointer;transition:.2s}
+/* SIDEBAR */
+.sidebar-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.85rem;margin-bottom:1.25rem;box-shadow:var(--shadow-sm)}
+.sidebar-price{font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:600;color:var(--ice-800);margin-bottom:.2rem;line-height:1;letter-spacing:-.01em}
+.sidebar-price-note{font-size:.76rem;color:var(--muted);margin-bottom:1.35rem}
+.sidebar-inc{margin-bottom:1.35rem}
+.sidebar-inc h4{font-size:.7rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);margin-bottom:.85rem;font-weight:500}
+.sidebar-inc-item{display:flex;align-items:center;gap:.65rem;font-size:.82rem;margin-bottom:.55rem;color:var(--ink)}
+.sidebar-inc-icon{color:var(--ice-700);font-size:.95rem;font-weight:600;flex-shrink:0}
+.btn-book{width:100%;padding:.95rem;background:var(--ice-800);color:white;border:none;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-weight:500;font-size:.95rem;cursor:pointer;transition:.25s;letter-spacing:.02em}
 .btn-book:hover{background:var(--ink)}
-.btn-wa-small{width:100%;padding:.75rem;background:#25d366;color:white;border:none;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-weight:500;font-size:.85rem;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px;margin-top:.6rem}
+.btn-wa-small{width:100%;padding:.78rem;background:#25d366;color:white;border:none;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-weight:500;font-size:.85rem;cursor:pointer;transition:.25s;display:flex;align-items:center;justify-content:center;gap:7px;margin-top:.65rem}
 .btn-wa-small:hover{background:#1fb85a}
-.sidebar-note{font-size:.73rem;color:var(--muted);text-align:center;margin-top:.75rem;line-height:1.6}
+.sidebar-note{font-size:.73rem;color:var(--muted);text-align:center;margin-top:.85rem;line-height:1.6}
 
 /* RESPONSIVE */
 @media(max-width:900px){
   .about-grid,.booking-wrap,.detail-grid{grid-template-columns:1fr}
   .detail-sidebar{position:static}
   .team-grid{grid-template-columns:1fr 1fr}
-  .steps-row{grid-template-columns:1fr 1fr;gap:1.5rem}
+  .steps-row{grid-template-columns:1fr 1fr;gap:2rem}
   .steps-row::before{display:none}
   .footer-grid{grid-template-columns:1fr 1fr}
   .dep-cards{grid-template-columns:1fr}
   .gallery-grid{grid-template-columns:1fr}
   .gallery-grid .g-main{grid-column:1}
+  .about-grid{gap:3rem}
+  section{padding:5rem 1.5rem}
+  .inclusions{padding:3rem 1.5rem}
 }
 @media(max-width:600px){
   .detail-hero-content{padding:2rem 1.5rem 2.5rem}
@@ -330,19 +358,46 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
   .team-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
   .fg-row{grid-template-columns:1fr}
-  .inc-grid{grid-template-columns:repeat(2,1fr)}
+  .inc-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem}
+  .hero{padding:7rem 1.5rem 4rem;min-height:90vh}
+  .hero-stats{gap:2rem;margin-top:3.5rem}
+  .booking-card{padding:1.5rem 1.3rem}
+  .form-steps{gap:.2rem}
+  .fs-label{display:none}
+  .fs-sep{flex:.5}
 }
 </style>
 </head>
 <body>
 
-<!-- =========================================================
-     NAVIGATION
-========================================================= -->
+<!-- ICONS DEFINITIONS (reusable) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <symbol id="i-bus" viewBox="0 0 24 24"><path d="M8 6v6m8-6v6M4 8h16M4 13h16M5 18v1m14-1v1M5 6c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v11a1 1 0 01-1 1H6a1 1 0 01-1-1V6z"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M3 8a2 2 0 012-2h2l2-2h6l2 2h2a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3M8 21h8"/></symbol>
+  <symbol id="i-snack" viewBox="0 0 24 24"><path d="M8 3l-3 5v12a1 1 0 001 1h12a1 1 0 001-1V8l-3-5H8z"/><path d="M5 8h14M9 13h6M10 17h4"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h12a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V5z"/><path d="M8 7h8M8 11h8M8 15h5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 3v18M5 7l14 10M5 17l14-10M3 12h18M8 4l4 3 4-3M8 20l4-3 4 3M4 8l3 4-3 4M20 8l-3 4 3 4"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 3L3 6v15l6-3 6 3 6-3V3l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></symbol>
+  <symbol id="i-handshake" viewBox="0 0 24 24"><path d="M5 12l3-3 3 3 2-2 3 3-2 2-3-3-2 2-4 4-3-3 3-3z"/><path d="M14 7l3-3 3 3-3 3"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3 8-8 9-5-1-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="i-message" viewBox="0 0 24 24"><path d="M21 12a8 8 0 01-11.5 7.2L4 21l1.8-5.5A8 8 0 1121 12z"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></symbol>
+  <symbol id="i-flower" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 9V4M12 15v5M9 12H4M15 12h5M7 7l3 3M14 14l3 3M17 7l-3 3M10 14l-3 3"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14zM5 19l7-7"/></symbol>
+</defs>
+</svg>
+
+<!-- NAV -->
 <nav id="main-nav">
   <div class="nav-logo" onclick="showPage('home')">Omen<span>Trip</span></div>
   <div class="nav-right">
-    <button class="nav-back" id="nav-back" onclick="showPage('home')">← <span data-id="Semua Paket" data-en="All Packages">Semua Paket</span></button>
+    <button class="nav-back" id="nav-back" onclick="showPage('home')"><svg class="ico"><use href="#i-arrow-left"/></svg> <span data-id="Semua Paket" data-en="All Packages">Semua Paket</span></button>
     <div class="lang-toggle">
       <button class="lang-btn active" onclick="setLang('id')">ID</button>
       <button class="lang-btn" onclick="setLang('en')">EN</button>
@@ -351,17 +406,20 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
   </div>
 </nav>
 
-<!-- =========================================================
-     PAGE: HOME
-========================================================= -->
+<!-- PAGE: HOME -->
 <div class="page active" id="page-home">
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-pattern"></div>
-  <div class="hero-tag" data-id="🇯🇵 Japan Travel Specialist · Since 2020" data-en="🇯🇵 Japan Travel Specialist · Since 2020">🇯🇵 Japan Travel Specialist · Since 2020</div>
+  <svg class="hero-snowflake"><use href="#i-snow"/></svg>
+  <svg class="hero-snowflake"><use href="#i-snow"/></svg>
+  <svg class="hero-snowflake"><use href="#i-snow"/></svg>
+  <svg class="hero-snowflake"><use href="#i-snow"/></svg>
+
+  <div class="hero-tag" data-id="Japan Travel Specialist · Since 2020" data-en="Japan Travel Specialist · Since 2020">Japan Travel Specialist · Since 2020</div>
   <h1 data-id="Jelajahi Jepang<br><em>Seperti Warga Lokal</em>" data-en="Discover Japan<br><em>Like a Local</em>">Jelajahi Jepang<br><em>Seperti Warga Lokal</em></h1>
-  <p class="hero-sub" data-id="Duduk manis, kami yang urus semuanya. Jemput, antar, foto &amp; video, pemandu lokal semua sudah termasuk." data-en="Sit back, we handle everything. Pick-up, drop-off, photos &amp; videos, local guide all included.">Duduk manis, kami yang urus semuanya. Jemput, antar, foto &amp; video, pemandu lokal — semua sudah termasuk.</p>
+  <p class="hero-sub" data-id="Duduk manis, kami yang urus semuanya. Jemput, antar, foto &amp; video, pemandu lokal &mdash; semua sudah termasuk." data-en="Sit back, we handle everything. Pick-up, drop-off, photos &amp; videos, local guide &mdash; all included.">Duduk manis, kami yang urus semuanya. Jemput, antar, foto &amp; video, pemandu lokal &mdash; semua sudah termasuk.</p>
   <div class="hero-actions">
     <button class="btn-main" onclick="scrollToId('packages')" data-id="Lihat Paket" data-en="View Packages">Lihat Paket</button>
     <button class="btn-outline" onclick="scrollToId('about')" data-id="Tentang Kami" data-en="About Us">Tentang Kami</button>
@@ -377,12 +435,12 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
 <div class="inclusions">
   <div class="inclusions-inner">
     <div class="inc-grid">
-      <div class="inc-item"><div class="inc-icon">🚌</div><div class="inc-label" data-id="Jemput &amp; Antar" data-en="Pick-up &amp; Drop-off">Jemput &amp; Antar</div><div class="inc-sub" data-id="Tanpa angkutan umum" data-en="No public transport">Tanpa angkutan umum</div></div>
-      <div class="inc-item"><div class="inc-icon">📸</div><div class="inc-label" data-id="Foto &amp; Video Gratis" data-en="Free Photo &amp; Video">Foto &amp; Video Gratis</div><div class="inc-sub" data-id="Kenangan terbaik" data-en="Best memories">Kenangan terbaik</div></div>
-      <div class="inc-item"><div class="inc-icon">🗣️</div><div class="inc-label" data-id="Tour Guide Lokal" data-en="Local Tour Guide">Tour Guide Lokal</div><div class="inc-sub" data-id="Berbahasa Indonesia" data-en="Indonesian-speaking">Berbahasa Indonesia</div></div>
-      <div class="inc-item"><div class="inc-icon">🍡</div><div class="inc-label" data-id="Makanan Kecil" data-en="Light Snacks">Makanan Kecil</div><div class="inc-sub" data-id="Selama perjalanan" data-en="During the trip">Selama perjalanan</div></div>
-      <div class="inc-item"><div class="inc-icon">📖</div><div class="inc-label" data-id="Photo Book" data-en="Photo Book">Photo Book</div><div class="inc-sub" data-id="Khusus Private Tour" data-en="For Private Tour">Khusus Private Tour</div></div>
-      <div class="inc-item"><div class="inc-icon">🕐</div><div class="inc-label" data-id="Waktu Bebas" data-en="Free Time">Waktu Bebas</div><div class="inc-sub" data-id="Eksplorasi sendiri" data-en="Explore on your own">Eksplorasi sendiri</div></div>
+      <div class="inc-item"><div class="inc-icon-wrap"><svg><use href="#i-bus"/></svg></div><div class="inc-label" data-id="Jemput &amp; Antar" data-en="Pick-up &amp; Drop-off">Jemput &amp; Antar</div><div class="inc-sub" data-id="Tanpa angkutan umum" data-en="No public transport">Tanpa angkutan umum</div></div>
+      <div class="inc-item"><div class="inc-icon-wrap"><svg><use href="#i-camera"/></svg></div><div class="inc-label" data-id="Foto &amp; Video Gratis" data-en="Free Photo &amp; Video">Foto &amp; Video Gratis</div><div class="inc-sub" data-id="Kenangan terbaik" data-en="Best memories">Kenangan terbaik</div></div>
+      <div class="inc-item"><div class="inc-icon-wrap"><svg><use href="#i-mic"/></svg></div><div class="inc-label" data-id="Tour Guide Lokal" data-en="Local Tour Guide">Tour Guide Lokal</div><div class="inc-sub" data-id="Berbahasa Indonesia" data-en="Indonesian-speaking">Berbahasa Indonesia</div></div>
+      <div class="inc-item"><div class="inc-icon-wrap"><svg><use href="#i-snack"/></svg></div><div class="inc-label" data-id="Makanan Kecil" data-en="Light Snacks">Makanan Kecil</div><div class="inc-sub" data-id="Selama perjalanan" data-en="During the trip">Selama perjalanan</div></div>
+      <div class="inc-item"><div class="inc-icon-wrap"><svg><use href="#i-book"/></svg></div><div class="inc-label" data-id="Photo Book" data-en="Photo Book">Photo Book</div><div class="inc-sub" data-id="Khusus Private Tour" data-en="For Private Tour">Khusus Private Tour</div></div>
+      <div class="inc-item"><div class="inc-icon-wrap"><svg><use href="#i-clock"/></svg></div><div class="inc-label" data-id="Waktu Bebas" data-en="Free Time">Waktu Bebas</div><div class="inc-sub" data-id="Eksplorasi sendiri" data-en="Explore on your own">Eksplorasi sendiri</div></div>
     </div>
   </div>
 </div>
@@ -393,7 +451,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
     <div class="about-grid">
       <div style="position:relative">
         <div class="about-img">
-          <div class="img-ph"><div class="img-ph-icon">⛩️</div><div class="img-ph-text">Photo Placeholder</div></div>
+          <div class="img-ph"><svg style="width:48px;height:48px;color:var(--ice-800);opacity:.35"><use href="#i-snow"/></svg><div class="img-ph-text" style="margin-top:.5rem">Photo Placeholder</div></div>
         </div>
         <div class="about-badge"><div class="about-badge-num">2020</div><div class="about-badge-text" data-id="Berdiri sejak" data-en="Est.">Berdiri sejak</div></div>
       </div>
@@ -403,10 +461,10 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
           <h2 class="section-title" data-id="Pemandu Lokal,<br><em>Pengalaman Nyata</em>" data-en="Local Guides,<br><em>Real Experiences</em>">Pemandu Lokal,<br><em>Pengalaman Nyata</em></h2>
           <p class="section-sub" data-id="Omen Trip adalah layanan perjalanan khusus Jepang yang dijalankan oleh tim yang benar-benar tinggal dan bekerja di Jepang. Kami memahami seluk-beluk lokal yang tidak ditemukan di brosur wisata biasa." data-en="Omen Trip is a Japan-exclusive travel service run by a team that actually lives and works in Japan. We understand local nuances you won't find in ordinary travel brochures.">Omen Trip adalah layanan perjalanan khusus Jepang yang dijalankan oleh tim yang benar-benar tinggal dan bekerja di Jepang. Kami memahami seluk-beluk lokal yang tidak ditemukan di brosur wisata biasa.</p>
         </div>
-        <div class="feature-row"><div class="feature-dot">❄️</div><div class="feature-text"><h4 data-id="Spesialisasi Wisata Musim Dingin" data-en="Winter Travel Specialists">Spesialisasi Wisata Musim Dingin</h4><p data-id="Pengalaman mendalam di destinasi salju Jepang yang jarang dijangkau tur biasa." data-en="Deep expertise in Japan's snow destinations rarely reached by ordinary tours.">Pengalaman mendalam di destinasi salju Jepang yang jarang dijangkau tur biasa.</p></div></div>
-        <div class="feature-row"><div class="feature-dot">🗺️</div><div class="feature-text"><h4 data-id="Tim Berbasis di Jepang" data-en="Japan-Based Team">Tim Berbasis di Jepang</h4><p data-id="Pemandu dan operasional kami ada langsung di lapangan, bukan dari jarak jauh." data-en="Our guides and operations are on the ground in Japan, not managed remotely.">Pemandu dan operasional kami ada langsung di lapangan, bukan dari jarak jauh.</p></div></div>
-        <div class="feature-row"><div class="feature-dot">🤝</div><div class="feature-text"><h4 data-id="Tidak Naik Angkutan Umum" data-en="No Public Transport">Tidak Naik Angkutan Umum</h4><p data-id="Cukup duduk manis di kendaraan kami. Kami yang jemput, antar, dan urus logistik." data-en="Just sit back in our vehicle. We handle pick-up, drop-off, and all logistics.">Cukup duduk manis di kendaraan kami. Kami yang jemput, antar, dan urus logistik.</p></div></div>
-        <div class="feature-row"><div class="feature-dot">🏛️</div><div class="feature-text"><h4 data-id="Legalitas Terpercaya" data-en="Trusted Legality">Legalitas Terpercaya</h4><p data-id="Sudah berbentuk PT di Indonesia. Izin agen perjalanan Jepang sedang dalam proses." data-en="Registered as PT in Indonesia. Japanese travel agency license currently in process.">Sudah berbentuk PT di Indonesia. Izin agen perjalanan Jepang sedang dalam proses.</p></div></div>
+        <div class="feature-row"><div class="feature-icon"><svg><use href="#i-snow"/></svg></div><div class="feature-text"><h4 data-id="Spesialisasi Wisata Musim Dingin" data-en="Winter Travel Specialists">Spesialisasi Wisata Musim Dingin</h4><p data-id="Pengalaman mendalam di destinasi salju Jepang yang jarang dijangkau tur biasa." data-en="Deep expertise in Japan's snow destinations rarely reached by ordinary tours.">Pengalaman mendalam di destinasi salju Jepang yang jarang dijangkau tur biasa.</p></div></div>
+        <div class="feature-row"><div class="feature-icon"><svg><use href="#i-map"/></svg></div><div class="feature-text"><h4 data-id="Tim Berbasis di Jepang" data-en="Japan-Based Team">Tim Berbasis di Jepang</h4><p data-id="Pemandu dan operasional kami ada langsung di lapangan, bukan dari jarak jauh." data-en="Our guides and operations are on the ground in Japan, not managed remotely.">Pemandu dan operasional kami ada langsung di lapangan, bukan dari jarak jauh.</p></div></div>
+        <div class="feature-row"><div class="feature-icon"><svg><use href="#i-handshake"/></svg></div><div class="feature-text"><h4 data-id="Tidak Naik Angkutan Umum" data-en="No Public Transport">Tidak Naik Angkutan Umum</h4><p data-id="Cukup duduk manis di kendaraan kami. Kami yang jemput, antar, dan urus logistik." data-en="Just sit back in our vehicle. We handle pick-up, drop-off, and all logistics.">Cukup duduk manis di kendaraan kami. Kami yang jemput, antar, dan urus logistik.</p></div></div>
+        <div class="feature-row"><div class="feature-icon"><svg><use href="#i-shield"/></svg></div><div class="feature-text"><h4 data-id="Legalitas Terpercaya" data-en="Trusted Legality">Legalitas Terpercaya</h4><p data-id="Sudah berbentuk PT di Indonesia. Izin agen perjalanan Jepang sedang dalam proses." data-en="Registered as PT in Indonesia. Japanese travel agency license currently in process.">Sudah berbentuk PT di Indonesia. Izin agen perjalanan Jepang sedang dalam proses.</p></div></div>
       </div>
     </div>
   </div>
@@ -415,49 +473,49 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
 <!-- PACKAGES -->
 <section id="packages" class="packages-bg">
   <div class="section-inner">
-    <div class="section-head" style="text-align:center;max-width:560px;margin:0 auto 3.5rem">
+    <div class="section-head" style="text-align:center;max-width:580px;margin:0 auto 4rem">
       <div class="section-tag" data-id="Paket Wisata" data-en="Tour Packages">Paket Wisata</div>
       <h2 class="section-title" data-id="Pilih <em>Petualangan</em> Anda" data-en="Choose Your <em>Adventure</em>">Pilih <em>Petualangan</em> Anda</h2>
       <p class="section-sub" style="margin:0 auto" data-id="Tap paket untuk melihat detail lengkap, foto destinasi, dan itinerary." data-en="Tap a package to view full details, destination photos, and itinerary.">Tap paket untuk melihat detail lengkap, foto destinasi, dan itinerary.</p>
     </div>
     <div class="pkg-grid">
       <div class="pkg-card" onclick="showPage('winter')">
-        <div class="pkg-img"><div class="img-ph"><div class="img-ph-icon">❄️</div><div class="img-ph-text">Shirakawa-go Winter</div></div><div class="pkg-badge-wrap"><span class="pkg-badge" data-id="✦ Terlaris" data-en="✦ Best Seller">✦ Terlaris</span></div></div>
+        <div class="pkg-img"><div class="img-ph"><svg style="width:48px;height:48px;color:var(--ice-800);opacity:.35"><use href="#i-snow"/></svg><div class="img-ph-text" style="margin-top:.4rem">Shirakawa-go Winter</div></div><div class="pkg-badge-wrap"><span class="pkg-badge" data-id="Terlaris" data-en="Best Seller">Terlaris</span></div></div>
         <div class="pkg-body">
           <div class="pkg-tag" data-id="One Day Trip" data-en="One Day Trip">One Day Trip</div>
           <div class="pkg-name">Winter Trip</div>
-          <p class="pkg-desc" data-id="Shogawa Yuranfune → Ainokura → Shirakawa-go. Desa salju bersejarah UNESCO yang memukau di musim dingin." data-en="Shogawa Yuranfune → Ainokura → Shirakawa-go. A stunning UNESCO historic snow village in winter.">Shogawa Yuranfune → Ainokura → Shirakawa-go. Desa salju bersejarah UNESCO yang memukau di musim dingin.</p>
-          <div class="pkg-footer"><div class="pkg-price"><span data-id="Mulai dari" data-en="From">Mulai dari</span> ¥22.000 <small data-id="/ orang" data-en="/ person">/ orang</small></div><div class="pkg-dp">DP 50%</div></div>
-          <div class="pkg-explore" data-id="Lihat detail &amp; itinerary →" data-en="View details &amp; itinerary →">Lihat detail &amp; itinerary →</div>
+          <p class="pkg-desc" data-id="Shogawa Yuranfune &middot; Ainokura &middot; Shirakawa-go. Desa salju bersejarah UNESCO yang memukau di musim dingin." data-en="Shogawa Yuranfune &middot; Ainokura &middot; Shirakawa-go. A stunning UNESCO historic snow village in winter.">Shogawa Yuranfune &middot; Ainokura &middot; Shirakawa-go. Desa salju bersejarah UNESCO yang memukau di musim dingin.</p>
+          <div class="pkg-footer"><div class="pkg-price">¥22.000<small data-id="Mulai / orang" data-en="From / person">Mulai / orang</small></div><div class="pkg-dp">DP 50%</div></div>
+          <div class="pkg-explore" data-id="Lihat detail &amp; itinerary" data-en="View details &amp; itinerary">Lihat detail &amp; itinerary <svg><use href="#i-arrow-right"/></svg></div>
         </div>
       </div>
       <div class="pkg-card" onclick="showPage('hokkaido')">
-        <div class="pkg-img"><div class="img-ph"><div class="img-ph-icon">🦌</div><div class="img-ph-text">Hokkaido Winter</div></div><div class="pkg-badge-wrap"><span class="pkg-badge" data-id="✦ Rekomendasi" data-en="✦ Recommended">✦ Rekomendasi</span></div></div>
+        <div class="pkg-img"><div class="img-ph" style="background:linear-gradient(135deg,#d8ebf5,#a5c5dc)"><svg style="width:48px;height:48px;color:var(--ice-800);opacity:.35"><use href="#i-snow"/></svg><div class="img-ph-text" style="margin-top:.4rem">Hokkaido Winter</div></div><div class="pkg-badge-wrap"><span class="pkg-badge" data-id="Rekomendasi" data-en="Recommended">Rekomendasi</span></div></div>
         <div class="pkg-body">
           <div class="pkg-tag" data-id="Open Private Trip" data-en="Open Private Trip">Open Private Trip</div>
           <div class="pkg-name">Hokkaido Trip</div>
           <p class="pkg-desc" data-id="Christmas Tree Biei, Snowmobile Experience, Asahiyama Zoo, Ningle Terrace. Petualangan salju terlengkap." data-en="Christmas Tree Biei, Snowmobile, Asahiyama Zoo, Ningle Terrace. The most complete snow adventure.">Christmas Tree Biei, Snowmobile Experience, Asahiyama Zoo, Ningle Terrace. Petualangan salju terlengkap.</p>
-          <div class="pkg-footer"><div class="pkg-price"><span data-id="Mulai dari" data-en="From">Mulai dari</span> Rp 13,9 Jt <small data-id="/ orang" data-en="/ person">/ orang</small></div><div class="pkg-dp">DP 50%</div></div>
-          <div class="pkg-explore" data-id="Lihat detail &amp; itinerary →" data-en="View details &amp; itinerary →">Lihat detail &amp; itinerary →</div>
+          <div class="pkg-footer"><div class="pkg-price">Rp 13,9 Jt<small data-id="Mulai / orang" data-en="From / person">Mulai / orang</small></div><div class="pkg-dp">DP 50%</div></div>
+          <div class="pkg-explore" data-id="Lihat detail &amp; itinerary" data-en="View details &amp; itinerary">Lihat detail &amp; itinerary <svg><use href="#i-arrow-right"/></svg></div>
         </div>
       </div>
       <div class="pkg-card" onclick="showPage('private')">
-        <div class="pkg-img"><div class="img-ph"><div class="img-ph-icon">🗾</div><div class="img-ph-text">Private Guide Japan</div></div><div class="pkg-badge-wrap"><span class="pkg-badge" data-id="✦ Premium" data-en="✦ Premium">✦ Premium</span></div></div>
+        <div class="pkg-img"><div class="img-ph" style="background:linear-gradient(135deg,#e8e0d5,#c8b89a)"><svg style="width:48px;height:48px;color:var(--ice-800);opacity:.35"><use href="#i-map"/></svg><div class="img-ph-text" style="margin-top:.4rem">Private Guide Japan</div></div><div class="pkg-badge-wrap"><span class="pkg-badge" data-id="Premium" data-en="Premium">Premium</span></div></div>
         <div class="pkg-body">
-          <div class="pkg-tag" data-id="Custom · Seluruh Jepang" data-en="Custom · All Japan">Custom · Seluruh Jepang</div>
+          <div class="pkg-tag" data-id="Custom &middot; Seluruh Jepang" data-en="Custom &middot; All Japan">Custom &middot; Seluruh Jepang</div>
           <div class="pkg-name">Private Tour Guide</div>
           <p class="pkg-desc" data-id="Seluruh Jepang sesuai keinginan Anda. Pemandu lokal fasih Bahasa Indonesia, termasuk photo book eksklusif." data-en="All of Japan, tailored to your wishes. Local guide fluent in Indonesian, includes exclusive photo book.">Seluruh Jepang sesuai keinginan Anda. Pemandu lokal fasih Bahasa Indonesia, termasuk photo book eksklusif.</p>
-          <div class="pkg-footer"><div class="pkg-price"><span data-id="Mulai dari" data-en="From">Mulai dari</span> ¥27.000 <small data-id="/ hari" data-en="/ day">/ hari</small></div><div class="pkg-dp">DP 50%</div></div>
-          <div class="pkg-explore" data-id="Lihat detail &amp; itinerary →" data-en="View details &amp; itinerary →">Lihat detail &amp; itinerary →</div>
+          <div class="pkg-footer"><div class="pkg-price">¥27.000<small data-id="Mulai / hari" data-en="From / day">Mulai / hari</small></div><div class="pkg-dp">DP 50%</div></div>
+          <div class="pkg-explore" data-id="Lihat detail &amp; itinerary" data-en="View details &amp; itinerary">Lihat detail &amp; itinerary <svg><use href="#i-arrow-right"/></svg></div>
         </div>
       </div>
       <div class="pkg-card pkg-coming">
-        <div class="pkg-img"><div class="img-ph"><div class="img-ph-icon">🌸</div><div class="img-ph-text">Coming Soon</div></div><div class="coming-overlay"><span class="coming-badge" data-id="Segera Hadir" data-en="Coming Soon">Segera Hadir</span></div></div>
+        <div class="pkg-img"><div class="img-ph" style="background:linear-gradient(135deg,#fae5ec,#f0b8c8)"><svg style="width:48px;height:48px;color:#a8607a;opacity:.4"><use href="#i-flower"/></svg><div class="img-ph-text" style="margin-top:.4rem">Coming Soon</div></div><div class="coming-overlay"><span class="coming-badge" data-id="Segera Hadir" data-en="Coming Soon">Segera Hadir</span></div></div>
         <div class="pkg-body">
           <div class="pkg-tag" data-id="Paket Baru" data-en="New Package">Paket Baru</div>
           <div class="pkg-name" data-id="Sakura Trip 2025" data-en="Sakura Trip 2025">Sakura Trip 2025</div>
           <p class="pkg-desc" data-id="Paket sakura eksklusif segera hadir. Pantau terus Instagram kami untuk informasi lebih lanjut." data-en="Exclusive sakura package coming soon. Follow our Instagram for updates.">Paket sakura eksklusif segera hadir. Pantau terus Instagram kami untuk informasi lebih lanjut.</p>
-          <div class="pkg-footer"><div class="pkg-price" style="color:var(--muted);font-size:.9rem" data-id="— Segera Diumumkan —" data-en="— Coming Soon —">— Segera Diumumkan —</div></div>
+          <div class="pkg-footer"><div class="pkg-price" style="color:var(--muted);font-size:.95rem" data-id="— Segera Diumumkan —" data-en="— Coming Soon —">— Segera Diumumkan —</div></div>
         </div>
       </div>
     </div>
@@ -467,7 +525,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
 <!-- HOW -->
 <section class="how-bg">
   <div class="section-inner">
-    <div class="section-head" style="text-align:center;max-width:560px;margin:0 auto 3.5rem">
+    <div class="section-head" style="text-align:center;max-width:580px;margin:0 auto 4rem">
       <div class="section-tag" data-id="Cara Pemesanan" data-en="How to Book">Cara Pemesanan</div>
       <h2 class="section-title" data-id="Mudah &amp; <em>Cepat</em>" data-en="Easy &amp; <em>Fast</em>">Mudah &amp; <em>Cepat</em></h2>
     </div>
@@ -483,30 +541,30 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
 <!-- TEAM -->
 <section id="team">
   <div class="section-inner">
-    <div class="section-head" style="text-align:center;max-width:560px;margin:0 auto 3.5rem">
+    <div class="section-head" style="text-align:center;max-width:580px;margin:0 auto 4rem">
       <div class="section-tag" data-id="Tim Kami" data-en="Our Team">Tim Kami</div>
       <h2 class="section-title" data-id="Orang-Orang di <em>Balik Omen Trip</em>" data-en="The People <em>Behind Omen Trip</em>">Orang-Orang di <em>Balik Omen Trip</em></h2>
     </div>
     <div class="team-grid">
-      <div class="team-card"><div class="team-avatar">O</div><div class="team-name">Omen</div><div class="team-role" data-id="Founder & CEO" data-en="Founder & CEO">Founder & CEO</div><div class="team-tags"><span class="team-tag">Marketing</span><span class="team-tag" data-id="Promosi" data-en="Promotion">Promosi</span><span class="team-tag" data-id="Strategi Bisnis" data-en="Business Strategy">Strategi Bisnis</span></div></div>
-      <div class="team-card"><div class="team-avatar">N</div><div class="team-name">Nas</div><div class="team-role" data-id="Operasional & Tour Guide" data-en="Operations & Tour Guide">Operasional & Tour Guide</div><div class="team-tags"><span class="team-tag" data-id="Operasional" data-en="Operations">Operasional</span><span class="team-tag">Tour Guide</span><span class="team-tag" data-id="Koordinasi" data-en="Coordination">Koordinasi</span></div></div>
+      <div class="team-card"><div class="team-avatar">O</div><div class="team-name">Omen</div><div class="team-role" data-id="Founder &amp; CEO" data-en="Founder &amp; CEO">Founder &amp; CEO</div><div class="team-tags"><span class="team-tag">Marketing</span><span class="team-tag" data-id="Promosi" data-en="Promotion">Promosi</span><span class="team-tag" data-id="Strategi Bisnis" data-en="Business Strategy">Strategi Bisnis</span></div></div>
+      <div class="team-card"><div class="team-avatar">N</div><div class="team-name">Nas</div><div class="team-role" data-id="Operasional &amp; Tour Guide" data-en="Operations &amp; Tour Guide">Operasional &amp; Tour Guide</div><div class="team-tags"><span class="team-tag" data-id="Operasional" data-en="Operations">Operasional</span><span class="team-tag">Tour Guide</span><span class="team-tag" data-id="Koordinasi" data-en="Coordination">Koordinasi</span></div></div>
       <div class="team-card"><div class="team-avatar">Ng</div><div class="team-name">Nagi</div><div class="team-role" data-id="Operasional Lapangan" data-en="Field Operations">Operasional Lapangan</div><div class="team-tags"><span class="team-tag" data-id="Reservasi" data-en="Reservations">Reservasi</span><span class="team-tag" data-id="Transportasi" data-en="Transportation">Transportasi</span><span class="team-tag" data-id="Lapangan" data-en="Field Ops">Lapangan</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- BOOKING FORM -->
+<!-- BOOKING -->
 <section id="booking" class="booking-bg">
   <div class="section-inner">
     <div class="booking-wrap">
       <div class="booking-info">
         <div class="section-tag" data-id="Pemesanan" data-en="Booking">Pemesanan</div>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:400;line-height:1.2;margin-bottom:1rem" data-id="Siap Berangkat<br><em>ke Jepang?</em>" data-en="Ready to Head<br><em>to Japan?</em>">Siap Berangkat<br><em>ke Jepang?</em></h2>
-        <p style="color:var(--muted);font-size:.88rem;line-height:1.75;margin-bottom:1.5rem" data-id="Isi form ini dan tim kami akan menghubungi Anda dalam 1×24 jam untuk konfirmasi detail perjalanan." data-en="Fill this form and our team will contact you within 24 hours to confirm your travel details.">Isi form ini dan tim kami akan menghubungi Anda dalam 1×24 jam untuk konfirmasi detail perjalanan.</p>
+        <h2 data-id="Siap Berangkat<br><em>ke Jepang?</em>" data-en="Ready to Head<br><em>to Japan?</em>">Siap Berangkat<br><em>ke Jepang?</em></h2>
+        <p data-id="Isi form ini dan tim kami akan menghubungi Anda dalam 1×24 jam untuk konfirmasi detail perjalanan." data-en="Fill this form and our team will contact you within 24 hours to confirm your travel details.">Isi form ini dan tim kami akan menghubungi Anda dalam 1×24 jam untuk konfirmasi detail perjalanan.</p>
         <div class="contact-items">
-          <div class="contact-item"><div class="contact-icon">💬</div><span>WhatsApp: +81 80-9580-3259</span></div>
-          <div class="contact-item"><div class="contact-icon">📸</div><span>Instagram: @omentrip</span></div>
-          <div class="contact-item"><div class="contact-icon">⏰</div><span data-id="Respons dalam 1×24 jam" data-en="Response within 24 hours">Respons dalam 1×24 jam</span></div>
+          <div class="contact-item"><div class="contact-icon"><svg><use href="#i-message"/></svg></div><span>WhatsApp: +81 80-9580-3259</span></div>
+          <div class="contact-item"><div class="contact-icon"><svg><use href="#i-instagram"/></svg></div><span>Instagram: @omentrip</span></div>
+          <div class="contact-item"><div class="contact-icon"><svg><use href="#i-clock"/></svg></div><span data-id="Respons dalam 1×24 jam" data-en="Response within 24 hours">Respons dalam 1×24 jam</span></div>
         </div>
       </div>
       <div class="booking-card" id="booking-card">
@@ -520,7 +578,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
           <div class="fs" id="fs4"><div class="fs-num">✓</div><span class="fs-label" data-id="Selesai" data-en="Done">Selesai</span></div>
         </div>
         <div class="form-sec active" id="fsec-1">
-          <div style="font-size:.82rem;font-weight:500;margin-bottom:.75rem" data-id="Pilih paket yang Anda inginkan:" data-en="Select your desired package:">Pilih paket yang Anda inginkan:</div>
+          <div style="font-size:.82rem;font-weight:500;margin-bottom:.85rem" data-id="Pilih paket yang Anda inginkan:" data-en="Select your desired package:">Pilih paket yang Anda inginkan:</div>
           <div class="form-pkg-grid">
             <div class="form-pkg" id="fpkg-1" onclick="pickPkg(1)"><div class="form-pkg-chk">✓</div><div class="form-pkg-name">Winter Trip</div><div class="form-pkg-dur" data-id="One Day Trip · Shirakawa-go" data-en="One Day Trip · Shirakawa-go">One Day Trip · Shirakawa-go</div><div class="form-pkg-price">¥22.000 <span style="font-size:.72rem;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:400" data-id="/ orang" data-en="/ person">/ orang</span></div></div>
             <div class="form-pkg" id="fpkg-2" onclick="pickPkg(2)"><div class="form-pkg-chk">✓</div><div class="form-pkg-name">Hokkaido Trip</div><div class="form-pkg-dur" data-id="Open Private Trip · Hokkaido" data-en="Open Private Trip · Hokkaido">Open Private Trip · Hokkaido</div><div class="form-pkg-price">Rp 13.900.000 <span style="font-size:.72rem;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:400" data-id="/ orang" data-en="/ person">/ orang</span></div></div>
@@ -546,9 +604,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
             <div class="bank-row"><span class="bk" data-id="Bank" data-en="Bank">Bank</span><span class="bv">Mandiri</span></div>
             <div class="bank-row norek"><span class="bk" data-id="No. Rekening" data-en="Account No.">No. Rekening</span><span class="bv"><span id="b-norek">1360036647185</span><button class="copy-btn" onclick="copyNorek()" data-id="Salin" data-en="Copy">Salin</button></span></div>
             <div class="bank-row"><span class="bk" data-id="Atas Nama" data-en="Account Name">Atas Nama</span><span class="bv">M Khittatul Rohman</span></div>
-            <div class="bank-row"><span class="bk" data-id="Nominal" data-en="Amount">Nominal</span><span class="bv" id="b-nominal" style="color:var(--ice-dark)">-</span></div>
+            <div class="bank-row"><span class="bk" data-id="Nominal" data-en="Amount">Nominal</span><span class="bv" id="b-nominal" style="color:var(--ice-800)">-</span></div>
           </div>
-          <p style="font-size:.78rem;color:var(--muted);margin-bottom:1rem;line-height:1.65" data-id="📌 Setelah transfer, klik tombol di bawah untuk konfirmasi ke WhatsApp kami." data-en="📌 After transferring, click below to send confirmation to our WhatsApp.">📌 Setelah transfer, klik tombol di bawah untuk konfirmasi ke WhatsApp kami.</p>
+          <p style="font-size:.79rem;color:var(--muted);margin-bottom:1rem;line-height:1.7" data-id="Setelah transfer, klik tombol di bawah untuk konfirmasi ke WhatsApp kami." data-en="After transferring, click below to send confirmation to our WhatsApp.">Setelah transfer, klik tombol di bawah untuk konfirmasi ke WhatsApp kami.</p>
           <button class="btn-form btn-form-back" onclick="goStep(2)" data-id="← Kembali" data-en="← Back">← Kembali</button>
           <button class="btn-form btn-form-wa" onclick="kirimWA()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -558,10 +616,10 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
         </div>
         <div class="form-sec" id="fsec-4">
           <div class="success-wrap">
-            <div class="success-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2a5f80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-            <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:400;margin-bottom:.5rem" data-id="Pesanan Terkirim! 🎉" data-en="Order Sent! 🎉">Pesanan Terkirim! 🎉</h3>
+            <div class="success-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1a3a52" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;margin-bottom:.5rem" data-id="Pesanan Terkirim!" data-en="Order Sent!">Pesanan Terkirim!</h3>
             <p style="color:var(--muted);font-size:.85rem" data-id="Tim Omen Trip akan segera menghubungi Anda via WhatsApp." data-en="The Omen Trip team will contact you shortly via WhatsApp.">Tim Omen Trip akan segera menghubungi Anda via WhatsApp.</p>
-            <div class="next-steps"><h4 data-id="Langkah Selanjutnya:" data-en="Next Steps:">Langkah Selanjutnya:</h4><ol><li data-id="Transfer DP sesuai nominal yang tertera" data-en="Transfer the deposit as specified">Transfer DP sesuai nominal</li><li data-id="Kirim bukti transfer ke WhatsApp kami" data-en="Send transfer proof to our WhatsApp">Kirim bukti transfer via WA</li><li data-id="Tunggu konfirmasi (maks. 1×24 jam)" data-en="Wait for confirmation (max. 24 hours)">Tunggu konfirmasi maks. 24 jam</li><li data-id="Selamat menikmati Jepang! 🇯🇵" data-en="Enjoy Japan! 🇯🇵">Selamat menikmati Jepang! 🇯🇵</li></ol></div>
+            <div class="next-steps"><h4 data-id="Langkah Selanjutnya:" data-en="Next Steps:">Langkah Selanjutnya:</h4><ol><li data-id="Transfer DP sesuai nominal" data-en="Transfer the deposit as specified">Transfer DP sesuai nominal</li><li data-id="Kirim bukti transfer via WA" data-en="Send transfer proof via WhatsApp">Kirim bukti transfer via WA</li><li data-id="Tunggu konfirmasi maks. 24 jam" data-en="Wait for confirmation (max. 24 hours)">Tunggu konfirmasi maks. 24 jam</li><li data-id="Selamat menikmati Jepang!" data-en="Enjoy Japan!">Selamat menikmati Jepang!</li></ol></div>
             <button class="btn-form btn-form-primary" style="max-width:200px;margin:0 auto;display:block" onclick="resetForm()" data-id="Pesan Lagi" data-en="Book Again">Pesan Lagi</button>
           </div>
         </div>
@@ -578,62 +636,47 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
       <div class="footer-col"><h5 data-id="Paket" data-en="Packages">Paket</h5><a onclick="showPage('winter')">Winter Trip</a><a onclick="showPage('hokkaido')">Hokkaido Trip</a><a onclick="showPage('private')">Private Tour Guide</a><a style="opacity:.5;cursor:default" data-id="Sakura Trip (Segera)" data-en="Sakura Trip (Soon)">Sakura Trip (Segera)</a></div>
       <div class="footer-col"><h5 data-id="Kontak" data-en="Contact">Kontak</h5><a>Instagram: @omentrip</a><a>WhatsApp: +81 80-9580-3259</a><a onclick="scrollToId('about')" data-id="Tentang Kami" data-en="About Us">Tentang Kami</a><a onclick="goToBooking(null)" data-id="Pesan Sekarang" data-en="Book Now">Pesan Sekarang</a></div>
     </div>
-    <div class="footer-bottom"><span>© 2025 Omen Trip. <span data-id="PT terdaftar di Indonesia." data-en="Registered PT in Indonesia.">PT terdaftar di Indonesia.</span></span><span data-id="Made with ❤️ for Japan lovers" data-en="Made with ❤️ for Japan lovers">Made with ❤️ for Japan lovers</span></div>
+    <div class="footer-bottom"><span>© 2025 Omen Trip. <span data-id="PT terdaftar di Indonesia." data-en="Registered PT in Indonesia.">PT terdaftar di Indonesia.</span></span><span data-id="Made with care for Japan lovers" data-en="Made with care for Japan lovers">Made with care for Japan lovers</span></div>
   </div>
 </footer>
 </div><!-- end page-home -->
 
-<!-- =========================================================
-     PAGE: WINTER TRIP
-========================================================= -->
+<!-- PAGE WINTER -->
 <div class="page page-enter" id="page-winter">
   <div class="detail-hero">
-    <div class="detail-hero-bg"><div class="img-ph" style="height:100%"><div class="img-ph-icon" style="font-size:5rem;opacity:.3">❄️</div><div class="img-ph-text">Hero Photo Placeholder — Shirakawa-go Winter</div></div></div>
+    <div class="detail-hero-bg"><div class="img-ph" style="height:100%"><svg style="width:80px;height:80px;color:var(--ice-800);opacity:.3"><use href="#i-snow"/></svg><div class="img-ph-text" style="margin-top:.5rem">Hero Photo — Shirakawa-go Winter</div></div></div>
     <div class="detail-hero-overlay"></div>
     <div class="detail-hero-content">
       <div class="detail-hero-tag" data-id="One Day Trip" data-en="One Day Trip">One Day Trip</div>
       <h1>Winter Trip<br><em data-id="Shirakawa-go &amp; Ainokura" data-en="Shirakawa-go &amp; Ainokura">Shirakawa-go &amp; Ainokura</em></h1>
       <p class="detail-hero-sub" data-id="Rasakan keindahan desa salju bersejarah UNESCO yang hanya bisa dinikmati di musim dingin Jepang. Satu hari penuh yang tak terlupakan." data-en="Experience the beauty of a UNESCO historic snow village only possible in Japanese winter. An unforgettable full day.">Rasakan keindahan desa salju bersejarah UNESCO yang hanya bisa dinikmati di musim dingin Jepang. Satu hari penuh yang tak terlupakan.</p>
       <div class="detail-hero-badges">
-        <span class="detail-hero-badge">❄️ <span data-id="Musim Dingin" data-en="Winter Season">Musim Dingin</span></span>
-        <span class="detail-hero-badge">🕐 <span data-id="1 Hari" data-en="1 Day">1 Hari</span></span>
-        <span class="detail-hero-badge">✦ <span data-id="Terlaris" data-en="Best Seller">Terlaris</span></span>
+        <span class="detail-hero-badge"><svg><use href="#i-snow"/></svg> <span data-id="Musim Dingin" data-en="Winter Season">Musim Dingin</span></span>
+        <span class="detail-hero-badge"><svg><use href="#i-clock"/></svg> <span data-id="1 Hari" data-en="1 Day">1 Hari</span></span>
+        <span class="detail-hero-badge"><span data-id="Terlaris" data-en="Best Seller">Terlaris</span></span>
       </div>
     </div>
   </div>
   <div class="detail-body">
     <div class="detail-grid">
       <div class="detail-main">
-
-        <!-- GALLERY -->
         <div class="gallery-grid" style="margin-bottom:3rem">
-          <div class="gallery-item main-img g-main"><div class="img-ph"><div class="img-ph-icon">🏘️</div><div class="img-ph-text">Shirakawa-go Village — Main Photo</div></div></div>
-          <div class="gallery-item tall"><div class="img-ph"><div class="img-ph-icon">🛶</div><div class="img-ph-text">Shogawa Yuranfune</div></div></div>
-          <div class="gallery-item tall"><div class="img-ph"><div class="img-ph-icon">🏔️</div><div class="img-ph-text">Ainokura Village</div></div></div>
-          <div class="gallery-item"><div class="img-ph"><div class="img-ph-icon">⛄</div><div class="img-ph-text">Snow Scene</div></div></div>
-          <div class="gallery-item"><div class="img-ph"><div class="img-ph-icon">🌨️</div><div class="img-ph-text">Winter Scenery</div></div></div>
+          <div class="gallery-item main-img g-main"><div class="img-ph"><svg style="width:40px;height:40px;color:var(--ice-800);opacity:.35"><use href="#i-snow"/></svg><div class="img-ph-text" style="margin-top:.4rem">Shirakawa-go Village</div></div></div>
+          <div class="gallery-item tall"><div class="img-ph"><div class="img-ph-text">Shogawa Yuranfune</div></div></div>
+          <div class="gallery-item tall"><div class="img-ph"><div class="img-ph-text">Ainokura Village</div></div></div>
+          <div class="gallery-item"><div class="img-ph"><div class="img-ph-text">Snow Scene</div></div></div>
+          <div class="gallery-item"><div class="img-ph"><div class="img-ph-text">Winter Scenery</div></div></div>
         </div>
 
-        <!-- DESTINATIONS -->
         <div class="dest-section">
           <h3 data-id="Destinasi dalam Perjalanan Ini" data-en="Destinations on This Trip">Destinasi dalam Perjalanan Ini</h3>
           <div class="dest-cards">
-            <div class="dest-card">
-              <div class="dest-img"><div class="img-ph"><div class="img-ph-icon" style="font-size:1.5rem;opacity:.5">🛶</div></div></div>
-              <div class="dest-body"><div class="dest-order" data-id="Pemberhentian 1" data-en="Stop 1">Pemberhentian 1</div><div class="dest-name">Shogawa Yuranfune</div><p class="dest-desc" data-id="Naik perahu tradisional menyusuri Sungai Shogawa yang dikelilingi salju. Pemandangan yang hanya ada di musim dingin — tenang, magis, dan memukau." data-en="Ride a traditional boat along the snow-lined Shogawa River. A view only possible in winter — serene, magical, and breathtaking.">Naik perahu tradisional menyusuri Sungai Shogawa yang dikelilingi salju. Pemandangan yang hanya ada di musim dingin.</p><span class="dest-time" data-id="± 60 menit" data-en="± 60 minutes">± 60 menit</span></div>
-            </div>
-            <div class="dest-card">
-              <div class="dest-img"><div class="img-ph"><div class="img-ph-icon" style="font-size:1.5rem;opacity:.5">🏔️</div></div></div>
-              <div class="dest-body"><div class="dest-order" data-id="Pemberhentian 2" data-en="Stop 2">Pemberhentian 2</div><div class="dest-name">Ainokura</div><p class="dest-desc" data-id="Desa gassho-zukuri yang lebih kecil dan lebih tenang dari Shirakawa-go. Suasana pedesaan Jepang kuno yang otentik, jauh dari keramaian turis." data-en="A smaller, quieter gassho-zukuri village than Shirakawa-go. Authentic ancient Japanese rural atmosphere, away from tourist crowds.">Desa gassho-zukuri yang lebih kecil dan lebih tenang. Suasana pedesaan Jepang kuno yang otentik.</p><span class="dest-time" data-id="± 60 menit" data-en="± 60 minutes">± 60 menit</span></div>
-            </div>
-            <div class="dest-card">
-              <div class="dest-img"><div class="img-ph"><div class="img-ph-icon" style="font-size:1.5rem;opacity:.5">🏘️</div></div></div>
-              <div class="dest-body"><div class="dest-order" data-id="Pemberhentian 3" data-en="Stop 3">Pemberhentian 3</div><div class="dest-name">Shirakawa-go</div><p class="dest-desc" data-id="Desa UNESCO paling ikonik di Jepang, tertutup salju tebal di musim dingin. Rumah-rumah gassho-zukuri dengan atap salju seperti dari dongeng Eropa." data-en="Japan's most iconic UNESCO village, blanketed in thick snow in winter. Gassho-zukuri houses with snowy roofs like a European fairy tale.">Desa UNESCO paling ikonik di Jepang, tertutup salju tebal di musim dingin. Seperti dari dongeng.</p><span class="dest-time" data-id="± 90 menit" data-en="± 90 minutes">± 90 menit</span></div>
-            </div>
+            <div class="dest-card"><div class="dest-img"><div class="img-ph"></div></div><div class="dest-body"><div class="dest-order" data-id="Pemberhentian 1" data-en="Stop 1">Pemberhentian 1</div><div class="dest-name">Shogawa Yuranfune</div><p class="dest-desc" data-id="Naik perahu tradisional menyusuri Sungai Shogawa yang dikelilingi salju. Pemandangan yang hanya ada di musim dingin — tenang, magis, dan memukau." data-en="Ride a traditional boat along the snow-lined Shogawa River. A view only possible in winter — serene, magical, and breathtaking.">Naik perahu tradisional menyusuri Sungai Shogawa yang dikelilingi salju. Pemandangan yang hanya ada di musim dingin.</p><span class="dest-time" data-id="± 60 menit" data-en="± 60 minutes">± 60 menit</span></div></div>
+            <div class="dest-card"><div class="dest-img"><div class="img-ph"></div></div><div class="dest-body"><div class="dest-order" data-id="Pemberhentian 2" data-en="Stop 2">Pemberhentian 2</div><div class="dest-name">Ainokura</div><p class="dest-desc" data-id="Desa gassho-zukuri yang lebih kecil dan lebih tenang dari Shirakawa-go. Suasana pedesaan Jepang kuno yang otentik, jauh dari keramaian turis." data-en="A smaller, quieter gassho-zukuri village than Shirakawa-go. Authentic ancient Japanese rural atmosphere, away from tourist crowds.">Desa gassho-zukuri yang lebih kecil dan lebih tenang. Suasana pedesaan Jepang kuno yang otentik.</p><span class="dest-time" data-id="± 60 menit" data-en="± 60 minutes">± 60 menit</span></div></div>
+            <div class="dest-card"><div class="dest-img"><div class="img-ph"></div></div><div class="dest-body"><div class="dest-order" data-id="Pemberhentian 3" data-en="Stop 3">Pemberhentian 3</div><div class="dest-name">Shirakawa-go</div><p class="dest-desc" data-id="Desa UNESCO paling ikonik di Jepang, tertutup salju tebal di musim dingin. Rumah-rumah gassho-zukuri dengan atap salju seperti dari dongeng Eropa." data-en="Japan's most iconic UNESCO village, blanketed in thick snow in winter. Gassho-zukuri houses with snowy roofs like a European fairy tale.">Desa UNESCO paling ikonik di Jepang, tertutup salju tebal di musim dingin. Seperti dari dongeng.</p><span class="dest-time" data-id="± 90 menit" data-en="± 90 minutes">± 90 menit</span></div></div>
           </div>
         </div>
 
-        <!-- ITINERARY -->
         <div class="itin-section">
           <h3 data-id="Itinerary Harian" data-en="Daily Itinerary">Itinerary Harian</h3>
           <div class="itin-timeline">
@@ -646,24 +689,22 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
           </div>
         </div>
 
-        <!-- DEPARTURE OPTIONS -->
         <div class="departure-section">
           <h3 data-id="Pilihan Kota Keberangkatan" data-en="Departure City Options">Pilihan Kota Keberangkatan</h3>
-          <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.65" data-id="Kanazawa adalah base utama kami dengan harga terjangkau. Keberangkatan dari kota lain tersedia di waktu-waktu tertentu dengan titik kumpul berbeda." data-en="Kanazawa is our main base with the most affordable price. Departures from other cities are available at certain times with different meeting points.">Kanazawa adalah base utama kami dengan harga terjangkau. Keberangkatan dari kota lain tersedia di waktu-waktu tertentu.</p>
+          <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.7" data-id="Kanazawa adalah base utama kami dengan harga terjangkau. Keberangkatan dari kota lain tersedia di waktu-waktu tertentu dengan titik kumpul berbeda." data-en="Kanazawa is our main base with the most affordable price. Departures from other cities are available at certain times with different meeting points.">Kanazawa adalah base utama kami dengan harga terjangkau. Keberangkatan dari kota lain tersedia di waktu-waktu tertentu.</p>
           <div class="dep-cards">
             <div class="dep-card base-card"><div class="dep-base-tag" data-id="Base Utama" data-en="Main Base">Base Utama</div><div class="dep-card-city">Kanazawa</div><div class="dep-card-point" data-id="Titik kumpul: Stasiun Kanazawa" data-en="Meeting point: Kanazawa Station">Titik kumpul: Stasiun Kanazawa</div><div class="dep-card-price">¥22.000 <span style="font-size:.72rem;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:400" data-id="/ orang" data-en="/ person">/ orang</span></div><div class="dep-card-note" data-id="Tersedia setiap jadwal trip" data-en="Available every trip schedule">Tersedia setiap jadwal trip</div></div>
             <div class="dep-card"><div class="dep-card-city">Tokyo</div><div class="dep-card-point" data-id="Titik kumpul: TBD" data-en="Meeting point: TBD">Titik kumpul: TBD</div><div class="dep-card-price">~¥28.000 <span style="font-size:.72rem;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:400" data-id="/ orang*" data-en="/ person*">/ orang*</span></div><div class="dep-card-note" data-id="*Jadwal &amp; harga masih tentatif" data-en="*Schedule &amp; price still tentative">*Jadwal &amp; harga masih tentatif</div></div>
             <div class="dep-card"><div class="dep-card-city">Osaka</div><div class="dep-card-point" data-id="Titik kumpul: TBD" data-en="Meeting point: TBD">Titik kumpul: TBD</div><div class="dep-card-price">~¥25.000 <span style="font-size:.72rem;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:400" data-id="/ orang*" data-en="/ person*">/ orang*</span></div><div class="dep-card-note" data-id="*Jadwal &amp; harga masih tentatif" data-en="*Schedule &amp; price still tentative">*Jadwal &amp; harga masih tentatif</div></div>
             <div class="dep-card"><div class="dep-card-city">Nagoya</div><div class="dep-card-point" data-id="Titik kumpul: TBD" data-en="Meeting point: TBD">Titik kumpul: TBD</div><div class="dep-card-price">~¥24.000 <span style="font-size:.72rem;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:400" data-id="/ orang*" data-en="/ person*">/ orang*</span></div><div class="dep-card-note" data-id="*Jadwal &amp; harga masih tentatif" data-en="*Schedule &amp; price still tentative">*Jadwal &amp; harga masih tentatif</div></div>
           </div>
-          <p style="font-size:.75rem;color:var(--muted);margin-top:.75rem" data-id="* Harga estimasi. Konfirmasi harga &amp; jadwal final via WhatsApp sebelum pemesanan." data-en="* Estimated prices. Confirm final price &amp; schedule via WhatsApp before booking.">* Harga estimasi. Konfirmasi harga &amp; jadwal final via WhatsApp sebelum pemesanan.</p>
+          <p style="font-size:.74rem;color:var(--muted);margin-top:.85rem" data-id="* Harga estimasi. Konfirmasi harga &amp; jadwal final via WhatsApp sebelum pemesanan." data-en="* Estimated prices. Confirm final price &amp; schedule via WhatsApp before booking.">* Harga estimasi. Konfirmasi harga &amp; jadwal final via WhatsApp sebelum pemesanan.</p>
         </div>
       </div>
 
-      <!-- SIDEBAR -->
       <div class="detail-sidebar">
         <div class="sidebar-card">
-          <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem" data-id="Mulai dari" data-en="Starting from">Mulai dari</div>
+          <div style="font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem;font-weight:500" data-id="Mulai dari" data-en="Starting from">Mulai dari</div>
           <div class="sidebar-price">¥22.000</div>
           <div class="sidebar-price-note" data-id="per orang · dari Kanazawa" data-en="per person · from Kanazawa">per orang · dari Kanazawa</div>
           <div class="sidebar-inc">
@@ -684,23 +725,21 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
       </div>
     </div>
   </div>
-</div><!-- end page-winter -->
+</div>
 
-<!-- =========================================================
-     PAGE: HOKKAIDO TRIP
-========================================================= -->
+<!-- PAGE HOKKAIDO -->
 <div class="page page-enter" id="page-hokkaido">
   <div class="detail-hero">
-    <div class="detail-hero-bg"><div class="img-ph" style="height:100%;background:linear-gradient(135deg,#d0e8f5,#8ab8d8)"><div class="img-ph-icon" style="font-size:5rem;opacity:.3">🦌</div><div class="img-ph-text">Hero Photo Placeholder — Hokkaido Winter</div></div></div>
+    <div class="detail-hero-bg"><div class="img-ph" style="height:100%;background:linear-gradient(135deg,#d0e8f5,#8ab8d8)"><svg style="width:80px;height:80px;color:white;opacity:.4"><use href="#i-snow"/></svg><div class="img-ph-text" style="margin-top:.5rem;color:white;opacity:.6">Hero Photo — Hokkaido Winter</div></div></div>
     <div class="detail-hero-overlay"></div>
     <div class="detail-hero-content">
       <div class="detail-hero-tag" data-id="Open Private Trip" data-en="Open Private Trip">Open Private Trip</div>
       <h1>Hokkaido Trip<br><em data-id="Petualangan Salju Terlengkap" data-en="The Ultimate Snow Adventure">Petualangan Salju Terlengkap</em></h1>
       <p class="detail-hero-sub" data-id="Dari pohon Natal Biei hingga kebun binatang Asahiyama — Hokkaido di musim dingin adalah surga salju yang tak tertandingi." data-en="From the Christmas Tree of Biei to Asahiyama Zoo — Hokkaido in winter is an unrivalled snow paradise.">Dari pohon Natal Biei hingga kebun binatang Asahiyama — Hokkaido di musim dingin adalah surga salju yang tak tertandingi.</p>
       <div class="detail-hero-badges">
-        <span class="detail-hero-badge">❄️ <span data-id="Musim Dingin" data-en="Winter Season">Musim Dingin</span></span>
-        <span class="detail-hero-badge">🏔️ Hokkaido</span>
-        <span class="detail-hero-badge">✈️ <span data-id="Multi Hari" data-en="Multi Day">Multi Hari</span></span>
+        <span class="detail-hero-badge"><svg><use href="#i-snow"/></svg> <span data-id="Musim Dingin" data-en="Winter Season">Musim Dingin</span></span>
+        <span class="detail-hero-badge">Hokkaido</span>
+        <span class="detail-hero-badge"><span data-id="Multi Hari" data-en="Multi Day">Multi Hari</span></span>
       </div>
     </div>
   </div>
@@ -708,32 +747,20 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
     <div class="detail-grid">
       <div class="detail-main">
         <div class="gallery-grid" style="margin-bottom:3rem">
-          <div class="gallery-item main-img g-main"><div class="img-ph" style="background:linear-gradient(135deg,#c5dff0,#8ab8d8)"><div class="img-ph-icon">🌲</div><div class="img-ph-text">Christmas Tree Biei — Main Photo</div></div></div>
-          <div class="gallery-item tall"><div class="img-ph"><div class="img-ph-icon">🏂</div><div class="img-ph-text">Snowmobile Experience</div></div></div>
-          <div class="gallery-item tall"><div class="img-ph"><div class="img-ph-icon">🐧</div><div class="img-ph-text">Asahiyama Zoo</div></div></div>
-          <div class="gallery-item"><div class="img-ph"><div class="img-ph-icon">🏮</div><div class="img-ph-text">Ningle Terrace</div></div></div>
-          <div class="gallery-item"><div class="img-ph"><div class="img-ph-icon">❄️</div><div class="img-ph-text">Hokkaido Snow</div></div></div>
+          <div class="gallery-item main-img g-main"><div class="img-ph" style="background:linear-gradient(135deg,#c5dff0,#8ab8d8)"><div class="img-ph-text">Christmas Tree Biei</div></div></div>
+          <div class="gallery-item tall"><div class="img-ph"><div class="img-ph-text">Snowmobile</div></div></div>
+          <div class="gallery-item tall"><div class="img-ph"><div class="img-ph-text">Asahiyama Zoo</div></div></div>
+          <div class="gallery-item"><div class="img-ph"><div class="img-ph-text">Ningle Terrace</div></div></div>
+          <div class="gallery-item"><div class="img-ph"><div class="img-ph-text">Hokkaido Snow</div></div></div>
         </div>
 
         <div class="dest-section">
           <h3 data-id="Destinasi Unggulan" data-en="Highlight Destinations">Destinasi Unggulan</h3>
           <div class="dest-cards">
-            <div class="dest-card">
-              <div class="dest-img"><div class="img-ph"><div class="img-ph-icon" style="font-size:1.5rem;opacity:.5">🌲</div></div></div>
-              <div class="dest-body"><div class="dest-order" data-id="Destinasi 1" data-en="Destination 1">Destinasi 1</div><div class="dest-name">Christmas Tree Biei</div><p class="dest-desc" data-id="Pohon cemara tunggal ikonik yang berdiri megah di tengah ladang bersalju Biei. Spot foto paling dicari di Hokkaido musim dingin." data-en="The iconic solitary spruce tree standing majestically in Biei's snowy fields. The most sought-after photo spot in winter Hokkaido.">Pohon cemara tunggal ikonik yang berdiri megah di tengah ladang bersalju. Spot foto paling dicari.</p></div>
-            </div>
-            <div class="dest-card">
-              <div class="dest-img"><div class="img-ph"><div class="img-ph-icon" style="font-size:1.5rem;opacity:.5">🏂</div></div></div>
-              <div class="dest-body"><div class="dest-order" data-id="Destinasi 2" data-en="Destination 2">Destinasi 2</div><div class="dest-name">Snowmobile Experience</div><p class="dest-desc" data-id="Kendarai snowmobile di atas hamparan salju Hokkaido yang luas. Pengalaman adrenalin yang tidak akan terlupakan." data-en="Ride a snowmobile across Hokkaido's vast snowfields. An adrenaline experience you'll never forget.">Kendarai snowmobile di atas hamparan salju Hokkaido. Pengalaman yang tidak terlupakan.</p></div>
-            </div>
-            <div class="dest-card">
-              <div class="dest-img"><div class="img-ph"><div class="img-ph-icon" style="font-size:1.5rem;opacity:.5">🐧</div></div></div>
-              <div class="dest-body"><div class="dest-order" data-id="Destinasi 3" data-en="Destination 3">Destinasi 3</div><div class="dest-name">Asahiyama Zoo</div><p class="dest-desc" data-id="Kebun binatang paling terkenal di Hokkaido, terkenal karena parade penguin di musim dingin. Pengalaman unik yang tidak ada di tempat lain." data-en="Hokkaido's most famous zoo, renowned for its winter penguin parade. A unique experience found nowhere else.">Kebun binatang paling terkenal di Hokkaido dengan parade penguin musim dingin yang ikonik.</p></div>
-            </div>
-            <div class="dest-card">
-              <div class="dest-img"><div class="img-ph"><div class="img-ph-icon" style="font-size:1.5rem;opacity:.5">🏮</div></div></div>
-              <div class="dest-body"><div class="dest-order" data-id="Destinasi 4" data-en="Destination 4">Destinasi 4</div><div class="dest-name">Ningle Terrace</div><p class="dest-desc" data-id="Desa kabin kayu kecil di hutan yang menjual kerajinan tangan unik. Suasana dongeng di malam bersalju sangat cocok untuk kenangan romantis." data-en="A tiny log cabin village in the forest selling unique handcrafts. A fairy-tale atmosphere on snowy evenings perfect for romantic memories.">Desa kabin kayu kecil di hutan dengan kerajinan tangan unik. Suasana seperti dongeng.</p></div>
-            </div>
+            <div class="dest-card"><div class="dest-img"><div class="img-ph"></div></div><div class="dest-body"><div class="dest-order" data-id="Destinasi 1" data-en="Destination 1">Destinasi 1</div><div class="dest-name">Christmas Tree Biei</div><p class="dest-desc" data-id="Pohon cemara tunggal ikonik yang berdiri megah di tengah ladang bersalju Biei. Spot foto paling dicari di Hokkaido musim dingin." data-en="The iconic solitary spruce tree standing majestically in Biei's snowy fields. The most sought-after photo spot in winter Hokkaido.">Pohon cemara tunggal ikonik yang berdiri megah di tengah ladang bersalju. Spot foto paling dicari.</p></div></div>
+            <div class="dest-card"><div class="dest-img"><div class="img-ph"></div></div><div class="dest-body"><div class="dest-order" data-id="Destinasi 2" data-en="Destination 2">Destinasi 2</div><div class="dest-name">Snowmobile Experience</div><p class="dest-desc" data-id="Kendarai snowmobile di atas hamparan salju Hokkaido yang luas. Pengalaman adrenalin yang tidak akan terlupakan." data-en="Ride a snowmobile across Hokkaido's vast snowfields. An adrenaline experience you'll never forget.">Kendarai snowmobile di atas hamparan salju Hokkaido. Pengalaman yang tidak terlupakan.</p></div></div>
+            <div class="dest-card"><div class="dest-img"><div class="img-ph"></div></div><div class="dest-body"><div class="dest-order" data-id="Destinasi 3" data-en="Destination 3">Destinasi 3</div><div class="dest-name">Asahiyama Zoo</div><p class="dest-desc" data-id="Kebun binatang paling terkenal di Hokkaido, terkenal karena parade penguin di musim dingin. Pengalaman unik yang tidak ada di tempat lain." data-en="Hokkaido's most famous zoo, renowned for its winter penguin parade. A unique experience found nowhere else.">Kebun binatang paling terkenal di Hokkaido dengan parade penguin musim dingin yang ikonik.</p></div></div>
+            <div class="dest-card"><div class="dest-img"><div class="img-ph"></div></div><div class="dest-body"><div class="dest-order" data-id="Destinasi 4" data-en="Destination 4">Destinasi 4</div><div class="dest-name">Ningle Terrace</div><p class="dest-desc" data-id="Desa kabin kayu kecil di hutan yang menjual kerajinan tangan unik. Suasana dongeng di malam bersalju sangat cocok untuk kenangan romantis." data-en="A tiny log cabin village in the forest selling unique handcrafts. A fairy-tale atmosphere on snowy evenings perfect for romantic memories.">Desa kabin kayu kecil di hutan dengan kerajinan tangan unik. Suasana seperti dongeng.</p></div></div>
           </div>
         </div>
 
@@ -757,17 +784,17 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
 
       <div class="detail-sidebar">
         <div class="sidebar-card">
-          <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem" data-id="Mulai dari" data-en="Starting from">Mulai dari</div>
+          <div style="font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem;font-weight:500" data-id="Mulai dari" data-en="Starting from">Mulai dari</div>
           <div class="sidebar-price">Rp 13,9 Jt</div>
           <div class="sidebar-price-note" data-id="per orang" data-en="per person">per orang</div>
           <div class="sidebar-inc">
             <h4 data-id="Sudah Termasuk" data-en="What's Included">Sudah Termasuk</h4>
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Jemput di bandara Hokkaido" data-en="Pick-up at Hokkaido airport">Jemput di bandara Hokkaido</span></div>
-            <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Transportasi selama trip (tanpa angkutan umum)" data-en="Transportation during trip (no public transport)">Transportasi selama trip</span></div>
+            <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Transportasi selama trip" data-en="Transportation during trip">Transportasi selama trip</span></div>
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Tour guide berbahasa Indonesia" data-en="Indonesian-speaking tour guide">Tour guide berbahasa Indonesia</span></div>
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Foto &amp; video gratis" data-en="Free photos &amp; videos">Foto &amp; video gratis</span></div>
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Makanan kecil selama trip" data-en="Light snacks during trip">Makanan kecil selama trip</span></div>
-            <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✗</span><span style="color:var(--muted)" data-id="Tiket pesawat ke Hokkaido (tidak termasuk)" data-en="Flight to Hokkaido (not included)">Tiket pesawat (tidak termasuk)</span></div>
+            <div class="sidebar-inc-item"><span class="sidebar-inc-icon" style="color:var(--muted)">✗</span><span style="color:var(--muted)" data-id="Tiket pesawat (tidak termasuk)" data-en="Flight (not included)">Tiket pesawat (tidak termasuk)</span></div>
           </div>
           <button class="btn-book" onclick="goToBooking(2)" data-id="Pesan Paket Ini" data-en="Book This Package">Pesan Paket Ini</button>
           <button class="btn-wa-small" onclick="tanyaWA('Hokkaido Trip')">
@@ -779,23 +806,21 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
       </div>
     </div>
   </div>
-</div><!-- end page-hokkaido -->
+</div>
 
-<!-- =========================================================
-     PAGE: PRIVATE TOUR GUIDE
-========================================================= -->
+<!-- PAGE PRIVATE -->
 <div class="page page-enter" id="page-private">
   <div class="detail-hero">
-    <div class="detail-hero-bg"><div class="img-ph" style="height:100%;background:linear-gradient(135deg,#e8e0d8,#c8b89a)"><div class="img-ph-icon" style="font-size:5rem;opacity:.3">🗾</div><div class="img-ph-text">Hero Photo Placeholder — Private Tour Japan</div></div></div>
+    <div class="detail-hero-bg"><div class="img-ph" style="height:100%;background:linear-gradient(135deg,#e8e0d8,#c8b89a)"><svg style="width:80px;height:80px;color:white;opacity:.4"><use href="#i-map"/></svg><div class="img-ph-text" style="margin-top:.5rem;color:white;opacity:.6">Hero Photo — Private Tour Japan</div></div></div>
     <div class="detail-hero-overlay"></div>
     <div class="detail-hero-content">
-      <div class="detail-hero-tag" data-id="Custom · Seluruh Jepang" data-en="Custom · All Japan">Custom · Seluruh Jepang</div>
+      <div class="detail-hero-tag" data-id="Custom &middot; Seluruh Jepang" data-en="Custom &middot; All Japan">Custom &middot; Seluruh Jepang</div>
       <h1>Private Tour Guide<br><em data-id="Jepang Versi Anda" data-en="Japan, Your Way">Jepang Versi Anda</em></h1>
       <p class="detail-hero-sub" data-id="Perjalanan 100% sesuai keinginan Anda. Kami merekomendasikan itinerary terbaik per musim, atau kami ikuti rencana Anda sepenuhnya." data-en="A journey 100% tailored to your wishes. We recommend the best itinerary per season, or follow your plan entirely.">Perjalanan 100% sesuai keinginan Anda. Kami merekomendasikan itinerary terbaik per musim, atau kami ikuti rencana Anda sepenuhnya.</p>
       <div class="detail-hero-badges">
-        <span class="detail-hero-badge">🌸🌿🍂❄️ <span data-id="4 Musim" data-en="4 Seasons">4 Musim</span></span>
-        <span class="detail-hero-badge">📖 <span data-id="Photo Book" data-en="Photo Book">Photo Book</span></span>
-        <span class="detail-hero-badge">✦ Premium</span>
+        <span class="detail-hero-badge"><span data-id="4 Musim" data-en="4 Seasons">4 Musim</span></span>
+        <span class="detail-hero-badge"><svg><use href="#i-book"/></svg> <span data-id="Photo Book" data-en="Photo Book">Photo Book</span></span>
+        <span class="detail-hero-badge">Premium</span>
       </div>
     </div>
   </div>
@@ -803,28 +828,26 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
     <div class="detail-grid">
       <div class="detail-main">
         <div class="gallery-grid" style="margin-bottom:3rem">
-          <div class="gallery-item main-img g-main"><div class="img-ph" style="background:linear-gradient(135deg,#e8d8f0,#c8a8d8)"><div class="img-ph-icon">🗾</div><div class="img-ph-text">Private Tour Japan — Main Photo</div></div></div>
-          <div class="gallery-item tall"><div class="img-ph" style="background:linear-gradient(135deg,var(--spring-light),#a8d5b8)"><div class="img-ph-icon">🌸</div><div class="img-ph-text">Spring · Sakura</div></div></div>
-          <div class="gallery-item tall"><div class="img-ph" style="background:linear-gradient(135deg,var(--summer-light),#f5b8b0)"><div class="img-ph-icon">☀️</div><div class="img-ph-text">Summer · Matsuri</div></div></div>
-          <div class="gallery-item"><div class="img-ph" style="background:linear-gradient(135deg,var(--autumn-light),#f0c8a0)"><div class="img-ph-icon">🍂</div><div class="img-ph-text">Autumn · Koyo</div></div></div>
-          <div class="gallery-item"><div class="img-ph" style="background:linear-gradient(135deg,var(--ice),var(--ice-mid))"><div class="img-ph-icon">❄️</div><div class="img-ph-text">Winter · Snow</div></div></div>
+          <div class="gallery-item main-img g-main"><div class="img-ph" style="background:linear-gradient(135deg,#e8d8f0,#c8a8d8)"><div class="img-ph-text">Private Tour Japan</div></div></div>
+          <div class="gallery-item tall"><div class="img-ph" style="background:linear-gradient(135deg,var(--spring-light),#a8d5b8)"><svg style="width:28px;height:28px;color:var(--spring);opacity:.5"><use href="#i-flower"/></svg><div class="img-ph-text" style="margin-top:.3rem">Spring · Sakura</div></div></div>
+          <div class="gallery-item tall"><div class="img-ph" style="background:linear-gradient(135deg,var(--summer-light),#f5b8b0)"><svg style="width:28px;height:28px;color:var(--summer);opacity:.5"><use href="#i-sun"/></svg><div class="img-ph-text" style="margin-top:.3rem">Summer · Matsuri</div></div></div>
+          <div class="gallery-item"><div class="img-ph" style="background:linear-gradient(135deg,var(--autumn-light),#f0c8a0)"><svg style="width:28px;height:28px;color:var(--autumn);opacity:.5"><use href="#i-leaf"/></svg><div class="img-ph-text" style="margin-top:.3rem">Autumn · Koyo</div></div></div>
+          <div class="gallery-item"><div class="img-ph" style="background:linear-gradient(135deg,var(--ice-100),var(--ice-300))"><svg style="width:28px;height:28px;color:var(--ice-700);opacity:.5"><use href="#i-snow"/></svg><div class="img-ph-text" style="margin-top:.3rem">Winter · Snow</div></div></div>
         </div>
 
-        <!-- SEASON ITINERARIES -->
         <div class="itin-section">
           <h3 data-id="Contoh Itinerary per Musim" data-en="Sample Itinerary by Season">Contoh Itinerary per Musim</h3>
-          <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.65" data-id="Berikut adalah contoh itinerary yang kami rekomendasikan. Semua bisa disesuaikan 100% dengan keinginan Anda." data-en="Below are sample itineraries we recommend. All can be 100% customized to your preferences.">Berikut contoh itinerary yang kami rekomendasikan. Semua bisa disesuaikan 100% dengan keinginan Anda.</p>
+          <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.7" data-id="Berikut adalah contoh itinerary yang kami rekomendasikan. Semua bisa disesuaikan 100% dengan keinginan Anda." data-en="Below are sample itineraries we recommend. All can be 100% customized to your preferences.">Berikut contoh itinerary yang kami rekomendasikan. Semua bisa disesuaikan 100% dengan keinginan Anda.</p>
 
           <div class="season-tabs">
-            <button class="season-tab active" data-season="spring" onclick="switchSeason('spring')">🌸 <span data-id="Semi (Haru)" data-en="Spring (Haru)">Semi (Haru)</span></button>
-            <button class="season-tab" data-season="summer" onclick="switchSeason('summer')">🌿 <span data-id="Panas (Natsu)" data-en="Summer (Natsu)">Panas (Natsu)</span></button>
-            <button class="season-tab" data-season="autumn" onclick="switchSeason('autumn')">🍂 <span data-id="Gugur (Aki)" data-en="Autumn (Aki)">Gugur (Aki)</span></button>
-            <button class="season-tab" data-season="winter" onclick="switchSeason('winter')">❄️ <span data-id="Dingin (Fuyu)" data-en="Winter (Fuyu)">Dingin (Fuyu)</span></button>
+            <button class="season-tab active" data-season="spring" onclick="switchSeason('spring')"><svg><use href="#i-flower"/></svg> <span data-id="Semi (Haru)" data-en="Spring (Haru)">Semi (Haru)</span></button>
+            <button class="season-tab" data-season="summer" onclick="switchSeason('summer')"><svg><use href="#i-sun"/></svg> <span data-id="Panas (Natsu)" data-en="Summer (Natsu)">Panas (Natsu)</span></button>
+            <button class="season-tab" data-season="autumn" onclick="switchSeason('autumn')"><svg><use href="#i-leaf"/></svg> <span data-id="Gugur (Aki)" data-en="Autumn (Aki)">Gugur (Aki)</span></button>
+            <button class="season-tab" data-season="winter" onclick="switchSeason('winter')"><svg><use href="#i-snow"/></svg> <span data-id="Dingin (Fuyu)" data-en="Winter (Fuyu)">Dingin (Fuyu)</span></button>
           </div>
 
-          <!-- SPRING -->
           <div class="season-content active" id="sc-spring">
-            <div class="season-header" data-s="spring"><h4 data-id="🌸 Sakura Chase — Tokyo · Kyoto · Osaka" data-en="🌸 Sakura Chase — Tokyo · Kyoto · Osaka">🌸 Sakura Chase — Tokyo · Kyoto · Osaka</h4><p data-id="Maret – Mei · Keindahan mekar sakura di kota-kota ikonik Jepang" data-en="March – May · The beauty of cherry blossoms in Japan's iconic cities">Maret – Mei · Keindahan mekar sakura di kota-kota ikonik Jepang</p></div>
+            <div class="season-header" data-s="spring"><h4 data-id="Sakura Chase — Tokyo · Kyoto · Osaka" data-en="Sakura Chase — Tokyo · Kyoto · Osaka">Sakura Chase — Tokyo · Kyoto · Osaka</h4><p data-id="Maret – Mei · Keindahan mekar sakura di kota-kota ikonik Jepang" data-en="March – May · The beauty of cherry blossoms in Japan's iconic cities">Maret – Mei · Keindahan mekar sakura di kota-kota ikonik Jepang</p></div>
             <div class="season-itin" data-s="spring">
               <div class="sday"><div class="sday-time" data-id="Hari 1" data-en="Day 1">Hari 1</div><div class="sday-content"><h5>Tokyo — Ueno Park &amp; Shinjuku Gyoen</h5><p data-id="Hanami (piknik bawah sakura) di taman paling ikonik Tokyo. Foto &amp; video diabadikan oleh guide kami." data-en="Hanami (cherry blossom picnic) in Tokyo's most iconic parks. Photos &amp; videos captured by our guide.">Hanami di taman paling ikonik Tokyo. Foto diabadikan oleh guide kami.</p></div></div>
               <div class="sday"><div class="sday-time" data-id="Hari 2" data-en="Day 2">Hari 2</div><div class="sday-content"><h5>Tokyo — Senso-ji &amp; Sumida River</h5><p data-id="Kuil Senso-ji dengan sakura berguguran, diakhiri cruise sungai Sumida yang dipenuhi pohon sakura." data-en="Senso-ji Temple with falling cherry blossoms, ending with a Sumida River cruise lined with sakura trees.">Kuil Senso-ji dengan sakura berguguran, cruise Sungai Sumida.</p></div></div>
@@ -833,9 +856,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
             </div>
           </div>
 
-          <!-- SUMMER -->
           <div class="season-content" id="sc-summer">
-            <div class="season-header" data-s="summer"><h4 data-id="🌿 Summer Festival — Tokyo · Nikko · Kyoto" data-en="🌿 Summer Festival — Tokyo · Nikko · Kyoto">🌿 Summer Festival — Tokyo · Nikko · Kyoto</h4><p data-id="Juni – Agustus · Festival musim panas, alam hijau, dan pantai Jepang" data-en="June – August · Summer festivals, lush greenery, and Japanese beaches">Juni – Agustus · Festival musim panas, alam hijau, dan pantai Jepang</p></div>
+            <div class="season-header" data-s="summer"><h4 data-id="Summer Festival — Tokyo · Nikko · Kyoto" data-en="Summer Festival — Tokyo · Nikko · Kyoto">Summer Festival — Tokyo · Nikko · Kyoto</h4><p data-id="Juni – Agustus · Festival musim panas, alam hijau, dan pantai Jepang" data-en="June – August · Summer festivals, lush greenery, and Japanese beaches">Juni – Agustus · Festival musim panas, alam hijau, dan pantai Jepang</p></div>
             <div class="season-itin" data-s="summer">
               <div class="sday"><div class="sday-time" data-id="Hari 1" data-en="Day 1">Hari 1</div><div class="sday-content"><h5>Tokyo — Matsuri &amp; Fireworks</h5><p data-id="Festival musim panas Jepang (matsuri) yang meriah. Jika jadwal cocok, saksikan kembang api spektakuler Sumidagawa." data-en="Japan's vibrant summer festivals (matsuri). If timing aligns, watch the spectacular Sumidagawa fireworks.">Festival matsuri yang meriah. Kembang api Sumidagawa yang spektakuler.</p></div></div>
               <div class="sday"><div class="sday-time" data-id="Hari 2" data-en="Day 2">Hari 2</div><div class="sday-content"><h5>Nikko — Tosho-gu &amp; Kegon Falls</h5><p data-id="Kompleks kuil Tosho-gu yang megah di tengah hutan hijau, air terjun Kegon yang memukau." data-en="The magnificent Tosho-gu temple complex amid lush forest, and the breathtaking Kegon Falls.">Kuil Tosho-gu di tengah hutan hijau, air terjun Kegon yang memukau.</p></div></div>
@@ -844,9 +866,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
             </div>
           </div>
 
-          <!-- AUTUMN -->
           <div class="season-content" id="sc-autumn">
-            <div class="season-header" data-s="autumn"><h4 data-id="🍂 Koyo Hunt — Nikko · Kyoto · Hakone" data-en="🍂 Koyo Hunt — Nikko · Kyoto · Hakone">🍂 Koyo Hunt — Nikko · Kyoto · Hakone</h4><p data-id="September – November · Berburu dedaunan merah keemasan musim gugur" data-en="September – November · Chasing the golden-red autumn foliage">September – November · Berburu dedaunan merah keemasan musim gugur</p></div>
+            <div class="season-header" data-s="autumn"><h4 data-id="Koyo Hunt — Nikko · Kyoto · Hakone" data-en="Koyo Hunt — Nikko · Kyoto · Hakone">Koyo Hunt — Nikko · Kyoto · Hakone</h4><p data-id="September – November · Berburu dedaunan merah keemasan musim gugur" data-en="September – November · Chasing the golden-red autumn foliage">September – November · Berburu dedaunan merah keemasan musim gugur</p></div>
             <div class="season-itin" data-s="autumn">
               <div class="sday"><div class="sday-time" data-id="Hari 1" data-en="Day 1">Hari 1</div><div class="sday-content"><h5>Nikko — Koyo di Tosho-gu</h5><p data-id="Daun-daun merah dan kuning menghiasi kuil-kuil Nikko yang megah. Salah satu spot koyo terbaik di Jepang." data-en="Red and yellow leaves adorn Nikko's magnificent temples. One of Japan's best koyo spots.">Daun merah kuning menghiasi kuil-kuil Nikko yang megah. Spot koyo terbaik Jepang.</p></div></div>
               <div class="sday"><div class="sday-time" data-id="Hari 2-3" data-en="Day 2-3">Hari 2-3</div><div class="sday-content"><h5>Kyoto — Eikan-do &amp; Tofuku-ji</h5><p data-id="Kuil-kuil Kyoto yang paling terkenal untuk menikmati koyo. Kolam refleksi dengan daun merah adalah pemandangan paling ikonik." data-en="Kyoto's most renowned temples for koyo viewing. A reflection pond with red leaves is the most iconic sight.">Kuil Kyoto terbaik untuk koyo. Kolam refleksi dengan daun merah yang ikonik.</p></div></div>
@@ -855,9 +876,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
             </div>
           </div>
 
-          <!-- WINTER -->
           <div class="season-content" id="sc-winter">
-            <div class="season-header" data-s="winter"><h4 data-id="❄️ Snow &amp; Onsen — Hokkaido · Shirakawa-go · Kyoto" data-en="❄️ Snow &amp; Onsen — Hokkaido · Shirakawa-go · Kyoto">❄️ Snow &amp; Onsen — Hokkaido · Shirakawa-go · Kyoto</h4><p data-id="Desember – Februari · Salju, onsen, dan suasana Jepang yang paling magis" data-en="December – February · Snow, onsen, and Japan's most magical atmosphere">Desember – Februari · Salju, onsen, dan suasana Jepang yang paling magis</p></div>
+            <div class="season-header" data-s="winter"><h4 data-id="Snow &amp; Onsen — Hokkaido · Shirakawa-go · Kyoto" data-en="Snow &amp; Onsen — Hokkaido · Shirakawa-go · Kyoto">Snow &amp; Onsen — Hokkaido · Shirakawa-go · Kyoto</h4><p data-id="Desember – Februari · Salju, onsen, dan suasana Jepang yang paling magis" data-en="December – February · Snow, onsen, and Japan's most magical atmosphere">Desember – Februari · Salju, onsen, dan suasana Jepang yang paling magis</p></div>
             <div class="season-itin" data-s="winter">
               <div class="sday"><div class="sday-time" data-id="Hari 1-2" data-en="Day 1-2">Hari 1-2</div><div class="sday-content"><h5>Hokkaido — Snow Activities</h5><p data-id="Snowmobile, ski, dan Christmas Tree Biei. Pengalaman salju terlengkap di utara Jepang." data-en="Snowmobile, skiing, and Christmas Tree Biei. The most complete snow experience in northern Japan.">Snowmobile, ski, dan Christmas Tree Biei. Pengalaman salju terlengkap.</p></div></div>
               <div class="sday"><div class="sday-time" data-id="Hari 3" data-en="Day 3">Hari 3</div><div class="sday-content"><h5>Shirakawa-go — UNESCO Snow Village</h5><p data-id="Desa bersejarah yang tertutup salju tebal — seperti masuk ke dalam kartu pos Natal Jepang." data-en="Historic village blanketed in thick snow — like stepping into a Japanese Christmas postcard.">Desa bersejarah tertutup salju tebal — seperti kartu pos Natal Jepang.</p></div></div>
@@ -869,43 +889,37 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 2rem 2rem}
         <div class="dest-section">
           <h3 data-id="Layanan Premium yang Anda Dapatkan" data-en="Premium Services You'll Receive">Layanan Premium yang Anda Dapatkan</h3>
           <div class="dest-cards">
-            <div class="dest-card">
-              <div class="dest-img"><div class="img-ph"><div class="img-ph-icon" style="font-size:1.5rem;opacity:.5">📖</div></div></div>
-              <div class="dest-body"><div class="dest-order" data-id="Eksklusif Private Tour" data-en="Exclusive Private Tour">Eksklusif Private Tour</div><div class="dest-name" data-id="Photo Book Eksklusif" data-en="Exclusive Photo Book">Photo Book Eksklusif</div><p class="dest-desc" data-id="Setiap momen perjalanan Anda dikurasi dan dicetak dalam photo book berkualitas tinggi. Kenangan yang bisa dipegang seumur hidup." data-en="Every moment of your journey curated and printed in a high-quality photo book. Memories you can hold for a lifetime.">Setiap momen perjalanan dikurasi dan dicetak dalam photo book berkualitas tinggi.</p></div>
-            </div>
-            <div class="dest-card">
-              <div class="dest-img"><div class="img-ph"><div class="img-ph-icon" style="font-size:1.5rem;opacity:.5">🗺️</div></div></div>
-              <div class="dest-body"><div class="dest-order" data-id="Konsultasi Gratis" data-en="Free Consultation">Konsultasi Gratis</div><div class="dest-name" data-id="Perencanaan Itinerary" data-en="Itinerary Planning">Perencanaan Itinerary</div><p class="dest-desc" data-id="Konsultasi mendalam bersama tim kami untuk merancang perjalanan impian Anda. Kami rekomendasikan destinasi terbaik sesuai musim." data-en="In-depth consultation with our team to design your dream trip. We recommend the best destinations by season.">Konsultasi mendalam untuk merancang perjalanan impian Anda.</p></div>
-            </div>
+            <div class="dest-card"><div class="dest-img"><div class="img-ph"><svg style="width:24px;height:24px;color:var(--ice-700);opacity:.45"><use href="#i-book"/></svg></div></div><div class="dest-body"><div class="dest-order" data-id="Eksklusif Private Tour" data-en="Exclusive Private Tour">Eksklusif Private Tour</div><div class="dest-name" data-id="Photo Book Eksklusif" data-en="Exclusive Photo Book">Photo Book Eksklusif</div><p class="dest-desc" data-id="Setiap momen perjalanan Anda dikurasi dan dicetak dalam photo book berkualitas tinggi. Kenangan yang bisa dipegang seumur hidup." data-en="Every moment of your journey curated and printed in a high-quality photo book. Memories you can hold for a lifetime.">Setiap momen perjalanan dikurasi dan dicetak dalam photo book berkualitas tinggi.</p></div></div>
+            <div class="dest-card"><div class="dest-img"><div class="img-ph"><svg style="width:24px;height:24px;color:var(--ice-700);opacity:.45"><use href="#i-map"/></svg></div></div><div class="dest-body"><div class="dest-order" data-id="Konsultasi Gratis" data-en="Free Consultation">Konsultasi Gratis</div><div class="dest-name" data-id="Perencanaan Itinerary" data-en="Itinerary Planning">Perencanaan Itinerary</div><p class="dest-desc" data-id="Konsultasi mendalam bersama tim kami untuk merancang perjalanan impian Anda. Kami rekomendasikan destinasi terbaik sesuai musim." data-en="In-depth consultation with our team to design your dream trip. We recommend the best destinations by season.">Konsultasi mendalam untuk merancang perjalanan impian Anda.</p></div></div>
           </div>
         </div>
       </div>
 
       <div class="detail-sidebar">
         <div class="sidebar-card">
-          <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem" data-id="Mulai dari" data-en="Starting from">Mulai dari</div>
+          <div style="font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem;font-weight:500" data-id="Mulai dari" data-en="Starting from">Mulai dari</div>
           <div class="sidebar-price">¥27.000</div>
-          <div class="sidebar-price-note" data-id="per hari · harga menyesuaikan itinerary" data-en="per day · price depends on itinerary">per hari · sesuai itinerary</div>
+          <div class="sidebar-price-note" data-id="per hari · sesuai itinerary" data-en="per day · per itinerary">per hari · sesuai itinerary</div>
           <div class="sidebar-inc">
             <h4 data-id="Sudah Termasuk" data-en="What's Included">Sudah Termasuk</h4>
-            <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Jemput &amp; antar (tanpa angkutan umum)" data-en="Pick-up &amp; drop-off (no public transport)">Jemput &amp; antar penuh</span></div>
+            <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Jemput &amp; antar penuh" data-en="Full pick-up &amp; drop-off">Jemput &amp; antar penuh</span></div>
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Tour guide berbahasa Indonesia" data-en="Indonesian-speaking tour guide">Tour guide berbahasa Indonesia</span></div>
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Foto &amp; video gratis" data-en="Free photos &amp; videos">Foto &amp; video gratis</span></div>
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Photo book eksklusif" data-en="Exclusive photo book">Photo book eksklusif</span></div>
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Makanan kecil selama trip" data-en="Light snacks during trip">Makanan kecil selama trip</span></div>
-            <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Konsultasi &amp; perencanaan itinerary" data-en="Itinerary consultation &amp; planning">Konsultasi itinerary gratis</span></div>
+            <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Konsultasi itinerary gratis" data-en="Free itinerary consultation">Konsultasi itinerary gratis</span></div>
           </div>
           <button class="btn-book" onclick="goToBooking(3)" data-id="Konsultasi &amp; Pesan" data-en="Consult &amp; Book">Konsultasi &amp; Pesan</button>
           <button class="btn-wa-small" onclick="tanyaWA('Private Tour Guide')">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             <span data-id="Konsultasi via WhatsApp" data-en="Consult via WhatsApp">Konsultasi via WhatsApp</span>
           </button>
-          <div class="sidebar-note" data-id="Harga final ditentukan setelah konsultasi itinerary." data-en="Final price determined after itinerary consultation.">Harga final setelah konsultasi itinerary.</div>
+          <div class="sidebar-note" data-id="Harga final setelah konsultasi itinerary." data-en="Final price after itinerary consultation.">Harga final setelah konsultasi itinerary.</div>
         </div>
       </div>
     </div>
   </div>
-</div><!-- end page-private -->
+</div>
 
 <script>
 const CFG = {
@@ -920,7 +934,6 @@ const CFG = {
 let lang = 'id';
 let picked = null;
 
-/* ---- PAGE SYSTEM ---- */
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const pg = document.getElementById('page-' + name);
@@ -935,7 +948,17 @@ function showPage(name) {
 
 function scrollToId(id) {
   const el = document.getElementById(id);
-  if (el) el.scrollIntoView({behavior:'smooth'});
+  if (!el) return;
+  // Pastikan kita berada di halaman home
+  const homePage = document.getElementById('page-home');
+  if (!homePage.classList.contains('active')) {
+    showPage('home');
+    setTimeout(() => {
+      el.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 200);
+  } else {
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+  }
 }
 
 function goToBooking(pkgId) {
@@ -946,7 +969,6 @@ function goToBooking(pkgId) {
   }, 100);
 }
 
-/* ---- LANGUAGE ---- */
 function setLang(l) {
   lang = l;
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
@@ -957,7 +979,6 @@ function setLang(l) {
   document.documentElement.lang = l === 'id' ? 'id' : 'en';
 }
 
-/* ---- SEASON TABS ---- */
 function switchSeason(s) {
   document.querySelectorAll('.season-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.season-content').forEach(c => c.classList.remove('active'));
@@ -965,7 +986,6 @@ function switchSeason(s) {
   document.getElementById('sc-' + s).classList.add('active');
 }
 
-/* ---- BOOKING FORM ---- */
 function pickPkg(id) {
   picked = CFG.paket.find(p => p.id === id);
   CFG.paket.forEach(p => document.getElementById('fpkg-'+p.id).classList.toggle('sel', p.id === id));
@@ -1034,13 +1054,13 @@ function kirimWA() {
   const tglFmt = tgl ? new Date(tgl).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}) : '-';
   const total = fmt(picked, jml);
   const dp = fmtDP(picked, jml);
-  const msg = `Halo Omen Trip! Saya ingin konfirmasi pesanan:\n\n📋 *DETAIL PESANAN*\n• Nama: ${nama}\n• WhatsApp: ${wa}\n• Paket: ${picked.nama} (${picked.durasi})\n• Jumlah: ${jml} orang\n• Tgl Berangkat: ${tglFmt}\n• Total: ${total}\n${cat?'\n📝 *Catatan:* '+cat+'\n':''}\n💳 *PEMBAYARAN DP (${picked.dp}%)*\n• Jumlah DP: ${dp}\n• Transfer ke: Mandiri – 1360036647185 a/n M Khittatul Rohman\n\n_Bukti transfer segera saya kirimkan. Terima kasih!_ 🙏`;
+  const msg = `Halo Omen Trip! Saya ingin konfirmasi pesanan:\n\n*DETAIL PESANAN*\n• Nama: ${nama}\n• WhatsApp: ${wa}\n• Paket: ${picked.nama} (${picked.durasi})\n• Jumlah: ${jml} orang\n• Tgl Berangkat: ${tglFmt}\n• Total: ${total}\n${cat?'\n*Catatan:* '+cat+'\n':''}\n*PEMBAYARAN DP (${picked.dp}%)*\n• Jumlah DP: ${dp}\n• Transfer ke: Mandiri – 1360036647185 a/n M Khittatul Rohman\n\n_Bukti transfer segera saya kirimkan. Terima kasih!_`;
   window.open('https://wa.me/'+CFG.wa+'?text='+encodeURIComponent(msg),'_blank');
   setTimeout(() => goStep(4), 600);
 }
 
 function tanyaWA(paket) {
-  const msg = `Halo Omen Trip! Saya ingin menanyakan lebih lanjut tentang paket *${paket}*. Boleh minta info lengkapnya? 🙏`;
+  const msg = `Halo Omen Trip! Saya ingin menanyakan lebih lanjut tentang paket *${paket}*. Boleh minta info lengkapnya?`;
   window.open('https://wa.me/'+CFG.wa+'?text='+encodeURIComponent(msg),'_blank');
 }
 
