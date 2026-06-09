@@ -28,8 +28,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--snow);color:var(--ink);ov
 /* HERO FULLSCREEN SLIDESHOW */
 .hero-fullscreen{position:relative;width:100%;height:100vh;overflow:hidden;background:var(--ink)}
 .hero-fullscreen .hero-slideshow{position:absolute;inset:0;z-index:0}
-.hero-fullscreen .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease-in-out;background-size:cover;background-position:center;background-repeat:no-repeat}
-.hero-fullscreen .hero-slide.active{opacity:1}
+.hero-fullscreen .hero-track{display:flex;height:100%;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.hero-fullscreen .hero-slide{min-width:100%;height:100%;flex-shrink:0;background-size:cover;background-position:center;background-repeat:no-repeat}
 .hero-fullscreen::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.2) 70%,rgba(0,0,0,.5) 100%);z-index:1;pointer-events:none}
 .hero-scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.5rem;color:white;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;opacity:.8;animation:bounceDown 2s ease-in-out infinite}
 .hero-scroll-hint svg{width:22px;height:22px}
@@ -65,7 +65,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.1rem 2rem;display:
 .nav-cta:hover{background:var(--ink);transform:translateY(-1px)}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 2rem 5rem;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--white) 0%,var(--ice-50) 30%,var(--ice-100) 65%,var(--ice-200) 100%)}
+.hero{min-height:auto;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:5rem 2rem 4rem;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--white) 0%,var(--ice-50) 30%,var(--ice-100) 65%,var(--ice-200) 100%)}
 .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,.15) 50%,rgba(0,0,0,.35) 100%);pointer-events:none;z-index:2}
 .hero-pattern{position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.5) 0,rgba(255,255,255,.5) 1px,transparent 1px,transparent 80px),repeating-linear-gradient(90deg,rgba(255,255,255,.5) 0,rgba(255,255,255,.5) 1px,transparent 1px,transparent 80px);pointer-events:none;z-index:3}
 .hero-snowflake{position:absolute;color:var(--ice-400);opacity:.35;pointer-events:none;animation:floatSlow 8s ease-in-out infinite}
@@ -76,15 +76,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.1rem 2rem;display:
 @keyframes floatSlow{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-12px) rotate(180deg)}}
 .hero>*{position:relative;z-index:4}
 .hero-tag{display:inline-block;background:rgba(255,255,255,.6);backdrop-filter:blur(6px);border:1px solid rgba(42,90,120,.15);color:var(--ice-800);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;padding:.5rem 1.3rem;border-radius:24px;margin-bottom:2.25rem;font-weight:500}
-.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,8.5vw,6.5rem);font-weight:300;line-height:1;color:var(--ink);margin-bottom:1.5rem;letter-spacing:-.01em}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,6vw,4.8rem);font-weight:300;line-height:1;color:var(--ink);margin-bottom:1rem;letter-spacing:-.01em}
 .hero h1 em{font-style:italic;color:var(--ice-700);font-weight:400}
-.hero-sub{font-family:'DM Sans',sans-serif;font-size:1.02rem;color:var(--muted);max-width:480px;line-height:1.8;margin-bottom:2.75rem;font-weight:400}
+.hero-sub{font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--muted);max-width:480px;line-height:1.7;margin-bottom:1.75rem;font-weight:400}
 .hero-actions{display:flex;gap:.85rem;flex-wrap:wrap;justify-content:center}
 .btn-main{background:var(--ice-800);color:white;padding:.95rem 2.2rem;border-radius:32px;text-decoration:none;font-weight:500;font-size:.92rem;transition:.3s cubic-bezier(.2,.7,.3,1);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.02em;box-shadow:0 4px 16px rgba(26,58,82,.18)}
 .btn-main:hover{background:var(--ink);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,58,82,.28)}
 .btn-outline{background:rgba(255,255,255,.6);backdrop-filter:blur(6px);color:var(--ice-800);padding:.95rem 2.2rem;border-radius:32px;text-decoration:none;font-weight:500;font-size:.92rem;border:1px solid rgba(42,90,120,.25);transition:.3s cubic-bezier(.2,.7,.3,1);cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.02em}
 .btn-outline:hover{border-color:var(--ice-800);background:white;transform:translateY(-2px)}
-.hero-stats{display:flex;gap:3.5rem;margin-top:4.5rem;flex-wrap:wrap;justify-content:center;padding-top:2.5rem;border-top:1px solid rgba(42,90,120,.12);max-width:480px;margin-left:auto;margin-right:auto}
+.hero-stats{display:flex;gap:2.5rem;margin-top:2rem;flex-wrap:nowrap;justify-content:center;padding-top:1.5rem;border-top:1px solid rgba(42,90,120,.12);width:100%;max-width:600px}
 .stat-num{font-family:'Cormorant Garamond',serif;font-size:2.3rem;font-weight:500;color:var(--ice-700);line-height:1;letter-spacing:-.02em}
 .stat-label{font-size:.68rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-top:6px;font-weight:500}
 
@@ -428,12 +428,14 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
 
 <!-- HERO -->
 <section class="hero-fullscreen" id="hero-slideshow-section">
-  <div class="hero-slideshow" id="hero-slideshow">
-    <div class="hero-slide active" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%200.jpeg')"></div>
-    <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%206.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%207.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura5.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%204.jpeg')"></div>
+  <div class="hero-slideshow" id="hero-slideshow" style="overflow:hidden;width:100%;height:100%">
+    <div class="hero-track" id="hero-track">
+      <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%200.jpeg')"></div>
+      <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%206.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%207.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura5.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%204.jpeg')"></div>
+    </div>
   </div>
   <div class="hero-scroll-hint">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
@@ -478,7 +480,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
     <div class="about-grid">
       <div style="position:relative">
         <div class="about-img">
-          <img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/CEO%203.jpg" alt="Omen Trip Team" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+          <img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/03.jpeg" alt="Omen Trip Team" loading="lazy" style="width:100%;height:100%;object-fit:cover">
         </div>
         <div class="about-badge"><div class="about-badge-num">2020</div><div class="about-badge-text" data-id="Berdiri sejak" data-en="Est.">Berdiri sejak</div></div>
       </div>
@@ -781,9 +783,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
       <div class="detail-main">
         <div class="gallery-grid" style="margin-bottom:3rem">
           <div class="gallery-item main-img g-main"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%202.jpg" alt="Hokkaido Winter" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
-          <div class="gallery-item tall"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%203.jpg" alt="Snowmobile Hokkaido" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
-          <div class="gallery-item tall"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%204.jpg" alt="Asahiyama Zoo" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
-          <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%205.jpg" alt="Ningle Terrace" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+          <div class="gallery-item tall"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Snowmobile.JPG" alt="Snowmobile Hokkaido" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+          <div class="gallery-item tall"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Zoo.JPG" alt="Asahiyama Zoo" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+          <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ningle.JPG" alt="Ningle Terrace" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
           <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%201.jpg" alt="Hokkaido Snow" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
         </div>
 
@@ -791,9 +793,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
           <h3 data-id="Destinasi Unggulan" data-en="Highlight Destinations">Destinasi Unggulan</h3>
           <div class="dest-cards">
             <div class="dest-card"><div class="dest-img"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%200.jpeg" alt="Christmas Tree Biei" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div><div class="dest-body"><div class="dest-order" data-id="Destinasi 1" data-en="Destination 1">Destinasi 1</div><div class="dest-name">Christmas Tree Biei</div><p class="dest-desc" data-id="Pohon cemara tunggal ikonik yang berdiri megah di tengah ladang bersalju Biei. Spot foto paling dicari di Hokkaido musim dingin." data-en="The iconic solitary spruce tree standing majestically in Biei's snowy fields. The most sought-after photo spot in winter Hokkaido.">Pohon cemara tunggal ikonik yang berdiri megah di tengah ladang bersalju. Spot foto paling dicari.</p></div></div>
-            <div class="dest-card"><div class="dest-img"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%203.jpg" alt="Snowmobile" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div><div class="dest-body"><div class="dest-order" data-id="Destinasi 2" data-en="Destination 2">Destinasi 2</div><div class="dest-name">Snowmobile Experience</div><p class="dest-desc" data-id="Kendarai snowmobile di atas hamparan salju Hokkaido yang luas. Pengalaman adrenalin yang tidak akan terlupakan." data-en="Ride a snowmobile across Hokkaido's vast snowfields. An adrenaline experience you'll never forget.">Kendarai snowmobile di atas hamparan salju Hokkaido. Pengalaman yang tidak terlupakan.</p></div></div>
-            <div class="dest-card"><div class="dest-img"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%204.jpg" alt="Asahiyama Zoo" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div><div class="dest-body"><div class="dest-order" data-id="Destinasi 3" data-en="Destination 3">Destinasi 3</div><div class="dest-name">Asahiyama Zoo</div><p class="dest-desc" data-id="Kebun binatang paling terkenal di Hokkaido, terkenal karena parade penguin di musim dingin. Pengalaman unik yang tidak ada di tempat lain." data-en="Hokkaido's most famous zoo, renowned for its winter penguin parade. A unique experience found nowhere else.">Kebun binatang paling terkenal di Hokkaido dengan parade penguin musim dingin yang ikonik.</p></div></div>
-            <div class="dest-card"><div class="dest-img"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%205.jpg" alt="Ningle Terrace" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div><div class="dest-body"><div class="dest-order" data-id="Destinasi 4" data-en="Destination 4">Destinasi 4</div><div class="dest-name">Ningle Terrace</div><p class="dest-desc" data-id="Desa kabin kayu kecil di hutan yang menjual kerajinan tangan unik. Suasana dongeng di malam bersalju sangat cocok untuk kenangan romantis." data-en="A tiny log cabin village in the forest selling unique handcrafts. A fairy-tale atmosphere on snowy evenings perfect for romantic memories.">Desa kabin kayu kecil di hutan dengan kerajinan tangan unik. Suasana seperti dongeng.</p></div></div>
+            <div class="dest-card"><div class="dest-img"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Snowmobile.JPG" alt="Snowmobile" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div><div class="dest-body"><div class="dest-order" data-id="Destinasi 2" data-en="Destination 2">Destinasi 2</div><div class="dest-name">Snowmobile Experience</div><p class="dest-desc" data-id="Kendarai snowmobile di atas hamparan salju Hokkaido yang luas. Pengalaman adrenalin yang tidak akan terlupakan." data-en="Ride a snowmobile across Hokkaido's vast snowfields. An adrenaline experience you'll never forget.">Kendarai snowmobile di atas hamparan salju Hokkaido. Pengalaman yang tidak terlupakan.</p></div></div>
+            <div class="dest-card"><div class="dest-img"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Zoo.JPG" alt="Asahiyama Zoo" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div><div class="dest-body"><div class="dest-order" data-id="Destinasi 3" data-en="Destination 3">Destinasi 3</div><div class="dest-name">Asahiyama Zoo</div><p class="dest-desc" data-id="Kebun binatang paling terkenal di Hokkaido, terkenal karena parade penguin di musim dingin. Pengalaman unik yang tidak ada di tempat lain." data-en="Hokkaido's most famous zoo, renowned for its winter penguin parade. A unique experience found nowhere else.">Kebun binatang paling terkenal di Hokkaido dengan parade penguin musim dingin yang ikonik.</p></div></div>
+            <div class="dest-card"><div class="dest-img"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ningle.JPG" alt="Ningle Terrace" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div><div class="dest-body"><div class="dest-order" data-id="Destinasi 4" data-en="Destination 4">Destinasi 4</div><div class="dest-name">Ningle Terrace</div><p class="dest-desc" data-id="Desa kabin kayu kecil di hutan yang menjual kerajinan tangan unik. Suasana dongeng di malam bersalju sangat cocok untuk kenangan romantis." data-en="A tiny log cabin village in the forest selling unique handcrafts. A fairy-tale atmosphere on snowy evenings perfect for romantic memories.">Desa kabin kayu kecil di hutan dengan kerajinan tangan unik. Suasana seperti dongeng.</p></div></div>
           </div>
         </div>
 
@@ -861,11 +863,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
     <div class="detail-grid">
       <div class="detail-main">
         <div class="gallery-grid" style="margin-bottom:3rem">
-          <div class="gallery-item main-img g-main"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Privat%2010.JPG" alt="Private Tour Japan" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+          <div class="gallery-item main-img g-main"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Privat%2011.JPG" alt="Private Tour Japan" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
           <div class="gallery-item tall"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/01.jpeg" alt="Private Tour Japan" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
           <div class="gallery-item tall"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/02.jpeg" alt="Private Tour Japan 2" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
           <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Privat%2012.JPG" alt="Autumn Japan" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
-          <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Privat%2011.JPG" alt="Winter Japan" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+          <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Privat%2010.JPG" alt="Winter Japan" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
         </div>
 
         <div class="itin-section">
