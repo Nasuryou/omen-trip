@@ -25,6 +25,16 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{font-family:'DM Sans',sans-serif;background:var(--snow);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
 
+/* HERO FULLSCREEN SLIDESHOW */
+.hero-fullscreen{position:relative;width:100%;height:100vh;overflow:hidden;background:var(--ink)}
+.hero-fullscreen .hero-slideshow{position:absolute;inset:0;z-index:0}
+.hero-fullscreen .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease-in-out;background-size:cover;background-position:center;background-repeat:no-repeat}
+.hero-fullscreen .hero-slide.active{opacity:1}
+.hero-fullscreen::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.2) 70%,rgba(0,0,0,.5) 100%);z-index:1;pointer-events:none}
+.hero-scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.5rem;color:white;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;opacity:.8;animation:bounceDown 2s ease-in-out infinite}
+.hero-scroll-hint svg{width:22px;height:22px}
+@keyframes bounceDown{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+
 /* HERO SLIDESHOW */
 .hero-slideshow{position:absolute;inset:0;z-index:0}
 .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease-in-out;background-size:cover;background-position:center;background-repeat:no-repeat}
@@ -55,7 +65,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.1rem 2rem;display:
 .nav-cta:hover{background:var(--ink);transform:translateY(-1px)}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 2rem 5rem;position:relative;overflow:hidden;background:transparent}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 2rem 5rem;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--white) 0%,var(--ice-50) 30%,var(--ice-100) 65%,var(--ice-200) 100%)}
 .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,.15) 50%,rgba(0,0,0,.35) 100%);pointer-events:none;z-index:2}
 .hero-pattern{position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.5) 0,rgba(255,255,255,.5) 1px,transparent 1px,transparent 80px),repeating-linear-gradient(90deg,rgba(255,255,255,.5) 0,rgba(255,255,255,.5) 1px,transparent 1px,transparent 80px);pointer-events:none;z-index:3}
 .hero-snowflake{position:absolute;color:var(--ice-400);opacity:.35;pointer-events:none;animation:floatSlow 8s ease-in-out infinite}
@@ -65,18 +75,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.1rem 2rem;display:
 .hero-snowflake:nth-child(5){bottom:20%;right:11%;font-size:1.4rem;animation-delay:1s}
 @keyframes floatSlow{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-12px) rotate(180deg)}}
 .hero>*{position:relative;z-index:4}
-.hero-tag{display:inline-block;background:rgba(255,255,255,.15);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.35);color:white;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;padding:.5rem 1.3rem;border-radius:24px;margin-bottom:2.25rem;font-weight:500}
-.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,8.5vw,6.5rem);font-weight:300;line-height:1;color:white;margin-bottom:1.5rem;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(0,0,0,.3)}
-.hero h1 em{font-style:italic;color:rgba(255,255,255,.9);font-weight:400}
-.hero-sub{font-family:'DM Sans',sans-serif;font-size:1.02rem;color:rgba(255,255,255,.9);max-width:480px;line-height:1.8;margin-bottom:2.75rem;font-weight:400}
+.hero-tag{display:inline-block;background:rgba(255,255,255,.6);backdrop-filter:blur(6px);border:1px solid rgba(42,90,120,.15);color:var(--ice-800);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;padding:.5rem 1.3rem;border-radius:24px;margin-bottom:2.25rem;font-weight:500}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,8.5vw,6.5rem);font-weight:300;line-height:1;color:var(--ink);margin-bottom:1.5rem;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--ice-700);font-weight:400}
+.hero-sub{font-family:'DM Sans',sans-serif;font-size:1.02rem;color:var(--muted);max-width:480px;line-height:1.8;margin-bottom:2.75rem;font-weight:400}
 .hero-actions{display:flex;gap:.85rem;flex-wrap:wrap;justify-content:center}
 .btn-main{background:var(--ice-800);color:white;padding:.95rem 2.2rem;border-radius:32px;text-decoration:none;font-weight:500;font-size:.92rem;transition:.3s cubic-bezier(.2,.7,.3,1);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.02em;box-shadow:0 4px 16px rgba(26,58,82,.18)}
 .btn-main:hover{background:var(--ink);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,58,82,.28)}
-.btn-outline{background:rgba(255,255,255,.15);backdrop-filter:blur(6px);color:white;padding:.95rem 2.2rem;border-radius:32px;text-decoration:none;font-weight:500;font-size:.92rem;border:1px solid rgba(255,255,255,.4);transition:.3s cubic-bezier(.2,.7,.3,1);cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.02em}
+.btn-outline{background:rgba(255,255,255,.6);backdrop-filter:blur(6px);color:var(--ice-800);padding:.95rem 2.2rem;border-radius:32px;text-decoration:none;font-weight:500;font-size:.92rem;border:1px solid rgba(42,90,120,.25);transition:.3s cubic-bezier(.2,.7,.3,1);cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.02em}
 .btn-outline:hover{border-color:var(--ice-800);background:white;transform:translateY(-2px)}
-.hero-stats{display:flex;gap:3.5rem;margin-top:4.5rem;flex-wrap:wrap;justify-content:center;padding-top:2.5rem;border-top:1px solid rgba(255,255,255,.25);max-width:480px;margin-left:auto;margin-right:auto}
-.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.3rem;font-weight:500;color:white;line-height:1;letter-spacing:-.02em}
-.stat-label{font-size:.68rem;color:rgba(255,255,255,.75);letter-spacing:.15em;text-transform:uppercase;margin-top:6px;font-weight:500}
+.hero-stats{display:flex;gap:3.5rem;margin-top:4.5rem;flex-wrap:wrap;justify-content:center;padding-top:2.5rem;border-top:1px solid rgba(42,90,120,.12);max-width:480px;margin-left:auto;margin-right:auto}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.3rem;font-weight:500;color:var(--ice-700);line-height:1;letter-spacing:-.02em}
+.stat-label{font-size:.68rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-top:6px;font-weight:500}
 
 /* SECTIONS */
 section{padding:6.5rem 2rem}
@@ -417,7 +427,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
 <div class="page active" id="page-home">
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero-fullscreen" id="hero-slideshow-section">
   <div class="hero-slideshow" id="hero-slideshow">
     <div class="hero-slide active" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%200.jpeg')"></div>
     <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%206.jpg')"></div>
@@ -425,6 +435,13 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
     <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura5.jpg')"></div>
     <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%204.jpeg')"></div>
   </div>
+  <div class="hero-scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    <span data-id="Scroll" data-en="Scroll">Scroll</span>
+  </div>
+</section>
+
+<section class="hero">
   <div class="hero-pattern"></div>
 
   <div class="hero-tag" data-id="Japan Travel Specialist · Since 2020" data-en="Japan Travel Specialist · Since 2020">Japan Travel Specialist · Since 2020</div>
@@ -510,7 +527,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
         </div>
       </div>
       <div class="pkg-card" onclick="showPage('private')">
-        <div class="pkg-img"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Private%201.jpg" alt="Private Tour Guide" loading="lazy" style="width:100%;height:100%;object-fit:cover"><div class="pkg-badge-wrap"><span class="pkg-badge" data-id="Premium" data-en="Premium">Premium</span></div></div>
+        <div class="pkg-img"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Privat%2011.JPG" alt="Private Tour Guide" loading="lazy" style="width:100%;height:100%;object-fit:cover"><div class="pkg-badge-wrap"><span class="pkg-badge" data-id="Premium" data-en="Premium">Premium</span></div></div>
         <div class="pkg-body">
           <div class="pkg-tag" data-id="Custom &middot; Seluruh Jepang" data-en="Custom &middot; All Japan">Custom &middot; Seluruh Jepang</div>
           <div class="pkg-name">Private Tour Guide</div>
@@ -654,7 +671,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
 <!-- PAGE WINTER -->
 <div class="page page-enter" id="page-winter">
   <div class="detail-hero">
-    <div class="detail-hero-bg"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%209.jpg" alt="Shirakawa-go Winter" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="detail-hero-bg"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura5.jpg" alt="Ainokura Winter" style="width:100%;height:100%;object-fit:cover"></div>
     <div class="detail-hero-overlay"></div>
     <div class="detail-hero-content">
       <div class="detail-hero-tag" data-id="One Day Trip" data-en="One Day Trip">One Day Trip</div>
@@ -827,7 +844,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
 <!-- PAGE PRIVATE -->
 <div class="page page-enter" id="page-private">
   <div class="detail-hero">
-    <div class="detail-hero-bg"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/01.jpeg" alt="Private Tour Japan" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="detail-hero-bg"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Privat%2013.JPG" alt="Private Tour Japan" style="width:100%;height:100%;object-fit:cover"></div>
     <div class="detail-hero-overlay"></div>
     <div class="detail-hero-content">
       <div class="detail-hero-tag" data-id="Custom &middot; Seluruh Jepang" data-en="Custom &middot; All Japan">Custom &middot; Seluruh Jepang</div>
@@ -844,11 +861,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
     <div class="detail-grid">
       <div class="detail-main">
         <div class="gallery-grid" style="margin-bottom:3rem">
-          <div class="gallery-item main-img g-main"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%2010.jpg" alt="Private Tour Japan" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+          <div class="gallery-item main-img g-main"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Privat%2010.JPG" alt="Private Tour Japan" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
           <div class="gallery-item tall"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/01.jpeg" alt="Private Tour Japan" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
           <div class="gallery-item tall"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/02.jpeg" alt="Private Tour Japan 2" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
-          <div class="gallery-item"><div class="img-ph" style="background:linear-gradient(135deg,var(--autumn-light),#f0c8a0)"><svg style="width:28px;height:28px;color:var(--autumn);opacity:.5"><use href="#i-leaf"/></svg><div class="img-ph-text" style="margin-top:.3rem">Autumn · Koyo</div></div></div>
-          <div class="gallery-item"><div class="img-ph" style="background:linear-gradient(135deg,var(--ice-100),var(--ice-300))"><svg style="width:28px;height:28px;color:var(--ice-700);opacity:.5"><use href="#i-snow"/></svg><div class="img-ph-text" style="margin-top:.3rem">Winter · Snow</div></div></div>
+          <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Privat%2012.JPG" alt="Autumn Japan" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+          <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Privat%2011.JPG" alt="Winter Japan" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
         </div>
 
         <div class="itin-section">
@@ -1088,6 +1105,19 @@ function resetForm() {
   ['f-jml','f-tgl'].forEach(id => document.getElementById(id).value = '');
   goStep(1);
 }
+
+// ABOUT IMAGE SLIDESHOW
+(function(){
+  const img1 = document.getElementById('about-img-main');
+  const img2 = document.getElementById('about-img-alt');
+  if(!img1||!img2) return;
+  let show1 = true;
+  setInterval(()=>{
+    show1 = !show1;
+    img1.style.opacity = show1 ? '1' : '0';
+    img2.style.opacity = show1 ? '0' : '1';
+  }, 1000);
+})();
 </script>
 </body>
 </html>
