@@ -141,6 +141,10 @@ section{padding:6.5rem 2rem}
 .feature-icon svg{width:18px;height:18px}
 .feature-text h4{font-size:.92rem;font-weight:500;margin-bottom:4px;color:var(--ink);letter-spacing:-.005em}
 .feature-text p{font-size:.83rem;color:var(--muted);line-height:1.65}
+.btn-profile-download{display:inline-flex;align-items:center;gap:.6rem;margin-top:.4rem;padding:.85rem 1.5rem;border-radius:32px;border:1.5px solid var(--gold);color:var(--ice-800);background:var(--gold-light);text-decoration:none;font-size:.86rem;font-weight:500;letter-spacing:.02em;transition:.25s cubic-bezier(.2,.7,.3,1)}
+.btn-profile-download svg{width:16px;height:16px;color:var(--gold)}
+.btn-profile-download:hover{background:var(--gold);color:var(--ink);transform:translateY(-2px);box-shadow:0 8px 22px rgba(184,160,112,.32)}
+.btn-profile-download:active{transform:scale(.97)}
 
 /* PACKAGES */
 .packages-bg{background:var(--white)}
@@ -469,6 +473,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
   <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3M8 21h8"/></symbol>
   <symbol id="i-snack" viewBox="0 0 24 24"><path d="M8 3l-3 5v12a1 1 0 001 1h12a1 1 0 001-1V8l-3-5H8z"/><path d="M5 8h14M9 13h6M10 17h4"/></symbol>
   <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h12a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V5z"/><path d="M8 7h8M8 11h8M8 15h5"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
   <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 3v18M5 7l14 10M5 17l14-10M3 12h18M8 4l4 3 4-3M8 20l4-3 4 3M4 8l3 4-3 4M20 8l-3 4 3 4"/></symbol>
   <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 3L3 6v15l6-3 6 3 6-3V3l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></symbol>
@@ -590,6 +595,10 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
         <div class="feature-row"><div class="feature-icon">🗾</div><div class="feature-text"><h4 data-id="Tim Berbasis di Jepang" data-en="Japan-Based Team">Tim Berbasis di Jepang</h4><p data-id="Pemandu dan operasional kami ada langsung di lapangan, bukan dari jarak jauh." data-en="Our guides and operations are on the ground in Japan, not managed remotely.">Pemandu dan operasional kami ada langsung di lapangan, bukan dari jarak jauh.</p></div></div>
         <div class="feature-row"><div class="feature-icon">🚐</div><div class="feature-text"><h4 data-id="Tidak Naik Angkutan Umum" data-en="No Public Transport">Tidak Naik Angkutan Umum</h4><p data-id="Cukup duduk manis di kendaraan kami. Kami yang jemput, antar, dan urus logistik." data-en="Just sit back in our vehicle. We handle pick-up, drop-off, and all logistics.">Cukup duduk manis di kendaraan kami. Kami yang jemput, antar, dan urus logistik.</p></div></div>
         <div class="feature-row"><div class="feature-icon">🛡️</div><div class="feature-text"><h4 data-id="Legalitas Terpercaya" data-en="Trusted Legality">Legalitas Terpercaya</h4><p data-id="Omen Trip beroperasi di bawah naungan <strong>PT Omen Wisata Indonesia</strong> — badan hukum resmi terdaftar di Indonesia. Untuk legalitas agen perjalanan di Jepang, saat ini sedang dalam proses perizinan resmi." data-en="Omen Trip operates under <strong>PT Omen Wisata Indonesia</strong> — a legally registered entity in Indonesia. Japanese travel agency licensing is currently in process.">Omen Trip beroperasi di bawah naungan <strong>PT Omen Wisata Indonesia</strong> — badan hukum resmi terdaftar di Indonesia. Untuk legalitas agen perjalanan di Jepang, saat ini sedang dalam proses perizinan resmi.</p></div></div>
+        <a class="btn-profile-download" href="Omen-Trip-Company-Profile.pdf" download="Omen-Trip-Company-Profile.pdf">
+          <svg class="ico"><use href="#i-download"/></svg>
+          <span data-id="Unduh Profil Perusahaan (PDF)" data-en="Download Company Profile (PDF)">Unduh Profil Perusahaan (PDF)</span>
+        </a>
       </div>
     </div>
   </div>
@@ -1273,7 +1282,7 @@ function resetForm() {
   }, 1000);
 })();
 
-// HERO PHOTO SLIDESHOW — crossfades to the next real trip photo every 1s
+// HERO PHOTO SLIDESHOW — crossfades to the next real trip photo every 3s
 (function(){
   const wrap = document.getElementById('hero-slideshow');
   if (!wrap) return;
@@ -1286,7 +1295,7 @@ function resetForm() {
     slides[cur].classList.remove('active');
     cur = (cur + 1) % slides.length;
     slides[cur].classList.add('active');
-  }, 1000);
+  }, 3000);
 })();
 
 // LIVE MOTION — nav shrink on scroll, hero parallax, counting stats, scroll-reveal
