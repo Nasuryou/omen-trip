@@ -72,7 +72,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.1rem 2rem;display:
 .hero-sub{font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--muted);max-width:480px;line-height:1.7;margin-bottom:1.75rem;font-weight:400}
 .hero-actions{display:flex;gap:.85rem;flex-wrap:wrap;justify-content:center}
 .btn-main{background:var(--ice-800);color:white;padding:.95rem 2.2rem;border-radius:32px;text-decoration:none;font-weight:500;font-size:.92rem;transition:.3s cubic-bezier(.2,.7,.3,1);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.02em;box-shadow:0 4px 16px rgba(26,58,82,.18)}
-.btn-main:hover{background:var(--ink);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,58,82,.28)}
+.btn-main:hover{background:var(--ink);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,58,82,.28),0 0 0 1px rgba(184,160,112,.4)}
 .btn-outline{background:rgba(255,255,255,.6);backdrop-filter:blur(6px);color:var(--ice-800);padding:.95rem 2.2rem;border-radius:32px;text-decoration:none;font-weight:500;font-size:.92rem;border:1px solid rgba(42,90,120,.25);transition:.3s cubic-bezier(.2,.7,.3,1);cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.02em}
 .btn-outline:hover{border-color:var(--ice-800);background:white;transform:translateY(-2px)}
 .hero-stats{display:flex;gap:2.5rem;margin-top:2rem;flex-wrap:nowrap;justify-content:center;padding-top:1.5rem;border-top:1px solid rgba(42,90,120,.12);width:100%;max-width:600px}
@@ -344,6 +344,55 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
 .btn-wa-small:hover{background:#1fb85a}
 .sidebar-note{font-size:.73rem;color:var(--muted);text-align:center;margin-top:.85rem;line-height:1.6}
 
+/* AMBIENT SNOW */
+.snow-ambient{position:fixed;inset:0;pointer-events:none;z-index:150;overflow:hidden}
+.snow-ambient span{position:absolute;top:-10px;display:block;width:5px;height:5px;background:rgba(255,255,255,.9);border-radius:50%;box-shadow:0 0 6px rgba(255,255,255,.65);opacity:0;animation:snowFall linear infinite}
+.snow-ambient span:nth-child(1){left:4%;width:4px;height:4px;animation-duration:16s;animation-delay:0s}
+.snow-ambient span:nth-child(2){left:14%;width:6px;height:6px;animation-duration:20s;animation-delay:2s}
+.snow-ambient span:nth-child(3){left:24%;width:3px;height:3px;animation-duration:13s;animation-delay:5s}
+.snow-ambient span:nth-child(4){left:36%;width:5px;height:5px;animation-duration:22s;animation-delay:1s}
+.snow-ambient span:nth-child(5){left:48%;width:4px;height:4px;animation-duration:17s;animation-delay:7s}
+.snow-ambient span:nth-child(6){left:58%;width:6px;height:6px;animation-duration:24s;animation-delay:3s}
+.snow-ambient span:nth-child(7){left:68%;width:3px;height:3px;animation-duration:14s;animation-delay:9s}
+.snow-ambient span:nth-child(8){left:78%;width:5px;height:5px;animation-duration:21s;animation-delay:4s}
+.snow-ambient span:nth-child(9){left:88%;width:4px;height:4px;animation-duration:18s;animation-delay:6s}
+.snow-ambient span:nth-child(10){left:94%;width:3px;height:3px;animation-duration:26s;animation-delay:8s}
+@keyframes snowFall{
+  0%{transform:translate(0,-10px);opacity:0}
+  8%{opacity:.85}
+  92%{opacity:.6}
+  100%{transform:translate(24px,105vh);opacity:0}
+}
+
+/* LUXURY DETAIL — gold accent rule before every section tag */
+.section-tag::before{content:'';display:inline-block;width:22px;height:1px;background:var(--gold);margin-right:10px;vertical-align:middle}
+
+/* LUXURY DETAIL — cinematic hero entrance */
+.hero-tag,.hero h1,.hero-sub,.hero-actions,.hero-stats{animation:heroIn 1s cubic-bezier(.2,.7,.3,1) both}
+.hero-tag{animation-delay:.05s}
+.hero h1{animation-delay:.18s}
+.hero-sub{animation-delay:.3s}
+.hero-actions{animation-delay:.42s}
+.hero-stats{animation-delay:.54s}
+@keyframes heroIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* LUXURY DETAIL — subtle ice tint wash on About / Team */
+#about{background:linear-gradient(180deg,var(--white) 0%,var(--ice-50) 100%)}
+#team{background:linear-gradient(180deg,var(--ice-50) 0%,var(--white) 100%)}
+
+/* LUXURY DETAIL — editorial photo zoom on hover */
+.pkg-img img,.dest-img img,.gallery-item img{transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.pkg-card:hover .pkg-img img{transform:scale(1.07)}
+.dest-card:hover .dest-img img{transform:scale(1.08)}
+.gallery-item:hover img{transform:scale(1.06)}
+
+@media (prefers-reduced-motion: reduce){
+  .snow-ambient{display:none}
+  .hero-tag,.hero h1,.hero-sub,.hero-actions,.hero-stats{animation:none}
+  .pkg-img img,.dest-img img,.gallery-item img{transition:none}
+}
+@media(max-width:600px){.snow-ambient{display:none}}
+
 /* RESPONSIVE */
 @media(max-width:900px){
   .about-grid,.booking-wrap,.detail-grid{grid-template-columns:1fr}
@@ -413,6 +462,12 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
     <button class="nav-cta" onclick="goToBooking(null)" data-id="Pesan Sekarang" data-en="Book Now">Pesan Sekarang</button>
   </div>
 </nav>
+
+<!-- AMBIENT SNOW (site-wide) -->
+<div class="snow-ambient" aria-hidden="true">
+  <span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
 
 <!-- PAGE: HOME -->
 <div class="page active" id="page-home">
@@ -569,6 +624,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
         <p data-id="Isi form ini dan tim kami akan menghubungi Anda dalam 1×24 jam untuk konfirmasi detail perjalanan." data-en="Fill this form and our team will contact you within 24 hours to confirm your travel details.">Isi form ini dan tim kami akan menghubungi Anda dalam 1×24 jam untuk konfirmasi detail perjalanan.</p>
         <div class="contact-items">
           <div class="contact-item"><div class="contact-icon">💬</div><span>WhatsApp: +81 80-9580-3259</span></div>
+          <div class="contact-item"><div class="contact-icon">✉️</div><span>Email: <a href="mailto:japan@omentrip.com" style="color:inherit;text-decoration:none">japan@omentrip.com</a></span></div>
           <div class="contact-item"><div class="contact-icon">📷</div><span>Instagram: @omen_said</span></div>
           <div class="contact-item"><div class="contact-icon">⏱️</div><span data-id="Respons dalam 1×24 jam" data-en="Response within 24 hours">Respons dalam 1×24 jam</span></div>
         </div>
@@ -640,7 +696,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
     <div class="footer-grid">
       <div><div class="footer-brand">Omen<span>Trip</span> 🇯🇵</div><p class="footer-desc" data-id="Japan travel specialist melayani wisatawan Indonesia sejak 2020. Tim kami berbasis langsung di Jepang." data-en="Japan travel specialist serving Indonesian travelers since 2020. Our team is based directly in Japan.">Japan travel specialist melayani wisatawan Indonesia sejak 2020. Tim kami berbasis langsung di Jepang.</p></div>
       <div class="footer-col"><h5 data-id="Paket" data-en="Packages">Paket</h5><a onclick="showPage('winter')">Winter Trip</a><a onclick="showPage('hokkaido')">Hokkaido Trip</a><a onclick="showPage('private')">Private Tour Guide</a><a style="opacity:.5;cursor:default" data-id="Autumn Trip 2026 (Segera)" data-en="Autumn Trip 2026 (Soon)">Autumn Trip 2026 (Segera)</a></div>
-      <div class="footer-col"><h5 data-id="Kontak" data-en="Contact">Kontak</h5><a>Instagram: @omen_said</a><a>WhatsApp: +81 80-9580-3259</a><a onclick="scrollToId('about')" data-id="Tentang Kami" data-en="About Us">Tentang Kami</a><a onclick="goToBooking(null)" data-id="Pesan Sekarang" data-en="Book Now">Pesan Sekarang</a></div>
+      <div class="footer-col"><h5 data-id="Kontak" data-en="Contact">Kontak</h5><a>Instagram: @omen_said</a><a>WhatsApp: +81 80-9580-3259</a><a href="mailto:japan@omentrip.com">Email: japan@omentrip.com</a><a onclick="scrollToId('about')" data-id="Tentang Kami" data-en="About Us">Tentang Kami</a><a onclick="goToBooking(null)" data-id="Pesan Sekarang" data-en="Book Now">Pesan Sekarang</a></div>
     </div>
     <div class="footer-bottom"><span>© 2025 Omen Trip. <span data-id="PT Omen Wisata Indonesia · Terdaftar di Indonesia." data-en="PT Omen Wisata Indonesia · Registered in Indonesia.">PT Omen Wisata Indonesia · Terdaftar di Indonesia.</span></span><span data-id="Made with care for Japan lovers" data-en="Made with care for Japan lovers">Made with care for Japan lovers</span></div>
   </div>
@@ -933,15 +989,28 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 const CFG = {
   wa: "818095803259",
+  email: "japan@omentrip.com",
+  // Fill these in from your EmailJS dashboard (emailjs.com → Email Services / Email Templates / Account → API Keys).
+  // Until filled in, booking confirmations still work via WhatsApp — email sending is skipped silently.
+  emailjs: {
+    serviceId: "YOUR_EMAILJS_SERVICE_ID",
+    templateId: "YOUR_EMAILJS_TEMPLATE_ID",
+    publicKey: "YOUR_EMAILJS_PUBLIC_KEY"
+  },
   paket: [
     {id:1,nama:"Winter Trip",durasi:"One Day Trip",harga:22000,teks:"¥22.000",uang:"JPY",dp:50},
     {id:2,nama:"Hokkaido Trip",durasi:"Open Private Trip",harga:13900000,teks:"Rp 13.900.000",uang:"IDR",dp:50},
     {id:3,nama:"Private Tour Guide",durasi:"Custom",harga:27000,teks:"¥27.000",uang:"JPY",dp:50}
   ]
 };
+
+if (window.emailjs && CFG.emailjs.publicKey !== "YOUR_EMAILJS_PUBLIC_KEY") {
+  emailjs.init({ publicKey: CFG.emailjs.publicKey });
+}
 
 let lang = 'id';
 let picked = null;
@@ -1068,7 +1137,23 @@ function kirimWA() {
   const dp = fmtDP(picked, jml);
   const msg = `Halo Omen Trip! Saya ingin konfirmasi pesanan:\n\n*DETAIL PESANAN*\n• Nama: ${nama}\n• WhatsApp: ${wa}\n• Paket: ${picked.nama} (${picked.durasi})\n• Jumlah: ${jml} orang\n• Tgl Berangkat: ${tglFmt}\n• Total: ${total}\n${cat?'\n*Catatan:* '+cat+'\n':''}\n*PEMBAYARAN DP (${picked.dp}%)*\n• Jumlah DP: ${dp}\n• Transfer ke: Mandiri – 1360036647185 a/n M Khittatul Rohman\n\n_Bukti transfer segera saya kirimkan. Terima kasih!_`;
   window.open('https://wa.me/'+CFG.wa+'?text='+encodeURIComponent(msg),'_blank');
+  kirimEmail({nama, wa, jml, tglFmt, total, dp, cat});
   setTimeout(() => goStep(4), 600);
+}
+
+function kirimEmail(o) {
+  if (!window.emailjs || CFG.emailjs.publicKey === "YOUR_EMAILJS_PUBLIC_KEY") return;
+  emailjs.send(CFG.emailjs.serviceId, CFG.emailjs.templateId, {
+    to_email: CFG.email,
+    from_name: o.nama,
+    whatsapp: o.wa,
+    paket: picked.nama + ' (' + picked.durasi + ')',
+    jumlah: o.jml + ' orang',
+    tanggal: o.tglFmt,
+    total: o.total,
+    dp: o.dp,
+    catatan: o.cat || '-'
+  }).catch(err => console.error('EmailJS gagal mengirim:', err));
 }
 
 function tanyaWA(paket) {
