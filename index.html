@@ -220,6 +220,29 @@ section{padding:6.5rem 2rem}
 .fg textarea{resize:none;height:75px}
 .fg-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
 .fg-hint{font-size:.72rem;color:var(--muted);margin-top:5px}
+.cal-wrap{position:relative}
+.cal-input{width:100%;display:flex;align-items:center;justify-content:space-between;padding:.78rem 1rem;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--ink);background:var(--white);cursor:pointer;transition:.2s;text-align:left}
+.cal-input:hover{border-color:var(--ice-400)}
+.cal-input.open{border-color:var(--ice-600);box-shadow:0 0 0 3px rgba(74,125,153,.1)}
+.cal-input svg{width:16px;height:16px;color:var(--muted);flex-shrink:0}
+.cal-input .placeholder{color:var(--muted)}
+.cal-pop{position:absolute;top:calc(100% + .5rem);left:0;width:290px;max-width:90vw;background:white;border-radius:var(--radius);box-shadow:var(--shadow-lg);border:1px solid var(--border);padding:1rem;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-8px);transition:opacity .2s cubic-bezier(.2,.7,.3,1),transform .2s cubic-bezier(.2,.7,.3,1);z-index:60}
+.cal-wrap.open .cal-pop{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem}
+.cal-month{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--ink)}
+.cal-nav{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:white;color:var(--ice-800);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0}
+.cal-nav:hover:not(:disabled){background:var(--ice-100);border-color:var(--ice-300)}
+.cal-nav:disabled{opacity:.3;cursor:not-allowed}
+.cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px}
+.cal-weekdays span{text-align:center;font-size:.66rem;color:var(--muted);font-weight:500;letter-spacing:.03em}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:.8rem;border-radius:8px;cursor:pointer;color:var(--ink);background:transparent;border:none;transition:.15s;font-family:'DM Sans',sans-serif}
+.cal-day:hover{background:var(--ice-100)}
+.cal-day.today{font-weight:700;color:var(--ice-700)}
+.cal-day.sel{background:var(--ice-800);color:white}
+.cal-day.sel:hover{background:var(--ice-800)}
+.cal-day.disabled{color:var(--border);cursor:not-allowed;pointer-events:none}
+.cal-day.empty{visibility:hidden;pointer-events:none;cursor:default}
 .form-pkg-grid{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.4rem}
 .form-pkg{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:.95rem 1.1rem;cursor:pointer;transition:.2s;position:relative;background:white}
 .form-pkg:hover{border-color:var(--ice-400)}
@@ -514,6 +537,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
   <symbol id="i-snack" viewBox="0 0 24 24"><path d="M8 3l-3 5v12a1 1 0 001 1h12a1 1 0 001-1V8l-3-5H8z"/><path d="M5 8h14M9 13h6M10 17h4"/></symbol>
   <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h12a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V5z"/><path d="M8 7h8M8 11h8M8 15h5"/></symbol>
   <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
   <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 3v18M5 7l14 10M5 17l14-10M3 12h18M8 4l4 3 4-3M8 20l4-3 4 3M4 8l3 4-3 4M20 8l-3 4 3 4"/></symbol>
   <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 3L3 6v15l6-3 6 3 6-3V3l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></symbol>
@@ -573,6 +597,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
   <p class="hero-sub" data-id="Dengan omotenashi sebagai misi, kami menuntun Anda menuju pemandangan salju yang belum pernah Anda lihat." data-en="With omotenashi as our mission, we guide you to snow scenery you have yet to see.">Dengan omotenashi sebagai misi, kami menuntun Anda menuju pemandangan salju yang belum pernah Anda lihat.</p>
   <p class="hero-sub-note" data-id="Jemput, antar, foto &amp; video, pemandu lokal, semua sudah termasuk." data-en="Pick-up, drop-off, photos &amp; videos, local guide, all included.">Jemput, antar, foto &amp; video, pemandu lokal, semua sudah termasuk.</p>
   <div class="hero-actions">
+    <button class="btn-outline" onclick="scrollToId('about')" data-id="Tentang Kami" data-en="About Us">Tentang Kami</button>
     <div class="pkg-quick-wrap">
       <button class="btn-main" onclick="togglePkgQuick(event)" aria-haspopup="true" id="pkg-quick-btn">
         <span data-id="Lihat Paket" data-en="View Packages">Lihat Paket</span> <span class="pkg-quick-caret">▾</span>
@@ -596,7 +621,6 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
       </div>
     </div>
     <button class="btn-outline" onclick="scrollToId('gallery')" data-id="Galeri" data-en="Gallery">Galeri</button>
-    <button class="btn-outline" onclick="scrollToId('about')" data-id="Tentang Kami" data-en="About Us">Tentang Kami</button>
   </div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">500+</div><div class="stat-label" data-id="Wisatawan Puas" data-en="Happy Travelers">Wisatawan Puas</div></div>
@@ -720,30 +744,54 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
     </div>
 
     <div class="g-grid" id="g-grid">
+      <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%200.jpeg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
       <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%201.jpeg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
       <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%202.jpeg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
       <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%203.jpeg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
+      <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%205.jpg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
+      <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%206.jpg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
       <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%207.jpg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
       <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%208.jpg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
       <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%209.jpg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
       <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%2010.jpg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
+      <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/02.jpeg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
+      <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/03.jpeg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
+      <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Bus-Shirakawa.jpeg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
+      <figure class="g-item" data-cat="ainokura" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%200.jpeg" alt="Ainokura" loading="lazy"><figcaption>Ainokura</figcaption></figure>
       <figure class="g-item" data-cat="ainokura" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%201.jpeg" alt="Ainokura" loading="lazy"><figcaption>Ainokura</figcaption></figure>
       <figure class="g-item" data-cat="ainokura" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%202.jpeg" alt="Ainokura" loading="lazy"><figcaption>Ainokura</figcaption></figure>
       <figure class="g-item" data-cat="ainokura" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%203.jpeg" alt="Ainokura" loading="lazy"><figcaption>Ainokura</figcaption></figure>
       <figure class="g-item" data-cat="ainokura" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%204.jpeg" alt="Ainokura" loading="lazy"><figcaption>Ainokura</figcaption></figure>
       <figure class="g-item" data-cat="ainokura" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%206.jpg" alt="Ainokura" loading="lazy"><figcaption>Ainokura</figcaption></figure>
+      <figure class="g-item" data-cat="ainokura" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%207.jpg" alt="Ainokura" loading="lazy"><figcaption>Ainokura</figcaption></figure>
+      <figure class="g-item" data-cat="ainokura" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%209.jpg" alt="Ainokura" loading="lazy"><figcaption>Ainokura</figcaption></figure>
+      <figure class="g-item" data-cat="ainokura" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura5.jpg" alt="Ainokura" loading="lazy"><figcaption>Ainokura</figcaption></figure>
+      <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%200.jpeg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
       <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%201.jpeg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
       <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%202.jpeg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
       <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%203.jpg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
       <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%204.jpg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
+      <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%205.jpg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
       <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%206.jpg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
       <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%207.jpg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
       <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%208.jpeg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
+      <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%209.jpg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
       <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%2010.jpg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
+      <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/06.jpeg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
+      <figure class="g-item" data-cat="hokkaido" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%200.jpeg" alt="Hokkaido" loading="lazy"><figcaption>Hokkaido</figcaption></figure>
+      <figure class="g-item" data-cat="hokkaido" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%201.jpg" alt="Hokkaido" loading="lazy"><figcaption>Hokkaido</figcaption></figure>
+      <figure class="g-item" data-cat="hokkaido" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%202.jpg" alt="Hokkaido" loading="lazy"><figcaption>Hokkaido</figcaption></figure>
       <figure class="g-item" data-cat="hokkaido" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%203.jpg" alt="Hokkaido" loading="lazy"><figcaption>Hokkaido</figcaption></figure>
       <figure class="g-item" data-cat="hokkaido" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%204.jpg" alt="Hokkaido" loading="lazy"><figcaption>Hokkaido</figcaption></figure>
       <figure class="g-item" data-cat="hokkaido" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%205.jpg" alt="Hokkaido" loading="lazy"><figcaption>Hokkaido</figcaption></figure>
-      <figure class="g-item" data-cat="private" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Private%201.jpg" alt="Private Tour" loading="lazy"><figcaption>Private Tour</figcaption></figure>
+      <figure class="g-item" data-cat="hokkaido" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/01.jpeg" alt="Hokkaido" loading="lazy"><figcaption>Hokkaido</figcaption></figure>
+      <figure class="g-item" data-cat="hokkaido" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ningle.JPG" alt="Hokkaido" loading="lazy"><figcaption>Hokkaido</figcaption></figure>
+      <figure class="g-item" data-cat="hokkaido" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Snowmobile.JPG" alt="Hokkaido" loading="lazy"><figcaption>Hokkaido</figcaption></figure>
+      <figure class="g-item" data-cat="hokkaido" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Zoo.JPG" alt="Hokkaido" loading="lazy"><figcaption>Hokkaido</figcaption></figure>
+      <figure class="g-item" data-cat="private" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Privat%2010.JPG" alt="Private Tour" loading="lazy"><figcaption>Private Tour</figcaption></figure>
+      <figure class="g-item" data-cat="private" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Privat%2011.JPG" alt="Private Tour" loading="lazy"><figcaption>Private Tour</figcaption></figure>
+      <figure class="g-item" data-cat="private" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Privat%2012.JPG" alt="Private Tour" loading="lazy"><figcaption>Private Tour</figcaption></figure>
+      <figure class="g-item" data-cat="private" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Privat%2013.JPG" alt="Private Tour" loading="lazy"><figcaption>Private Tour</figcaption></figure>
       <figure class="g-item" data-cat="winter" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/04.jpeg" alt="Winter Trip" loading="lazy"><figcaption>Winter Trip</figcaption></figure>
       <figure class="g-item" data-cat="winter" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/05.jpeg" alt="Winter Trip" loading="lazy"><figcaption>Winter Trip</figcaption></figure>
     </div>
@@ -830,7 +878,26 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
             <div class="fg"><label data-id="No. WhatsApp *" data-en="WhatsApp No. *">No. WhatsApp *</label><input type="tel" id="f-wa" placeholder="081234567890"/><div class="fg-hint" data-id="Untuk konfirmasi pesanan" data-en="For order confirmation">Untuk konfirmasi pesanan</div></div>
             <div class="fg"><label data-id="Jumlah Orang *" data-en="Number of People *">Jumlah Orang *</label><select id="f-jml"><option value="" data-id="-- Pilih --" data-en="-- Select --">-- Pilih --</option><option>1 orang</option><option>2 orang</option><option>3 orang</option><option>4 orang</option><option>5 orang</option><option>6 orang</option><option>7 orang</option><option>8 orang</option><option>9 orang</option><option>10 orang</option></select></div>
           </div>
-          <div class="fg"><label data-id="Tanggal Keberangkatan *" data-en="Departure Date *">Tanggal Keberangkatan *</label><input type="date" id="f-tgl"/><div class="fg-hint" id="f-tgl-hint" style="display:none"></div></div>
+          <div class="fg">
+            <label data-id="Tanggal Keberangkatan *" data-en="Departure Date *">Tanggal Keberangkatan *</label>
+            <div class="cal-wrap" id="cal-wrap">
+              <button type="button" class="cal-input" id="cal-btn" onclick="toggleCal(event)">
+                <span id="cal-display" class="placeholder">-- Pilih tanggal --</span>
+                <svg class="ico"><use href="#i-calendar"/></svg>
+              </button>
+              <input type="hidden" id="f-tgl" value="">
+              <div class="cal-pop" id="cal-pop">
+                <div class="cal-head">
+                  <button type="button" class="cal-nav" id="cal-prev" onclick="calNavMonth(-1)" aria-label="Previous month">‹</button>
+                  <span class="cal-month" id="cal-month-label"></span>
+                  <button type="button" class="cal-nav" id="cal-next" onclick="calNavMonth(1)" aria-label="Next month">›</button>
+                </div>
+                <div class="cal-weekdays" id="cal-weekdays"></div>
+                <div class="cal-grid" id="cal-grid"></div>
+              </div>
+            </div>
+            <div class="fg-hint" id="f-tgl-hint" style="display:none"></div>
+          </div>
           <div class="fg"><label data-id="Catatan Tambahan" data-en="Additional Notes">Catatan Tambahan</label><textarea id="f-catatan" placeholder="Contoh: request destinasi khusus, kebutuhan khusus, dll."></textarea></div>
           <button class="btn-form btn-form-back" onclick="goStep(1)" data-id="← Kembali" data-en="← Back">← Kembali</button>
           <button class="btn-form btn-form-primary" onclick="goStep(3)" data-id="Lanjutkan →" data-en="Continue →">Lanjutkan →</button>
@@ -1189,6 +1256,9 @@ if (window.emailjs && CFG.emailjs.publicKey !== "YOUR_EMAILJS_PUBLIC_KEY") {
 
 let lang = 'id';
 let picked = null;
+let calViewYear = new Date().getFullYear();
+let calViewMonth = new Date().getMonth();
+let calSelectedISO = '';
 
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active','page-enter'));
@@ -1568,27 +1638,7 @@ function winterWindow() {
 function fmtTgl(d) {
   return d.toLocaleDateString(lang === 'id' ? 'id-ID' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 }
-function applyDateRule() {
-  const el = document.getElementById('f-tgl');
-  const hint = document.getElementById('f-tgl-hint');
-  if (!el) return;
-  if (picked && picked.id === 1) {           /* 1 = Winter Trip */
-    const w = winterWindow();
-    el.min = isoDate(w.min);
-    el.max = isoDate(w.max);
-    if (el.value && (el.value < el.min || el.value > el.max)) el.value = '';
-    if (hint) {
-      hint.style.display = 'block';
-      hint.textContent = (lang === 'id' ? 'Winter Trip hanya tersedia ' : 'Winter Trip is only available ')
-        + fmtTgl(w.min) + (lang === 'id' ? ' sampai ' : ' to ') + fmtTgl(w.max);
-    }
-  } else {
-    el.removeAttribute('min');
-    el.removeAttribute('max');
-    if (hint) hint.style.display = 'none';
-  }
-}
-/* Pengaman: tolak tanggal di luar musim meski input date ditembus manual. */
+/* Pengaman: tolak tanggal di luar musim meski state ditembus manual. */
 function checkWinterDate(tgl) {
   if (!picked || picked.id !== 1) return true;
   const w = winterWindow();
@@ -1597,6 +1647,140 @@ function checkWinterDate(tgl) {
     ? 'Winter Trip hanya tersedia ' + fmtTgl(w.min) + ' sampai ' + fmtTgl(w.max) + '.\nSilakan pilih tanggal dalam rentang tersebut.'
     : 'Winter Trip is only available ' + fmtTgl(w.min) + ' to ' + fmtTgl(w.max) + '.\nPlease choose a date within this range.');
   return false;
+}
+
+/* ============ CUSTOM CALENDAR — hari di luar rentang tidak bisa diklik ============ */
+function calBounds() {
+  if (picked && picked.id === 1) {           /* 1 = Winter Trip */
+    const w = winterWindow();
+    return { min: w.min, max: w.max, restricted: true };
+  }
+  return { min: null, max: null, restricted: false };
+}
+
+function toggleCal(e) {
+  e.stopPropagation();
+  const wrap = document.getElementById('cal-wrap');
+  const willOpen = !wrap.classList.contains('open');
+  wrap.classList.toggle('open', willOpen);
+  document.getElementById('cal-btn').classList.toggle('open', willOpen);
+  if (willOpen) renderCal();
+}
+document.addEventListener('click', (e) => {
+  const wrap = document.getElementById('cal-wrap');
+  if (wrap && wrap.classList.contains('open') && !wrap.contains(e.target)) {
+    wrap.classList.remove('open');
+    document.getElementById('cal-btn').classList.remove('open');
+  }
+});
+
+function calNavMonth(dir) {
+  calViewMonth += dir;
+  if (calViewMonth < 0) { calViewMonth = 11; calViewYear--; }
+  if (calViewMonth > 11) { calViewMonth = 0; calViewYear++; }
+  renderCal();
+}
+
+function calWeekdayLabels() {
+  return lang === 'id' ? ['Min','Sen','Sel','Rab','Kam','Jum','Sab'] : ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+}
+
+function renderCal() {
+  const grid = document.getElementById('cal-grid');
+  if (!grid) return;
+  const bounds = calBounds();
+
+  document.getElementById('cal-weekdays').innerHTML = calWeekdayLabels().map(w => `<span>${w}</span>`).join('');
+  document.getElementById('cal-month-label').textContent =
+    new Date(calViewYear, calViewMonth, 1).toLocaleDateString(lang === 'id' ? 'id-ID' : 'en-GB', { month: 'long', year: 'numeric' });
+
+  const prevBtn = document.getElementById('cal-prev');
+  const nextBtn = document.getElementById('cal-next');
+  if (bounds.restricted) {
+    prevBtn.disabled = calViewYear === bounds.min.getFullYear() && calViewMonth === bounds.min.getMonth();
+    nextBtn.disabled = calViewYear === bounds.max.getFullYear() && calViewMonth === bounds.max.getMonth();
+  } else {
+    prevBtn.disabled = false;
+    nextBtn.disabled = false;
+  }
+
+  grid.innerHTML = '';
+  const firstDay = new Date(calViewYear, calViewMonth, 1).getDay();
+  const daysInMonth = new Date(calViewYear, calViewMonth + 1, 0).getDate();
+  const todayISO = isoDate(new Date());
+  const minISO = bounds.restricted ? isoDate(bounds.min) : null;
+  const maxISO = bounds.restricted ? isoDate(bounds.max) : null;
+
+  for (let i = 0; i < firstDay; i++) {
+    grid.insertAdjacentHTML('beforeend', '<span class="cal-day empty"></span>');
+  }
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateObj = new Date(calViewYear, calViewMonth, d);
+    const iso = isoDate(dateObj);
+    const disabled = bounds.restricted && (iso < minISO || iso > maxISO);
+    const classes = ['cal-day'];
+    if (disabled) classes.push('disabled');
+    if (iso === todayISO) classes.push('today');
+    if (iso === calSelectedISO) classes.push('sel');
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = classes.join(' ');
+    btn.textContent = d;
+    if (disabled) btn.disabled = true;
+    else btn.onclick = () => selectCalDay(iso, dateObj);
+    grid.appendChild(btn);
+  }
+}
+
+function selectCalDay(iso, dateObj) {
+  calSelectedISO = iso;
+  document.getElementById('f-tgl').value = iso;
+  const disp = document.getElementById('cal-display');
+  disp.textContent = fmtTgl(dateObj);
+  disp.classList.remove('placeholder');
+  document.getElementById('cal-wrap').classList.remove('open');
+  document.getElementById('cal-btn').classList.remove('open');
+}
+
+function applyDateRule() {
+  const calWrap = document.getElementById('cal-wrap');
+  if (!calWrap) return;
+  const hint = document.getElementById('f-tgl-hint');
+  calSelectedISO = document.getElementById('f-tgl').value || '';
+  const bounds = calBounds();
+  if (bounds.restricted) {
+    if (calSelectedISO && (calSelectedISO < isoDate(bounds.min) || calSelectedISO > isoDate(bounds.max))) {
+      calSelectedISO = '';
+    }
+    calViewYear = bounds.min.getFullYear();
+    calViewMonth = bounds.min.getMonth();
+    if (hint) {
+      hint.style.display = 'block';
+      hint.textContent = (lang === 'id' ? 'Winter Trip hanya tersedia ' : 'Winter Trip is only available ')
+        + fmtTgl(bounds.min) + (lang === 'id' ? ' sampai ' : ' to ') + fmtTgl(bounds.max);
+    }
+  } else {
+    if (calSelectedISO) {
+      const [Y, M] = calSelectedISO.split('-').map(Number);
+      calViewYear = Y; calViewMonth = M - 1;
+    } else {
+      const today = new Date();
+      calViewYear = today.getFullYear();
+      calViewMonth = today.getMonth();
+    }
+    if (hint) hint.style.display = 'none';
+  }
+  document.getElementById('f-tgl').value = calSelectedISO;
+  const disp = document.getElementById('cal-display');
+  if (calSelectedISO) {
+    const [Y, M, D] = calSelectedISO.split('-').map(Number);
+    disp.textContent = fmtTgl(new Date(Y, M - 1, D));
+    disp.classList.remove('placeholder');
+  } else {
+    disp.textContent = lang === 'id' ? '-- Pilih tanggal --' : '-- Select date --';
+    disp.classList.add('placeholder');
+  }
+  renderCal();
 }
 
 </script>
