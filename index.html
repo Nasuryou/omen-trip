@@ -1303,24 +1303,27 @@ function jumpToPkg(key) {
 function scrollToId(id) {
   const el = document.getElementById(id);
   if (!el) return;
+  // Koreksi ulang posisi scroll setelah gambar lazy-load di sepanjang jalur selesai
+  // dimuat (mis. galeri ~50 foto), karena itu bisa menggeser tinggi halaman
+  // dan membuat scroll pertama berhenti sebelum sampai ke target.
+  const settle = () => {
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+    setTimeout(() => el.scrollIntoView({behavior:'smooth', block:'start'}), 700);
+  };
   // Pastikan kita berada di halaman home
   const homePage = document.getElementById('page-home');
   if (!homePage.classList.contains('active')) {
     showPage('home');
-    setTimeout(() => {
-      el.scrollIntoView({behavior:'smooth', block:'start'});
-    }, 200);
+    setTimeout(settle, 200);
   } else {
-    el.scrollIntoView({behavior:'smooth', block:'start'});
+    settle();
   }
 }
 
 function goToBooking(pkgId) {
-  showPage('home');
-  setTimeout(() => {
-    scrollToId('booking');
-    if (pkgId) setTimeout(() => { pickPkg(pkgId); goStep(1); }, 300);
-  }, 100);
+  const alreadyHome = document.getElementById('page-home').classList.contains('active');
+  scrollToId('booking');
+  if (pkgId) setTimeout(() => { pickPkg(pkgId); goStep(1); }, alreadyHome ? 300 : 500);
 }
 
 function setLang(l) {
