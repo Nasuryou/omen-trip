@@ -5,7 +5,7 @@
 <meta name="google-site-verification" content="qILRACdpGJxwZe6kgowwabw30EhiXSuKil_W2Bovajs">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Omen Trip — Japan Travel Specialist</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root{
   --ice-50:#fbfdfe;--ice-100:#f3f8fb;--ice-200:#e6f0f6;--ice-300:#cfe2ed;--ice-400:#a8c8db;
@@ -79,7 +79,9 @@ nav.scrolled{padding:.75rem 2rem;box-shadow:0 6px 28px rgba(13,31,45,.08)}
 .hero-tag{display:inline-block;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);color:white;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;padding:.5rem 1.3rem;border-radius:24px;margin-bottom:2.25rem;font-weight:500}
 .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,6vw,4.8rem);font-weight:300;line-height:1;color:white;margin-bottom:1rem;letter-spacing:-.01em;text-shadow:0 2px 24px rgba(0,0,0,.25)}
 .hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
-.hero-sub{font-family:'DM Sans',sans-serif;font-size:.95rem;color:rgba(255,255,255,.82);max-width:480px;line-height:1.7;margin-bottom:1.75rem;font-weight:400}
+.hero-rinen{font-family:'Noto Serif JP','Cormorant Garamond',serif;font-size:clamp(.98rem,1.7vw,1.32rem);font-weight:300;color:#fff;max-width:640px;line-height:2;margin:0 auto .9rem;letter-spacing:.04em;text-shadow:0 2px 20px rgba(0,0,0,.35)}
+.hero-sub{font-family:'DM Sans',sans-serif;font-size:.95rem;color:rgba(255,255,255,.86);max-width:520px;line-height:1.7;margin:0 auto .7rem;font-weight:400}
+.hero-sub-note{font-family:'DM Sans',sans-serif;font-size:.78rem;color:rgba(255,255,255,.6);max-width:460px;line-height:1.65;margin:0 auto 1.75rem;font-weight:300;letter-spacing:.01em}
 .hero-actions{display:flex;gap:.85rem;flex-wrap:wrap;justify-content:center}
 .btn-main{background:var(--gold);color:var(--ink);padding:1rem 2.3rem;border-radius:32px;text-decoration:none;font-weight:600;font-size:.92rem;transition:.3s cubic-bezier(.2,.7,.3,1);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.02em;box-shadow:0 8px 28px rgba(184,160,112,.35)}
 .btn-main:hover{background:#c9b587;transform:translateY(-3px);box-shadow:0 14px 36px rgba(184,160,112,.45)}
@@ -403,10 +405,12 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
 .section-tag::before{content:'';display:inline-block;width:22px;height:1px;background:var(--gold);margin-right:10px;vertical-align:middle}
 
 /* LUXURY DETAIL — cinematic hero entrance */
-.hero-tag,.hero h1,.hero-sub,.hero-actions,.hero-stats{animation:heroIn 1s cubic-bezier(.2,.7,.3,1) both}
+.hero-tag,.hero h1,.hero-rinen,.hero-sub,.hero-sub-note,.hero-actions,.hero-stats{animation:heroIn 1s cubic-bezier(.2,.7,.3,1) both}
 .hero-tag{animation-delay:.05s}
 .hero h1{animation-delay:.18s}
-.hero-sub{animation-delay:.3s}
+.hero-rinen{animation-delay:.28s}
+.hero-sub{animation-delay:.36s}
+.hero-sub-note{animation-delay:.44s}
 .hero-actions{animation-delay:.42s}
 .hero-stats{animation-delay:.54s}
 @keyframes heroIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
@@ -426,7 +430,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
 
 @media (prefers-reduced-motion: reduce){
   .snow-ambient{display:none}
-  .hero-tag,.hero h1,.hero-sub,.hero-actions,.hero-stats{animation:none}
+  .hero-tag,.hero h1,.hero-rinen,.hero-sub,.hero-sub-note,.hero-actions,.hero-stats{animation:none}
   .pkg-img img,.dest-img img,.gallery-item img{transition:none}
   .reveal,.reveal-scale{opacity:1!important;animation:none!important}
   .page-enter,.form-sec.active,.season-content.active{animation:none}
@@ -463,6 +467,40 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
   .fs-label{display:none}
   .fs-sep{flex:.5}
 }
+
+/* ===== GALLERY ===== */
+.gallery-bg{background:linear-gradient(180deg,var(--ice-50) 0%,var(--ice-100) 100%)}
+.g-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-bottom:2.25rem}
+.g-filter{font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.04em;padding:.5rem 1.1rem;border-radius:22px;border:1px solid var(--ice-300);background:#fff;color:var(--ice-700);cursor:pointer;transition:all .22s ease;white-space:nowrap}
+.g-filter:hover{border-color:var(--ice-600);color:var(--ice-800)}
+.g-filter.active{background:var(--ice-800);border-color:var(--ice-800);color:#fff}
+.g-grid{column-count:4;column-gap:14px}
+.g-item{position:relative;break-inside:avoid;margin:0 0 14px;border-radius:10px;overflow:hidden;cursor:zoom-in;background:var(--ice-200);box-shadow:0 2px 12px rgba(13,31,45,.07);transition:transform .3s ease,box-shadow .3s ease;display:block}
+.g-item img{width:100%;height:auto;display:block;transition:transform .5s ease}
+.g-item:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(13,31,45,.16)}
+.g-item:hover img{transform:scale(1.05)}
+.g-item figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.6rem .85rem .7rem;font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:.05em;color:#fff;background:linear-gradient(180deg,transparent,rgba(9,20,30,.78));opacity:0;transform:translateY(6px);transition:all .3s ease}
+.g-item:hover figcaption{opacity:1;transform:translateY(0)}
+.g-item.hide{display:none}
+@media(max-width:1024px){.g-grid{column-count:3}}
+@media(max-width:768px){.g-grid{column-count:2;column-gap:10px}.g-item{margin-bottom:10px}.g-item figcaption{opacity:1;transform:none;font-size:.68rem}}
+@media(max-width:420px){.g-filter{font-size:.72rem;padding:.42rem .85rem}}
+
+/* ===== LIGHTBOX ===== */
+.lb{position:fixed;inset:0;z-index:2000;background:rgba(6,14,21,.94);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:2rem}
+.lb.open{display:flex;animation:lbIn .25s ease both}
+@keyframes lbIn{from{opacity:0}to{opacity:1}}
+.lb-img{max-width:92vw;max-height:82vh;object-fit:contain;border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.5);animation:lbZoom .3s cubic-bezier(.2,.7,.3,1) both}
+@keyframes lbZoom{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+.lb-cap{position:absolute;bottom:1.6rem;left:50%;transform:translateX(-50%);font-family:'DM Sans',sans-serif;font-size:.82rem;letter-spacing:.06em;color:rgba(255,255,255,.82);text-align:center}
+.lb-close{position:absolute;top:1.1rem;right:1.4rem;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);color:#fff;font-size:1.6rem;line-height:1;cursor:pointer;transition:all .2s ease;display:flex;align-items:center;justify-content:center}
+.lb-close:hover{background:rgba(255,255,255,.2)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);color:#fff;font-size:1.7rem;line-height:1;cursor:pointer;transition:all .2s ease;display:flex;align-items:center;justify-content:center}
+.lb-nav:hover{background:rgba(255,255,255,.2)}
+.lb-prev{left:1.2rem}
+.lb-next{right:1.2rem}
+@media(max-width:768px){.lb{padding:1rem}.lb-img{max-height:74vh}.lb-nav{width:38px;height:38px;font-size:1.4rem}.lb-prev{left:.4rem}.lb-next{right:.4rem}}
+
 </style>
 </head>
 <body>
@@ -518,7 +556,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
 
 <section class="hero">
   <div class="hero-slideshow" id="hero-slideshow">
-    <div class="hero-slide active" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/06.jpeg')"></div>
+    <div class="hero-slide active" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Bus-Shirakawa.jpeg')"></div>
+    <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/06.jpeg')"></div>
     <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%206.jpg')"></div>
     <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%200.jpeg')"></div>
     <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%207.jpg')"></div>
@@ -530,7 +569,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
 
   <div class="hero-tag" data-id="Japan Travel Specialist · Since 2020" data-en="Japan Travel Specialist · Since 2020">Japan Travel Specialist · Since 2020</div>
   <h1 data-id="Jelajahi Jepang<br><em>Seperti Warga Lokal</em>" data-en="Discover Japan<br><em>Like a Local</em>">Jelajahi Jepang<br><em>Seperti Warga Lokal</em></h1>
-  <p class="hero-sub" data-id="Duduk manis, kami yang urus semuanya. Jemput, antar, foto &amp; video, pemandu lokal &mdash; semua sudah termasuk." data-en="Sit back, we handle everything. Pick-up, drop-off, photos &amp; videos, local guide &mdash; all included.">Duduk manis, kami yang urus semuanya. Jemput, antar, foto &amp; video, pemandu lokal &mdash; semua sudah termasuk.</p>
+  <p class="hero-rinen">私たちは、おもてなしの心を使命とし、あなたをまだ見ぬ雪景色へ導きます。</p>
+  <p class="hero-sub" data-id="Dengan omotenashi sebagai misi, kami menuntun Anda menuju pemandangan salju yang belum pernah Anda lihat." data-en="With omotenashi as our mission, we guide you to snow scenery you have yet to see.">Dengan omotenashi sebagai misi, kami menuntun Anda menuju pemandangan salju yang belum pernah Anda lihat.</p>
+  <p class="hero-sub-note" data-id="Jemput, antar, foto &amp; video, pemandu lokal, semua sudah termasuk." data-en="Pick-up, drop-off, photos &amp; videos, local guide, all included.">Jemput, antar, foto &amp; video, pemandu lokal, semua sudah termasuk.</p>
   <div class="hero-actions">
     <div class="pkg-quick-wrap">
       <button class="btn-main" onclick="togglePkgQuick(event)" aria-haspopup="true" id="pkg-quick-btn">
@@ -554,6 +595,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
         </div>
       </div>
     </div>
+    <button class="btn-outline" onclick="scrollToId('gallery')" data-id="Galeri" data-en="Gallery">Galeri</button>
     <button class="btn-outline" onclick="scrollToId('about')" data-id="Tentang Kami" data-en="About Us">Tentang Kami</button>
   </div>
   <div class="hero-stats">
@@ -658,6 +700,65 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
   </div>
 </section>
 
+<!-- GALLERY -->
+<section id="gallery" class="gallery-bg">
+  <div class="section-inner">
+    <div class="section-head" style="text-align:center;max-width:580px;margin:0 auto 2.5rem">
+      <div class="section-tag" data-id="Galeri" data-en="Gallery">Galeri</div>
+      <h2 class="section-title" data-id="Momen dari <em>Perjalanan Kami</em>" data-en="Moments from <em>Our Journeys</em>">Momen dari <em>Perjalanan Kami</em></h2>
+      <p class="section-sub" style="margin:0 auto" data-id="Foto asli dari perjalanan bersama tamu kami di Jepang. Tap foto untuk memperbesar." data-en="Real photos from journeys with our guests in Japan. Tap a photo to enlarge.">Foto asli dari perjalanan bersama tamu kami di Jepang. Tap foto untuk memperbesar.</p>
+    </div>
+
+    <div class="g-filters" id="g-filters">
+      <button class="g-filter active" data-f="all" onclick="filtG(this,'all')" data-id="Semua" data-en="All">Semua</button>
+      <button class="g-filter" data-f="shirakawa" onclick="filtG(this,'shirakawa')">Shirakawa-go</button>
+      <button class="g-filter" data-f="ainokura" onclick="filtG(this,'ainokura')">Ainokura</button>
+      <button class="g-filter" data-f="shogawa" onclick="filtG(this,'shogawa')">Shogawa</button>
+      <button class="g-filter" data-f="hokkaido" onclick="filtG(this,'hokkaido')">Hokkaido</button>
+      <button class="g-filter" data-f="private" onclick="filtG(this,'private')" data-id="Private" data-en="Private">Private</button>
+      <button class="g-filter" data-f="winter" onclick="filtG(this,'winter')" data-id="Winter" data-en="Winter">Winter</button>
+    </div>
+
+    <div class="g-grid" id="g-grid">
+      <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%201.jpeg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
+      <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%202.jpeg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
+      <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%203.jpeg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
+      <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%207.jpg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
+      <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%208.jpg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
+      <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%209.jpg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
+      <figure class="g-item" data-cat="shirakawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shirakawa%2010.jpg" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
+      <figure class="g-item" data-cat="ainokura" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%201.jpeg" alt="Ainokura" loading="lazy"><figcaption>Ainokura</figcaption></figure>
+      <figure class="g-item" data-cat="ainokura" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%202.jpeg" alt="Ainokura" loading="lazy"><figcaption>Ainokura</figcaption></figure>
+      <figure class="g-item" data-cat="ainokura" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%203.jpeg" alt="Ainokura" loading="lazy"><figcaption>Ainokura</figcaption></figure>
+      <figure class="g-item" data-cat="ainokura" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%204.jpeg" alt="Ainokura" loading="lazy"><figcaption>Ainokura</figcaption></figure>
+      <figure class="g-item" data-cat="ainokura" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Ainokura%206.jpg" alt="Ainokura" loading="lazy"><figcaption>Ainokura</figcaption></figure>
+      <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%201.jpeg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
+      <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%202.jpeg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
+      <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%203.jpg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
+      <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%204.jpg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
+      <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%206.jpg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
+      <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%207.jpg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
+      <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%208.jpeg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
+      <figure class="g-item" data-cat="shogawa" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Shogawa%2010.jpg" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
+      <figure class="g-item" data-cat="hokkaido" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%203.jpg" alt="Hokkaido" loading="lazy"><figcaption>Hokkaido</figcaption></figure>
+      <figure class="g-item" data-cat="hokkaido" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%204.jpg" alt="Hokkaido" loading="lazy"><figcaption>Hokkaido</figcaption></figure>
+      <figure class="g-item" data-cat="hokkaido" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Hokaido%205.jpg" alt="Hokkaido" loading="lazy"><figcaption>Hokkaido</figcaption></figure>
+      <figure class="g-item" data-cat="private" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Private%201.jpg" alt="Private Tour" loading="lazy"><figcaption>Private Tour</figcaption></figure>
+      <figure class="g-item" data-cat="winter" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/04.jpeg" alt="Winter Trip" loading="lazy"><figcaption>Winter Trip</figcaption></figure>
+      <figure class="g-item" data-cat="winter" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/05.jpeg" alt="Winter Trip" loading="lazy"><figcaption>Winter Trip</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="closeLb(event)">
+  <button class="lb-close" onclick="closeLb(event,1)" aria-label="Close">&times;</button>
+  <button class="lb-nav lb-prev" onclick="navLb(event,-1)" aria-label="Previous">&#8249;</button>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <div class="lb-cap" id="lb-cap"></div>
+  <button class="lb-nav lb-next" onclick="navLb(event,1)" aria-label="Next">&#8250;</button>
+</div>
+
 <!-- HOW -->
 <section class="how-bg">
   <div class="section-inner">
@@ -729,7 +830,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
             <div class="fg"><label data-id="No. WhatsApp *" data-en="WhatsApp No. *">No. WhatsApp *</label><input type="tel" id="f-wa" placeholder="081234567890"/><div class="fg-hint" data-id="Untuk konfirmasi pesanan" data-en="For order confirmation">Untuk konfirmasi pesanan</div></div>
             <div class="fg"><label data-id="Jumlah Orang *" data-en="Number of People *">Jumlah Orang *</label><select id="f-jml"><option value="" data-id="-- Pilih --" data-en="-- Select --">-- Pilih --</option><option>1 orang</option><option>2 orang</option><option>3 orang</option><option>4 orang</option><option>5 orang</option><option>6 orang</option><option>7 orang</option><option>8 orang</option><option>9 orang</option><option>10 orang</option></select></div>
           </div>
-          <div class="fg"><label data-id="Tanggal Keberangkatan *" data-en="Departure Date *">Tanggal Keberangkatan *</label><input type="date" id="f-tgl"/></div>
+          <div class="fg"><label data-id="Tanggal Keberangkatan *" data-en="Departure Date *">Tanggal Keberangkatan *</label><input type="date" id="f-tgl"/><div class="fg-hint" id="f-tgl-hint" style="display:none"></div></div>
           <div class="fg"><label data-id="Catatan Tambahan" data-en="Additional Notes">Catatan Tambahan</label><textarea id="f-catatan" placeholder="Contoh: request destinasi khusus, kebutuhan khusus, dll."></textarea></div>
           <button class="btn-form btn-form-back" onclick="goStep(1)" data-id="← Kembali" data-en="← Back">← Kembali</button>
           <button class="btn-form btn-form-primary" onclick="goStep(3)" data-id="Lanjutkan →" data-en="Continue →">Lanjutkan →</button>
@@ -1064,6 +1165,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
   </div>
 </div>
 
+
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 const CFG = {
@@ -1159,6 +1261,7 @@ function setLang(l) {
     el.innerHTML = el.getAttribute('data-' + l);
   });
   document.documentElement.lang = l === 'id' ? 'id' : 'en';
+  if (typeof applyDateRule === 'function') applyDateRule();
 }
 
 function switchSeason(s) {
@@ -1172,6 +1275,7 @@ function pickPkg(id) {
   picked = CFG.paket.find(p => p.id === id);
   CFG.paket.forEach(p => document.getElementById('fpkg-'+p.id).classList.toggle('sel', p.id === id));
   document.getElementById('btn-step1').disabled = false;
+  applyDateRule();
 }
 
 function fmt(p, n) {
@@ -1193,6 +1297,7 @@ function goStep(n) {
       alert(lang === 'id' ? 'Harap lengkapi semua data yang bertanda *' : 'Please fill in all required fields (*)');
       return;
     }
+    if (!checkWinterDate(tgl)) return;
     renderSum();
   }
   document.querySelectorAll('.form-sec').forEach(s => s.classList.remove('active'));
@@ -1268,6 +1373,7 @@ function resetForm() {
   document.getElementById('btn-step1').disabled = true;
   ['f-nama','f-wa','f-catatan'].forEach(id => document.getElementById(id).value = '');
   ['f-jml','f-tgl'].forEach(id => document.getElementById(id).value = '');
+  applyDateRule();
   goStep(1);
 }
 
@@ -1388,6 +1494,111 @@ function resetForm() {
     revealables.forEach(el => io.observe(el));
   }
 })();
+
+/* ================= GALLERY: filter + lightbox ================= */
+function filtG(btn, cat) {
+  document.querySelectorAll('.g-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.g-item').forEach(it => {
+    it.classList.toggle('hide', cat !== 'all' && it.dataset.cat !== cat);
+  });
+}
+
+let lbList = [], lbIdx = 0;
+function visibleG() {
+  return Array.from(document.querySelectorAll('.g-item')).filter(el => !el.classList.contains('hide'));
+}
+function showLb(i) {
+  if (!lbList.length) return;
+  lbIdx = (i + lbList.length) % lbList.length;
+  const fig = lbList[lbIdx];
+  const img = fig.querySelector('img');
+  const cap = fig.querySelector('figcaption');
+  const lbImg = document.getElementById('lb-img');
+  lbImg.src = img.src;
+  lbImg.alt = img.alt || '';
+  document.getElementById('lb-cap').textContent = cap ? cap.textContent : '';
+}
+function openLb(fig) {
+  lbList = visibleG();
+  const i = lbList.indexOf(fig);
+  if (i < 0) return;
+  showLb(i);
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLb(e, force) {
+  if (!force && e && e.target && e.target.id !== 'lb') return;
+  if (e) e.stopPropagation();
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function navLb(e, dir) {
+  if (e) e.stopPropagation();
+  showLb(lbIdx + dir);
+}
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('lb');
+  if (!lb || !lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLb(null, 1);
+  if (e.key === 'ArrowRight') showLb(lbIdx + 1);
+  if (e.key === 'ArrowLeft') showLb(lbIdx - 1);
+});
+
+/* ============ WINTER TRIP: tanggal hanya 19 Des - 28 Feb ============ */
+function isoDate(d) {
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return d.getFullYear() + '-' + m + '-' + day;
+}
+/* Menentukan musim dingin yang masih berlaku, otomatis tiap tahun. */
+function winterWindow() {
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+  const y = tomorrow.getFullYear();
+  let start = new Date(y - 1, 11, 19);   /* 19 Des tahun lalu */
+  let end   = new Date(y, 1, 28);        /* 28 Feb tahun ini  */
+  if (tomorrow > end) {                  /* musim itu sudah lewat -> ambil musim berikutnya */
+    start = new Date(y, 11, 19);
+    end   = new Date(y + 1, 1, 28);
+  }
+  return { min: (tomorrow > start ? tomorrow : start), max: end };
+}
+function fmtTgl(d) {
+  return d.toLocaleDateString(lang === 'id' ? 'id-ID' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+function applyDateRule() {
+  const el = document.getElementById('f-tgl');
+  const hint = document.getElementById('f-tgl-hint');
+  if (!el) return;
+  if (picked && picked.id === 1) {           /* 1 = Winter Trip */
+    const w = winterWindow();
+    el.min = isoDate(w.min);
+    el.max = isoDate(w.max);
+    if (el.value && (el.value < el.min || el.value > el.max)) el.value = '';
+    if (hint) {
+      hint.style.display = 'block';
+      hint.textContent = (lang === 'id' ? 'Winter Trip hanya tersedia ' : 'Winter Trip is only available ')
+        + fmtTgl(w.min) + (lang === 'id' ? ' sampai ' : ' to ') + fmtTgl(w.max);
+    }
+  } else {
+    el.removeAttribute('min');
+    el.removeAttribute('max');
+    if (hint) hint.style.display = 'none';
+  }
+}
+/* Pengaman: tolak tanggal di luar musim meski input date ditembus manual. */
+function checkWinterDate(tgl) {
+  if (!picked || picked.id !== 1) return true;
+  const w = winterWindow();
+  if (tgl >= isoDate(w.min) && tgl <= isoDate(w.max)) return true;
+  alert(lang === 'id'
+    ? 'Winter Trip hanya tersedia ' + fmtTgl(w.min) + ' sampai ' + fmtTgl(w.max) + '.\nSilakan pilih tanggal dalam rentang tersebut.'
+    : 'Winter Trip is only available ' + fmtTgl(w.min) + ' to ' + fmtTgl(w.max) + '.\nPlease choose a date within this range.');
+  return false;
+}
+
 </script>
 </body>
 </html>
