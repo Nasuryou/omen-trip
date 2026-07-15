@@ -1,0 +1,8 @@
+# Omen Trip
+User-agent: *
+Allow: /
+# Private preview — keep out of search engines
+Disallow: /premium.html
+Disallow: /premium-assets/
+
+Sitemap: https://omentrip.com/sitemap.xml
