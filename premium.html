@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- KEEP OFF SEARCH ENGINES — preview only -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
+<title>Omen Trip — Perjalanan Jepang, Dirancang dengan Omotenashi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&family=Noto+Serif+JP:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f7f4ee;--paper:#fbf9f5;--ink:#171310;--ink-soft:#3a332d;--muted:#8a8177;
+  --line:#e7e1d6;--gold:#a98f5c;--gold-soft:#c7b184;--forest:#1c2a24;--charcoal:#14110e;
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',system-ui,sans-serif;--jp:'Noto Serif JP',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;font-weight:300;line-height:1.7}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold-soft);color:var(--ink)}
+
+/* PRELOADER */
+#pre{position:fixed;inset:0;z-index:9999;background:var(--paper);display:flex;align-items:center;justify-content:center;transition:opacity .9s ease,visibility .9s ease}
+#pre.done{opacity:0;visibility:hidden}
+.pre-mark{font-family:var(--serif);font-size:2rem;letter-spacing:.35em;color:var(--ink);font-weight:400;opacity:0;animation:preIn 1.6s ease forwards}
+.pre-mark span{color:var(--gold);font-style:italic}
+@keyframes preIn{0%{opacity:0;letter-spacing:.6em}40%{opacity:1}100%{opacity:1;letter-spacing:.35em}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:1.9rem 3.2rem;transition:padding .4s ease,background .4s ease,box-shadow .4s ease}
+nav.solid{background:rgba(251,249,245,.9);backdrop-filter:blur(16px);padding:1.1rem 3.2rem;box-shadow:0 1px 0 rgba(0,0,0,.05)}
+.brand{font-family:var(--serif);font-size:1.5rem;font-weight:500;letter-spacing:.14em;color:#fff;transition:color .4s ease}
+.brand span{color:var(--gold-soft);font-style:italic}
+nav.solid .brand{color:var(--ink)}
+.nav-r{display:flex;align-items:center;gap:2rem}
+.nav-links{display:flex;gap:2.2rem}
+.nav-links a{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:400;transition:color .3s ease;position:relative}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--gold);transition:width .3s ease}
+.nav-links a:hover::after{width:100%}
+nav.solid .nav-links a{color:var(--ink-soft)}
+.lang{display:flex;gap:.1rem;font-size:.72rem;letter-spacing:.12em}
+.lang button{background:none;border:none;color:rgba(255,255,255,.6);cursor:pointer;font-family:var(--sans);padding:2px 6px;transition:color .3s ease;font-size:.72rem}
+.lang button.on{color:#fff}
+nav.solid .lang button{color:var(--muted)}
+nav.solid .lang button.on{color:var(--ink)}
+.lang i{color:rgba(255,255,255,.35)}
+nav.solid .lang i{color:var(--line)}
+.nav-cta{border:1px solid rgba(255,255,255,.5);color:#fff;padding:.6rem 1.5rem;border-radius:0;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;transition:.35s ease;cursor:pointer;background:none;font-family:var(--sans)}
+.nav-cta:hover{background:#fff;color:var(--ink);border-color:#fff}
+nav.solid .nav-cta{border-color:var(--ink);color:var(--ink)}
+nav.solid .nav-cta:hover{background:var(--ink);color:#fff}
+.nav-toggle{display:none}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:640px;display:flex;align-items:flex-end;overflow:hidden;background:var(--charcoal)}
+.hero-media{position:absolute;inset:0;z-index:0}
+.hero-media img{width:100%;height:100%;object-fit:cover;animation:kenburns 18s ease-out forwards;opacity:0;transition:opacity 1.4s ease}
+.hero-media img.ready{opacity:1}
+@keyframes kenburns{from{transform:scale(1.08)}to{transform:scale(1)}}
+.hero::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,8,6,.42) 0%,rgba(10,8,6,.12) 32%,rgba(10,8,6,.2) 62%,rgba(10,8,6,.72) 100%)}
+.hero-in{position:relative;z-index:2;padding:0 3.2rem 6vh;max-width:1000px}
+.hero-kick{font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:1.8rem;opacity:0;animation:rise 1.1s ease .3s forwards}
+.hero-jp{font-family:var(--jp);font-weight:200;color:rgba(255,255,255,.9);font-size:clamp(.9rem,1.5vw,1.2rem);line-height:2.1;letter-spacing:.06em;margin-bottom:1.4rem;max-width:30em;opacity:0;animation:rise 1.1s ease .5s forwards}
+.hero h1{font-family:var(--serif);font-weight:300;color:#fff;font-size:clamp(2.8rem,7vw,6rem);line-height:1.02;letter-spacing:-.01em;margin-bottom:2rem;opacity:0;animation:rise 1.2s ease .7s forwards}
+.hero h1 em{font-style:italic;color:var(--gold-soft)}
+.hero-actions{display:flex;gap:1.4rem;align-items:center;flex-wrap:wrap;opacity:0;animation:rise 1.1s ease 1s forwards}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.btn-gold{background:var(--gold);color:#fff;padding:1.05rem 2.6rem;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;transition:.35s ease;cursor:pointer;border:none;font-family:var(--sans)}
+.btn-gold:hover{background:var(--ink);transform:translateY(-2px)}
+.btn-ghost{color:#fff;padding:1.05rem .4rem;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.4);transition:.3s ease;cursor:pointer}
+.btn-ghost:hover{border-color:var(--gold-soft);color:var(--gold-soft)}
+.hero-scroll{position:absolute;right:3.2rem;bottom:6vh;z-index:2;display:flex;flex-direction:column;align-items:center;gap:.8rem;color:rgba(255,255,255,.7);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;opacity:0;animation:rise 1s ease 1.3s forwards}
+.hero-scroll span{writing-mode:vertical-rl}
+.hero-scroll i{width:1px;height:52px;background:linear-gradient(var(--gold-soft),transparent);animation:scrolldot 2.4s ease-in-out infinite}
+@keyframes scrolldot{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(34px);transition:opacity 1.1s cubic-bezier(.2,.7,.3,1),transform 1.1s cubic-bezier(.2,.7,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.12s}.rv-d2{transition-delay:.24s}.rv-d3{transition-delay:.36s}
+
+/* SHARED */
+.wrap{max-width:1240px;margin:0 auto;padding:0 3.2rem}
+.kick{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.9rem}
+.kick::before{content:'';width:30px;height:1px;background:var(--gold)}
+.serif-h{font-family:var(--serif);font-weight:300;line-height:1.08;letter-spacing:-.01em;font-size:clamp(2.2rem,4.6vw,3.9rem)}
+.serif-h em{font-style:italic;color:var(--gold)}
+.lead{color:var(--ink-soft);font-size:1.02rem;line-height:1.9;font-weight:300}
+
+/* MANIFESTO */
+.manifesto{padding:11rem 0 10rem;background:var(--paper)}
+.mani-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.mani-jp{font-family:var(--jp);font-weight:200;color:var(--gold);font-size:1rem;letter-spacing:.1em;margin-bottom:1.4rem}
+.mani-quote{font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,3.4vw,2.9rem);line-height:1.28;letter-spacing:-.01em;color:var(--ink)}
+.mani-quote em{font-style:italic;color:var(--gold)}
+.mani-body p{margin-bottom:1.5rem}
+.mani-sign{margin-top:2.5rem;font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--ink)}
+.mani-sign small{display:block;font-family:var(--sans);font-style:normal;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.4rem}
+
+/* EXPERIENCES */
+.exp{padding:8rem 0 9rem;background:var(--cream)}
+.exp-head{max-width:640px;margin:0 auto 5.5rem;text-align:center}
+.exp-head .kick{justify-content:center}
+.exp-head .serif-h{margin:1.5rem 0 1.2rem}
+.exp-row{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-bottom:8rem}
+.exp-row:last-child{margin-bottom:0}
+.exp-row.flip .exp-img{order:2}
+.exp-img{position:relative;overflow:hidden;aspect-ratio:4/5}
+.exp-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.3,1)}
+.exp-row:hover .exp-img img{transform:scale(1.05)}
+.exp-num{position:absolute;top:1.6rem;left:1.6rem;font-family:var(--serif);font-style:italic;font-size:2.4rem;color:#fff;z-index:2;text-shadow:0 2px 20px rgba(0,0,0,.3)}
+.exp-tag{font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.exp-name{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,3.6vw,3rem);line-height:1.05;margin:1rem 0 1.4rem;letter-spacing:-.01em}
+.exp-desc{color:var(--ink-soft);line-height:1.9;margin-bottom:1.8rem;max-width:34em}
+.exp-meta{display:flex;align-items:baseline;gap:1.4rem;padding-top:1.6rem;border-top:1px solid var(--line);margin-bottom:1.8rem}
+.exp-price{font-family:var(--serif);font-size:1.7rem;color:var(--ink)}
+.exp-price small{font-family:var(--sans);font-size:.72rem;color:var(--muted);letter-spacing:.04em}
+.exp-link{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--gold);padding-bottom:5px;transition:.3s ease;display:inline-flex;gap:.6rem;align-items:center}
+.exp-link:hover{color:var(--gold);gap:1rem}
+
+/* STANDARD */
+.standard{padding:9rem 0;background:var(--forest);color:#efeae0}
+.std-head{max-width:640px;margin:0 auto 5rem;text-align:center}
+.std-head .kick{justify-content:center;color:var(--gold-soft)}
+.std-head .kick::before{background:var(--gold-soft)}
+.std-head .serif-h{color:#fff;margin:1.5rem 0 0}
+.std-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3.5rem 4rem}
+.std-item{border-top:1px solid rgba(255,255,255,.14);padding-top:1.8rem}
+.std-item .n{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--gold-soft);margin-bottom:1rem}
+.std-item h4{font-family:var(--serif);font-weight:500;font-size:1.4rem;margin-bottom:.7rem;color:#fff;letter-spacing:.01em}
+.std-item p{font-size:.9rem;line-height:1.8;color:rgba(239,234,224,.7);font-weight:300}
+
+/* GALLERY */
+.gal{padding:8.5rem 0;background:var(--paper)}
+.gal-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.5rem;flex-wrap:wrap;gap:1.5rem}
+.gal-head .serif-h{margin-top:1.2rem}
+.gal-grid{columns:3;column-gap:1rem}
+.gal-grid figure{break-inside:avoid;margin:0 0 1rem;overflow:hidden;position:relative;cursor:pointer}
+.gal-grid img{width:100%;transition:transform 1s cubic-bezier(.2,.7,.3,1)}
+.gal-grid figure:hover img{transform:scale(1.06)}
+.gal-grid figcaption{position:absolute;left:1rem;bottom:1rem;color:#fff;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:.4s ease;z-index:2}
+.gal-grid figure::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(10,8,6,.6));opacity:0;transition:.4s ease}
+.gal-grid figure:hover figcaption,.gal-grid figure:hover::after{opacity:1;transform:none}
+
+/* VOICES */
+.voices{padding:9rem 0;background:var(--cream)}
+.voices-head{text-align:center;max-width:600px;margin:0 auto 4.5rem}
+.voices-head .kick{justify-content:center}
+.voices-head .serif-h{margin-top:1.4rem}
+.v-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.v-card{background:var(--paper);border:1px solid var(--line);padding:2.6rem 2.2rem;display:flex;flex-direction:column}
+.v-stars{color:var(--gold);letter-spacing:.3em;font-size:.8rem;margin-bottom:1.4rem}
+.v-quote{font-family:var(--serif);font-style:italic;font-size:1.25rem;line-height:1.5;color:var(--ink);margin-bottom:1.8rem;flex:1}
+.v-who{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.v-who b{color:var(--ink);font-weight:500}
+.v-note{text-align:center;margin-top:2.5rem;font-size:.8rem;color:var(--muted);font-style:italic}
+
+/* FOUNDER */
+.founder{padding:0;background:var(--paper)}
+.founder-grid{display:grid;grid-template-columns:1fr 1fr}
+.founder-img{position:relative;min-height:80vh;overflow:hidden}
+.founder-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.founder-body{padding:8rem 6rem;display:flex;flex-direction:column;justify-content:center}
+.founder-body .serif-h{margin:1.6rem 0 2rem}
+.founder-body p{color:var(--ink-soft);line-height:1.95;margin-bottom:1.4rem}
+.founder-sign{margin-top:2rem;font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--gold)}
+.founder-sign small{display:block;font-family:var(--sans);font-style:normal;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.5rem}
+
+/* TRUST */
+.trust{padding:6rem 0;background:var(--forest);color:#fff}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.trust-n{font-family:var(--serif);font-size:clamp(2.6rem,5vw,4rem);font-weight:400;color:#fff;line-height:1}
+.trust-l{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft);margin-top:.9rem}
+.trust-div{width:1px;background:rgba(255,255,255,.14)}
+
+/* FAQ */
+.faq{padding:8.5rem 0;background:var(--paper)}
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:5rem;align-items:start}
+.faq-head .serif-h{margin-top:1.4rem}
+.faq-head p{margin-top:1.6rem;color:var(--ink-soft);line-height:1.9}
+.faq-list{border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;background:none;border:none;text-align:left;padding:1.7rem 0;font-family:var(--serif);font-size:1.35rem;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:2rem;font-weight:400}
+.faq-q .pm{font-family:var(--sans);font-size:1.4rem;color:var(--gold);transition:transform .35s ease;flex-shrink:0}
+.faq-item.open .pm{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.3,1)}
+.faq-a p{padding:0 0 1.7rem;color:var(--ink-soft);line-height:1.9;max-width:44em}
+
+/* RESERVE */
+.reserve{position:relative;padding:11rem 0;overflow:hidden;background:var(--charcoal);text-align:center}
+.reserve-bg{position:absolute;inset:0;z-index:0}
+.reserve-bg img{width:100%;height:100%;object-fit:cover;opacity:.34}
+.reserve::after{content:'';position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at center,rgba(20,17,14,.3),rgba(20,17,14,.82))}
+.reserve-in{position:relative;z-index:2;max-width:720px;margin:0 auto}
+.reserve .kick{justify-content:center;color:var(--gold-soft)}
+.reserve .kick::before{background:var(--gold-soft)}
+.reserve h2{font-family:var(--serif);font-weight:300;color:#fff;font-size:clamp(2.4rem,5vw,4rem);line-height:1.08;margin:1.6rem 0 1.4rem}
+.reserve h2 em{font-style:italic;color:var(--gold-soft)}
+.reserve p{color:rgba(255,255,255,.75);line-height:1.9;margin-bottom:2.6rem;max-width:34em;margin-left:auto;margin-right:auto}
+.reserve-contacts{margin-top:3rem;display:flex;gap:2.5rem;justify-content:center;flex-wrap:wrap;font-size:.74rem;letter-spacing:.14em;color:rgba(255,255,255,.6)}
+.reserve-contacts a{color:rgba(255,255,255,.6);transition:color .3s ease;border-bottom:1px solid transparent;padding-bottom:2px}
+.reserve-contacts a:hover{color:var(--gold-soft);border-color:var(--gold-soft)}
+
+/* FOOTER */
+footer{background:var(--charcoal);color:rgba(255,255,255,.55);padding:5rem 0 2.5rem;border-top:1px solid rgba(255,255,255,.08)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3.5rem;margin-bottom:3.5rem}
+.foot-brand{font-family:var(--serif);font-size:1.7rem;color:#fff;letter-spacing:.1em;margin-bottom:1rem}
+.foot-brand span{color:var(--gold-soft);font-style:italic}
+.foot-desc{font-size:.86rem;line-height:1.85;max-width:26em}
+.foot-col h5{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:#fff;margin-bottom:1.2rem}
+.foot-col a,.foot-col p{display:block;font-size:.86rem;margin-bottom:.7rem;color:rgba(255,255,255,.55);transition:color .3s ease}
+.foot-col a:hover{color:var(--gold-soft)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1.8rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.72rem;letter-spacing:.06em;color:rgba(255,255,255,.4)}
+
+/* WHATSAPP FLOAT */
+.wa-float{position:fixed;right:1.8rem;bottom:1.8rem;z-index:900;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(0,0,0,.2);transition:transform .3s ease;opacity:0;transform:scale(.6);pointer-events:none}
+.wa-float.show{opacity:1;transform:scale(1);pointer-events:auto}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:28px;height:28px;fill:#fff}
+
+@media (prefers-reduced-motion: reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  .hero-media img{animation:none;opacity:1}
+  .hero-kick,.hero-jp,.hero h1,.hero-actions,.hero-scroll{animation:none;opacity:1}
+}
+
+/* RESPONSIVE */
+@media(max-width:980px){
+  nav{padding:1.4rem 1.5rem}
+  nav.solid{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .wrap{padding:0 1.5rem}
+  .hero-in{padding:0 1.5rem 8vh}
+  .hero-scroll{display:none}
+  .mani-grid{grid-template-columns:1fr;gap:2.5rem}
+  .manifesto{padding:6rem 0}
+  .exp-row{grid-template-columns:1fr;gap:2rem;margin-bottom:5rem}
+  .exp-row.flip .exp-img{order:0}
+  .std-grid{grid-template-columns:1fr;gap:2.5rem}
+  .gal-grid{columns:2}
+  .v-grid{grid-template-columns:1fr}
+  .founder-grid{grid-template-columns:1fr}
+  .founder-img{min-height:60vh}
+  .founder-body{padding:4.5rem 1.5rem}
+  .trust-grid{grid-template-columns:1fr 1fr;gap:2.5rem}
+  .trust-div{display:none}
+  .faq-grid{grid-template-columns:1fr;gap:2.5rem}
+  .foot-grid{grid-template-columns:1fr;gap:2.5rem}
+  .exp,.standard,.gal,.voices,.faq,.reserve{padding:5.5rem 0}
+}
+@media(max-width:520px){
+  .gal-grid{columns:1}
+  .nav-cta{display:none}
+  .reserve-contacts{gap:1.2rem;flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="pre"><div class="pre-mark">OMEN<span>·</span>TRIP</div></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#top" class="brand">Omen<span> Trip</span></a>
+  <div class="nav-r">
+    <div class="nav-links">
+      <a href="#experiences" data-id="Pengalaman" data-en="Experiences">Pengalaman</a>
+      <a href="#gallery" data-id="Galeri" data-en="Gallery">Galeri</a>
+      <a href="#story" data-id="Kisah Kami" data-en="Our Story">Kisah Kami</a>
+      <a href="#faq" data-id="Tanya Jawab" data-en="FAQ">Tanya Jawab</a>
+    </div>
+    <div class="lang">
+      <button class="on" data-l="id" onclick="setLang('id')">ID</button><i>/</i><button data-l="en" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="nav-cta" onclick="reserve()" data-id="Reservasi" data-en="Reserve">Reservasi</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-media">
+    <img id="hero-img" src="premium-assets/hero-snow.webp" alt="Desa bersalju Shirakawa-go di musim dingin">
+  </div>
+  <div class="hero-in">
+    <div class="hero-kick" data-id="Japan Travel Atelier · Est. 2020" data-en="Japan Travel Atelier · Est. 2020">Japan Travel Atelier · Est. 2020</div>
+    <p class="hero-jp">おもてなしの心で、あなただけの日本の旅を。</p>
+    <h1 data-id="Jepang, dirancang<br>dengan <em>ketulusan</em>." data-en="Japan, crafted<br>with <em>sincerity</em>.">Jepang, dirancang<br>dengan <em>ketulusan</em>.</h1>
+    <div class="hero-actions">
+      <button class="btn-gold" onclick="scrollToId('experiences')" data-id="Jelajahi Pengalaman" data-en="Explore Experiences">Jelajahi Pengalaman</button>
+      <a class="btn-ghost" onclick="reserve()" data-id="Rencanakan Perjalanan" data-en="Plan Your Journey">Rencanakan Perjalanan</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span data-id="Gulir" data-en="Scroll">Gulir</span><i></i></div>
+</header>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="wrap mani-grid">
+    <div class="rv">
+      <div class="mani-jp">おもてなし — Omotenashi</div>
+      <div class="mani-quote" data-id="Kami tidak sekadar mengantar Anda ke Jepang. Kami <em>menyambut</em> Anda ke dalamnya." data-en="We don't merely take you to Japan. We <em>welcome</em> you into it.">Kami tidak sekadar mengantar Anda ke Jepang. Kami <em>menyambut</em> Anda ke dalamnya.</div>
+    </div>
+    <div class="rv rv-d1 mani-body lead">
+      <p data-id="Omotenashi adalah seni melayani dengan sepenuh hati, tanpa pamrih dan tanpa diminta. Prinsip inilah yang menuntun setiap perjalanan yang kami rancang — dari jemputan pertama hingga pelukan perpisahan." data-en="Omotenashi is the art of wholehearted, anticipatory hospitality. This principle guides every journey we craft — from the first pick-up to the farewell.">Omotenashi adalah seni melayani dengan sepenuh hati, tanpa pamrih dan tanpa diminta. Prinsip inilah yang menuntun setiap perjalanan yang kami rancang — dari jemputan pertama hingga pelukan perpisahan.</p>
+      <p data-id="Bersama pemandu lokal berbahasa Indonesia-Jepang, Anda tidak menjadi turis. Anda menjadi tamu — dibawa menyusuri desa salju, hidden gems, dan budaya yang jarang tersentuh paket wisata biasa." data-en="With local guides fluent in Indonesian and Japanese, you are never a tourist. You are a guest — led through snow villages, hidden gems, and culture rarely touched by ordinary tours.">Bersama pemandu lokal berbahasa Indonesia-Jepang, Anda tidak menjadi turis. Anda menjadi tamu — dibawa menyusuri desa salju, hidden gems, dan budaya yang jarang tersentuh paket wisata biasa.</p>
+      <div class="mani-sign">Omen Trip<small data-id="PT Omen Wisata Indonesia" data-en="PT Omen Wisata Indonesia">PT Omen Wisata Indonesia</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCES -->
+<section class="exp" id="experiences">
+  <div class="wrap">
+    <div class="exp-head rv">
+      <div class="kick" data-id="Pengalaman Pilihan" data-en="Signature Experiences">Pengalaman Pilihan</div>
+      <h2 class="serif-h" data-id="Tiga cara <em>menyapa</em> Jepang" data-en="Three ways to <em>meet</em> Japan">Tiga cara <em>menyapa</em> Jepang</h2>
+      <p class="lead" data-id="Setiap perjalanan dikurasi tangan, bukan diproduksi massal." data-en="Every journey is hand-curated, never mass-produced.">Setiap perjalanan dikurasi tangan, bukan diproduksi massal.</p>
+    </div>
+
+    <div class="exp-row rv">
+      <div class="exp-img"><span class="exp-num">01</span><img src="premium-assets/pkg-winter.webp" alt="Winter Trip Shirakawa-go" loading="lazy"></div>
+      <div class="exp-txt">
+        <div class="exp-tag" data-id="One Day Trip · Shirakawa-go" data-en="One Day Trip · Shirakawa-go">One Day Trip · Shirakawa-go</div>
+        <h3 class="exp-name">Winter Trip</h3>
+        <p class="exp-desc" data-id="Menyusuri Sungai Shogawa dengan perahu, menembus keheningan Ainokura, dan berdiri di antara rumah gassho-zukuri Shirakawa-go yang tertutup salju — warisan dunia UNESCO yang hanya hidup di musim dingin." data-en="A boat down the Shogawa River, the hush of Ainokura, and standing among the snow-laden gassho-zukuri houses of Shirakawa-go — a UNESCO heritage that only lives in winter.">Menyusuri Sungai Shogawa dengan perahu, menembus keheningan Ainokura, dan berdiri di antara rumah gassho-zukuri Shirakawa-go yang tertutup salju — warisan dunia UNESCO yang hanya hidup di musim dingin.</p>
+        <div class="exp-meta"><div class="exp-price">¥22.000 <small data-id="/ orang" data-en="/ person">/ orang</small></div></div>
+        <a class="exp-link" onclick="reserve('Winter Trip')" data-id="Rencanakan →" data-en="Plan this →">Rencanakan →</a>
+      </div>
+    </div>
+
+    <div class="exp-row flip rv">
+      <div class="exp-img"><span class="exp-num">02</span><img src="premium-assets/pkg-hokkaido.webp" alt="Hokkaido Trip" loading="lazy"></div>
+      <div class="exp-txt">
+        <div class="exp-tag" data-id="Open Private Trip · Hokkaido" data-en="Open Private Trip · Hokkaido">Open Private Trip · Hokkaido</div>
+        <h3 class="exp-name">Hokkaido Trip</h3>
+        <p class="exp-desc" data-id="Pohon Natal Biei yang menyendiri di ladang salju, deru snowmobile, parade penguin Asahiyama, dan lentera Ningle Terrace di senja bersalju. Petualangan salju paling lengkap di utara Jepang." data-en="The solitary Christmas Tree of Biei, the roar of a snowmobile, Asahiyama's penguin parade, and the lanterns of Ningle Terrace at snowfall. The most complete snow adventure in northern Japan.">Pohon Natal Biei yang menyendiri di ladang salju, deru snowmobile, parade penguin Asahiyama, dan lentera Ningle Terrace di senja bersalju. Petualangan salju paling lengkap di utara Jepang.</p>
+        <div class="exp-meta"><div class="exp-price">Rp 13.900.000 <small data-id="/ 5 orang" data-en="/ 5 people">/ 5 orang</small></div></div>
+        <a class="exp-link" onclick="reserve('Hokkaido Trip')" data-id="Rencanakan →" data-en="Plan this →">Rencanakan →</a>
+      </div>
+    </div>
+
+    <div class="exp-row rv">
+      <div class="exp-img"><span class="exp-num">03</span><img src="premium-assets/pkg-private.webp" alt="Private Tour Guide" loading="lazy"></div>
+      <div class="exp-txt">
+        <div class="exp-tag" data-id="Custom · Seluruh Jepang" data-en="Custom · All Japan">Custom · Seluruh Jepang</div>
+        <h3 class="exp-name">Private Tour Guide</h3>
+        <p class="exp-desc" data-id="Jepang sepenuhnya milik Anda — empat musim, kota mana pun, ritme Anda sendiri. Kami merancang itinerary terbaik per musim, lengkap dengan photo book eksklusif sebagai kenangan yang bisa dipegang." data-en="Japan, entirely yours — four seasons, any city, your own rhythm. We design the finest itinerary per season, complete with an exclusive photo book to hold on to.">Jepang sepenuhnya milik Anda — empat musim, kota mana pun, ritme Anda sendiri. Kami merancang itinerary terbaik per musim, lengkap dengan photo book eksklusif sebagai kenangan yang bisa dipegang.</p>
+        <div class="exp-meta"><div class="exp-price">¥27.000 <small data-id="/ hari" data-en="/ day">/ hari</small></div></div>
+        <a class="exp-link" onclick="reserve('Private Tour Guide')" data-id="Rencanakan →" data-en="Plan this →">Rencanakan →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STANDARD -->
+<section class="standard">
+  <div class="wrap">
+    <div class="std-head rv">
+      <div class="kick" data-id="Standar Omen" data-en="The Omen Standard">Standar Omen</div>
+      <h2 class="serif-h" data-id="Semua diurus. Anda cukup <em>hadir</em>." data-en="Everything handled. You simply <em>arrive</em>.">Semua diurus. Anda cukup <em>hadir</em>.</h2>
+    </div>
+    <div class="std-grid">
+      <div class="std-item rv"><div class="n">01</div><h4 data-id="Jemput &amp; Antar Pribadi" data-en="Private Transfers">Jemput &amp; Antar Pribadi</h4><p data-id="Kendaraan pribadi sepanjang perjalanan. Tak perlu menyentuh angkutan umum." data-en="A private vehicle throughout. You never touch public transport.">Kendaraan pribadi sepanjang perjalanan. Tak perlu menyentuh angkutan umum.</p></div>
+      <div class="std-item rv rv-d1"><div class="n">02</div><h4 data-id="Dokumentasi Sinematik" data-en="Cinematic Documentation">Dokumentasi Sinematik</h4><p data-id="Foto &amp; video profesional di setiap momen, tanpa biaya tambahan." data-en="Professional photos &amp; video at every moment, at no extra cost.">Foto &amp; video profesional di setiap momen, tanpa biaya tambahan.</p></div>
+      <div class="std-item rv rv-d2"><div class="n">03</div><h4 data-id="Pemandu Dwibahasa" data-en="Bilingual Guides">Pemandu Dwibahasa</h4><p data-id="Local guide fasih Indonesia-Jepang yang benar-benar mengenal lapangan." data-en="Local guides fluent in Indonesian &amp; Japanese who truly know the ground.">Local guide fasih Indonesia-Jepang yang benar-benar mengenal lapangan.</p></div>
+      <div class="std-item rv"><div class="n">04</div><h4 data-id="Sajian di Perjalanan" data-en="Refreshments En Route">Sajian di Perjalanan</h4><p data-id="Camilan dan minuman hangat menemani setiap etape perjalanan." data-en="Snacks and warm drinks accompany every leg of the journey.">Camilan dan minuman hangat menemani setiap etape perjalanan.</p></div>
+      <div class="std-item rv rv-d1"><div class="n">05</div><h4 data-id="Photo Book Eksklusif" data-en="Exclusive Photo Book">Photo Book Eksklusif</h4><p data-id="Khusus Private Tour — kenangan tercetak berkualitas tinggi untuk dibawa pulang." data-en="For Private Tours — a high-quality printed keepsake to take home.">Khusus Private Tour — kenangan tercetak berkualitas tinggi untuk dibawa pulang.</p></div>
+      <div class="std-item rv rv-d2"><div class="n">06</div><h4 data-id="Ruang untuk Bernapas" data-en="Room to Breathe">Ruang untuk Bernapas</h4><p data-id="Waktu bebas di setiap destinasi. Perjalanan mengikuti Anda, bukan sebaliknya." data-en="Free time at every destination. The journey follows you, not the other way around.">Waktu bebas di setiap destinasi. Perjalanan mengikuti Anda, bukan sebaliknya.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gal" id="gallery">
+  <div class="wrap">
+    <div class="gal-head rv">
+      <div>
+        <div class="kick" data-id="Galeri" data-en="Gallery">Galeri</div>
+        <h2 class="serif-h" data-id="Sekilas dari <em>perjalanan kami</em>" data-en="A glimpse of <em>our journeys</em>">Sekilas dari <em>perjalanan kami</em></h2>
+      </div>
+      <p class="lead" style="max-width:22em" data-id="Momen nyata bersama tamu kami di Jepang." data-en="Real moments with our guests in Japan.">Momen nyata bersama tamu kami di Jepang.</p>
+    </div>
+    <div class="gal-grid rv">
+      <figure><img src="premium-assets/g-8.webp" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
+      <figure><img src="premium-assets/g-2.webp" alt="Ainokura" loading="lazy"><figcaption>Ainokura</figcaption></figure>
+      <figure><img src="premium-assets/g-3.webp" alt="Shogawa Cruise" loading="lazy"><figcaption>Shogawa Cruise</figcaption></figure>
+      <figure><img src="premium-assets/g-1.webp" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
+      <figure><img src="premium-assets/g-4.webp" alt="Hokkaido" loading="lazy"><figcaption>Hokkaido</figcaption></figure>
+      <figure><img src="premium-assets/g-7.webp" alt="Ainokura" loading="lazy"><figcaption>Ainokura</figcaption></figure>
+      <figure><img src="premium-assets/g-5.webp" alt="Shogawa" loading="lazy"><figcaption>Shogawa</figcaption></figure>
+      <figure><img src="premium-assets/g-6.webp" alt="Shirakawa-go" loading="lazy"><figcaption>Shirakawa-go</figcaption></figure>
+      <figure><img src="premium-assets/brand-bus.webp" alt="Omen Trip di Shirakawa-go" loading="lazy"><figcaption>Omen Trip</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- VOICES (testimonials — replace with real named testimonials) -->
+<section class="voices">
+  <div class="wrap">
+    <div class="voices-head rv">
+      <div class="kick" data-id="Kata Mereka" data-en="In Their Words">Kata Mereka</div>
+      <h2 class="serif-h" data-id="Kepercayaan yang <em>tumbuh</em> tiap musim" data-en="Trust that <em>grows</em> each season">Kepercayaan yang <em>tumbuh</em> tiap musim</h2>
+    </div>
+    <div class="v-grid">
+      <div class="v-card rv"><div class="v-stars">★★★★★</div><p class="v-quote" data-id="&ldquo;Semuanya sudah diurus. Kami tinggal menikmati salju dan foto-foto kami luar biasa.&rdquo;" data-en="&ldquo;Everything was taken care of. We just enjoyed the snow, and our photos turned out incredible.&rdquo;">&ldquo;Semuanya sudah diurus. Kami tinggal menikmati salju dan foto-foto kami luar biasa.&rdquo;</p><div class="v-who"><b data-id="Tamu Winter Trip" data-en="Winter Trip Guest">Tamu Winter Trip</b> · Shirakawa-go</div></div>
+      <div class="v-card rv rv-d1"><div class="v-stars">★★★★★</div><p class="v-quote" data-id="&ldquo;Pemandunya fasih Bahasa Indonesia dan sangat mengenal tempat. Rasanya seperti diajak teman lokal.&rdquo;" data-en="&ldquo;Our guide was fluent in Indonesian and knew every spot. It felt like being shown around by a local friend.&rdquo;">&ldquo;Pemandunya fasih Bahasa Indonesia dan sangat mengenal tempat. Rasanya seperti diajak teman lokal.&rdquo;</p><div class="v-who"><b data-id="Tamu Private Tour" data-en="Private Tour Guest">Tamu Private Tour</b> · Tokyo</div></div>
+      <div class="v-card rv rv-d2"><div class="v-stars">★★★★★</div><p class="v-quote" data-id="&ldquo;Tidak perlu pusing transportasi sama sekali. Dari bandara sampai pulang, semua mulus.&rdquo;" data-en="&ldquo;No transport headaches at all. From the airport to departure, everything was seamless.&rdquo;">&ldquo;Tidak perlu pusing transportasi sama sekali. Dari bandara sampai pulang, semua mulus.&rdquo;</p><div class="v-who"><b data-id="Tamu Hokkaido Trip" data-en="Hokkaido Trip Guest">Tamu Hokkaido Trip</b> · Hokkaido</div></div>
+    </div>
+    <p class="v-note" data-id="Testimoni contoh — akan diganti dengan ulasan nyata tamu Anda." data-en="Sample testimonials — to be replaced with your real guest reviews.">Testimoni contoh — akan diganti dengan ulasan nyata tamu Anda.</p>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="founder" id="story">
+  <div class="founder-grid">
+    <div class="founder-img rv"><img src="premium-assets/founder.webp" alt="Founder Omen Trip"></div>
+    <div class="founder-body rv rv-d1">
+      <div class="kick" data-id="Kisah Kami" data-en="Our Story">Kisah Kami</div>
+      <h2 class="serif-h" data-id="Lahir dari cinta pada <em>Jepang</em>" data-en="Born from a love of <em>Japan</em>">Lahir dari cinta pada <em>Jepang</em></h2>
+      <p data-id="Omen Trip bermula dari satu keyakinan sederhana: bahwa setiap orang berhak merasakan Jepang seperti seorang tamu terhormat, bukan sekadar pengunjung yang lewat." data-en="Omen Trip began with one simple belief: that everyone deserves to feel Japan as an honored guest, not merely a passing visitor.">Omen Trip bermula dari satu keyakinan sederhana: bahwa setiap orang berhak merasakan Jepang seperti seorang tamu terhormat, bukan sekadar pengunjung yang lewat.</p>
+      <p data-id="Sejak 2020, tim kami yang tinggal dan bekerja langsung di Jepang telah menemani lebih dari 500 wisatawan menemukan sisi Jepang yang jarang terlihat — dengan kehangatan omotenashi di setiap langkah." data-en="Since 2020, our team living and working in Japan has accompanied over 500 travelers in discovering a rarely-seen side of Japan — with the warmth of omotenashi at every step.">Sejak 2020, tim kami yang tinggal dan bekerja langsung di Jepang telah menemani lebih dari 500 wisatawan menemukan sisi Jepang yang jarang terlihat — dengan kehangatan omotenashi di setiap langkah.</p>
+      <div class="founder-sign">Omen<small data-id="Founder &amp; CEO, Omen Trip" data-en="Founder &amp; CEO, Omen Trip">Founder &amp; CEO, Omen Trip</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="wrap">
+    <div class="trust-grid">
+      <div class="rv"><div class="trust-n">500+</div><div class="trust-l" data-id="Wisatawan Puas" data-en="Happy Travelers">Wisatawan Puas</div></div>
+      <div class="rv rv-d1"><div class="trust-n">5+</div><div class="trust-l" data-id="Tahun di Jepang" data-en="Years in Japan">Tahun di Jepang</div></div>
+      <div class="rv rv-d2"><div class="trust-n">4</div><div class="trust-l" data-id="Musim, Satu Rumah" data-en="Seasons, One Home">Musim, Satu Rumah</div></div>
+      <div class="rv rv-d3"><div class="trust-n">100%</div><div class="trust-l" data-id="Pemandu Indonesia" data-en="Indonesian Guides">Pemandu Indonesia</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap faq-grid">
+    <div class="faq-head rv">
+      <div class="kick" data-id="Tanya Jawab" data-en="FAQ">Tanya Jawab</div>
+      <h2 class="serif-h" data-id="Hal yang <em>perlu Anda tahu</em>" data-en="What you <em>should know</em>">Hal yang <em>perlu Anda tahu</em></h2>
+      <p data-id="Masih ada pertanyaan? Tim kami siap membantu langsung via WhatsApp, kapan pun Anda butuh." data-en="Still have questions? Our team is ready to help directly via WhatsApp, whenever you need.">Masih ada pertanyaan? Tim kami siap membantu langsung via WhatsApp, kapan pun Anda butuh.</p>
+    </div>
+    <div class="faq-list rv rv-d1">
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span data-id="Bagaimana cara memesan?" data-en="How do I book?">Bagaimana cara memesan?</span><span class="pm">+</span></button><div class="faq-a"><p data-id="Cukup pilih paket, hubungi kami via WhatsApp, dan tim kami akan memandu Anda dari konfirmasi tanggal hingga pembayaran DP dalam 1×24 jam." data-en="Simply choose a package, reach us via WhatsApp, and our team will guide you from date confirmation to deposit within 24 hours.">Cukup pilih paket, hubungi kami via WhatsApp, dan tim kami akan memandu Anda dari konfirmasi tanggal hingga pembayaran DP dalam 1×24 jam.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span data-id="Berapa uang muka yang diperlukan?" data-en="How much deposit is required?">Berapa uang muka yang diperlukan?</span><span class="pm">+</span></button><div class="faq-a"><p data-id="DP sebesar 50% untuk mengunci jadwal Anda. Sisanya dilunasi sebelum keberangkatan. Semua detail rekening dikonfirmasi langsung oleh tim kami." data-en="A 50% deposit secures your date. The balance is settled before departure. All account details are confirmed directly by our team.">DP sebesar 50% untuk mengunci jadwal Anda. Sisanya dilunasi sebelum keberangkatan. Semua detail rekening dikonfirmasi langsung oleh tim kami.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span data-id="Apa saja yang sudah termasuk?" data-en="What's included?">Apa saja yang sudah termasuk?</span><span class="pm">+</span></button><div class="faq-a"><p data-id="Jemput &amp; antar pribadi, pemandu berbahasa Indonesia, dokumentasi foto &amp; video, camilan selama perjalanan, dan waktu bebas di setiap destinasi. Tiket pesawat tidak termasuk." data-en="Private transfers, an Indonesian-speaking guide, photo &amp; video documentation, refreshments en route, and free time at every destination. Flights are not included.">Jemput &amp; antar pribadi, pemandu berbahasa Indonesia, dokumentasi foto &amp; video, camilan selama perjalanan, dan waktu bebas di setiap destinasi. Tiket pesawat tidak termasuk.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span data-id="Kapan Winter Trip tersedia?" data-en="When is the Winter Trip available?">Kapan Winter Trip tersedia?</span><span class="pm">+</span></button><div class="faq-a"><p data-id="Winter Trip hanya berlangsung saat musim salju, sekitar pertengahan Desember hingga akhir Februari. Untuk musim lain, Private Tour kami tersedia sepanjang tahun." data-en="The Winter Trip runs only during snow season, roughly mid-December to late February. For other seasons, our Private Tour is available year-round.">Winter Trip hanya berlangsung saat musim salju, sekitar pertengahan Desember hingga akhir Februari. Untuk musim lain, Private Tour kami tersedia sepanjang tahun.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span data-id="Apakah Omen Trip legal?" data-en="Is Omen Trip legally registered?">Apakah Omen Trip legal?</span><span class="pm">+</span></button><div class="faq-a"><p data-id="Ya. Omen Trip beroperasi di bawah PT Omen Wisata Indonesia, badan hukum resmi terdaftar di Indonesia. Perizinan agen perjalanan di Jepang sedang dalam proses resmi." data-en="Yes. Omen Trip operates under PT Omen Wisata Indonesia, a legally registered entity in Indonesia. Japanese travel-agency licensing is currently in process.">Ya. Omen Trip beroperasi di bawah PT Omen Wisata Indonesia, badan hukum resmi terdaftar di Indonesia. Perizinan agen perjalanan di Jepang sedang dalam proses resmi.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVE -->
+<section class="reserve" id="reserve">
+  <div class="reserve-bg"><img src="premium-assets/manifesto.webp" alt="Ainokura bersalju" loading="lazy"></div>
+  <div class="reserve-in rv">
+    <div class="kick" data-id="Reservasi" data-en="Reservation">Reservasi</div>
+    <h2 data-id="Musim salju berikutnya<br>bisa menjadi <em>milik Anda</em>." data-en="The next snow season<br>could be <em>yours</em>.">Musim salju berikutnya<br>bisa menjadi <em>milik Anda</em>.</h2>
+    <p data-id="Ceritakan rencana Anda, dan biarkan kami merancang sisanya. Respons dalam 1×24 jam." data-en="Tell us your plans, and let us design the rest. Response within 24 hours.">Ceritakan rencana Anda, dan biarkan kami merancang sisanya. Respons dalam 1×24 jam.</p>
+    <button class="btn-gold" onclick="reserve()" data-id="Mulai Percakapan" data-en="Start the Conversation">Mulai Percakapan</button>
+    <div class="reserve-contacts">
+      <a onclick="reserve()">WhatsApp · +81 80-9580-3259</a>
+      <a href="mailto:japan@omentrip.com">japan@omentrip.com</a>
+      <a href="https://instagram.com/omen_said" target="_blank" rel="noopener">Instagram · @omen_said</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">Omen<span> Trip</span></div>
+        <p class="foot-desc" data-id="Japan travel atelier yang menemani wisatawan Indonesia sejak 2020, dengan tim yang tinggal langsung di Jepang dan hati omotenashi di setiap perjalanan." data-en="A Japan travel atelier accompanying Indonesian travelers since 2020, with a team living in Japan and the heart of omotenashi in every journey.">Japan travel atelier yang menemani wisatawan Indonesia sejak 2020, dengan tim yang tinggal langsung di Jepang dan hati omotenashi di setiap perjalanan.</p>
+      </div>
+      <div class="foot-col">
+        <h5 data-id="Pengalaman" data-en="Experiences">Pengalaman</h5>
+        <a onclick="scrollToId('experiences')">Winter Trip</a>
+        <a onclick="scrollToId('experiences')">Hokkaido Trip</a>
+        <a onclick="scrollToId('experiences')">Private Tour Guide</a>
+        <a onclick="scrollToId('gallery')" data-id="Galeri" data-en="Gallery">Galeri</a>
+      </div>
+      <div class="foot-col">
+        <h5 data-id="Kontak" data-en="Contact">Kontak</h5>
+        <a onclick="reserve()">WhatsApp: +81 80-9580-3259</a>
+        <a href="mailto:japan@omentrip.com">japan@omentrip.com</a>
+        <a href="https://instagram.com/omen_said" target="_blank" rel="noopener">Instagram: @omen_said</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2025 Omen Trip · <span data-id="PT Omen Wisata Indonesia · Terdaftar di Indonesia" data-en="PT Omen Wisata Indonesia · Registered in Indonesia">PT Omen Wisata Indonesia · Terdaftar di Indonesia</span></span>
+      <span data-id="Dirancang dengan omotenashi" data-en="Crafted with omotenashi">Dirancang dengan omotenashi</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a class="wa-float" id="wa" onclick="reserve()" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+const WA = "818095803259";
+let lang = 'id';
+
+function setLang(l){
+  lang = l;
+  document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('on', b.dataset.l === l));
+  document.querySelectorAll('[data-'+l+']').forEach(el => el.innerHTML = el.getAttribute('data-'+l));
+  document.documentElement.lang = l;
+}
+
+function scrollToId(id){
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function reserve(paket){
+  const msg = paket
+    ? (lang==='id'
+        ? `Halo Omen Trip! Saya tertarik dengan *${paket}* dan ingin merencanakan perjalanan. Boleh info lengkapnya?`
+        : `Hello Omen Trip! I'm interested in *${paket}* and would like to plan a trip. Could you share the details?`)
+    : (lang==='id'
+        ? `Halo Omen Trip! Saya ingin merencanakan perjalanan ke Jepang bersama Anda.`
+        : `Hello Omen Trip! I'd like to plan a journey to Japan with you.`);
+  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg), '_blank');
+}
+
+function toggleFaq(btn){
+  const item = btn.parentElement;
+  const ans = item.querySelector('.faq-a');
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => {
+    i.classList.remove('open');
+    i.querySelector('.faq-a').style.maxHeight = null;
+  });
+  if(!open){
+    item.classList.add('open');
+    ans.style.maxHeight = ans.scrollHeight + 'px';
+  }
+}
+
+// Preloader
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('pre').classList.add('done'), 1400);
+  const hi = document.getElementById('hero-img');
+  if(hi.complete) hi.classList.add('ready');
+  else hi.addEventListener('load', () => hi.classList.add('ready'));
+});
+
+// Nav solidify + WA float on scroll
+const nav = document.getElementById('nav');
+const wa = document.getElementById('wa');
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if(!ticking){
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      nav.classList.toggle('solid', y > 60);
+      wa.classList.toggle('show', y > 500);
+      ticking = false;
+    });
+    ticking = true;
+  }
+}, {passive:true});
+
+// Scroll reveal
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(reduce){
+  document.querySelectorAll('.rv').forEach(el => el.classList.add('in'));
+}else{
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.14, rootMargin:'0px 0px -50px 0px'});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+}
+</script>
+</body>
+</html>
