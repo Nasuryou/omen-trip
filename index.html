@@ -499,6 +499,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
 .g-filter{font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.04em;padding:.5rem 1.1rem;border-radius:22px;border:1px solid var(--ice-300);background:#fff;color:var(--ice-700);cursor:pointer;transition:all .22s ease;white-space:nowrap}
 .g-filter:hover{border-color:var(--ice-600);color:var(--ice-800)}
 .g-filter.active{background:var(--ice-800);border-color:var(--ice-800);color:#fff}
+.g-more{display:none;font-family:'DM Sans',sans-serif;font-size:.86rem;font-weight:500;letter-spacing:.02em;padding:.85rem 2rem;border-radius:32px;border:1.5px solid var(--ice-300);background:white;color:var(--ice-800);cursor:pointer;transition:.25s cubic-bezier(.2,.7,.3,1)}
+.g-more:hover{border-color:var(--ice-600);background:var(--ice-100);transform:translateY(-2px)}
+.g-more:active{transform:scale(.97)}
 .g-grid{column-count:4;column-gap:14px}
 .g-item{position:relative;break-inside:avoid;margin:0 0 14px;border-radius:10px;overflow:hidden;cursor:zoom-in;background:var(--ice-200);box-shadow:0 2px 12px rgba(13,31,45,.07);transition:transform .3s ease,box-shadow .3s ease;display:block}
 .g-item img{width:100%;height:auto;display:block;transition:transform .5s ease}
@@ -796,6 +799,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
       <figure class="g-item" data-cat="private" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/Privat%2013.JPG" alt="Private Tour" loading="lazy"><figcaption>Private Tour</figcaption></figure>
       <figure class="g-item" data-cat="winter" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/04.jpeg" alt="Winter Trip" loading="lazy"><figcaption>Winter Trip</figcaption></figure>
       <figure class="g-item" data-cat="winter" onclick="openLb(this)"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/05.jpeg" alt="Winter Trip" loading="lazy"><figcaption>Winter Trip</figcaption></figure>
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+      <button class="g-more" id="g-more-btn" onclick="loadMoreG()"></button>
     </div>
   </div>
 </section>
@@ -1337,6 +1343,7 @@ function setLang(l) {
   });
   document.documentElement.lang = l === 'id' ? 'id' : 'en';
   if (typeof applyDateRule === 'function') applyDateRule();
+  if (typeof applyGalleryVisibility === 'function') applyGalleryVisibility();
 }
 
 function switchSeason(s) {
@@ -1570,14 +1577,39 @@ function resetForm() {
   }
 })();
 
-/* ================= GALLERY: filter + lightbox ================= */
+/* ================= GALLERY: filter + load more + lightbox ================= */
+const G_BATCH = 12;
+let gCat = 'all';
+let gVisibleCount = G_BATCH;
+
 function filtG(btn, cat) {
   document.querySelectorAll('.g-filter').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  document.querySelectorAll('.g-item').forEach(it => {
-    it.classList.toggle('hide', cat !== 'all' && it.dataset.cat !== cat);
-  });
+  gCat = cat;
+  gVisibleCount = G_BATCH;
+  applyGalleryVisibility();
 }
+
+function applyGalleryVisibility() {
+  const matching = Array.from(document.querySelectorAll('.g-item')).filter(it => gCat === 'all' || it.dataset.cat === gCat);
+  document.querySelectorAll('.g-item').forEach(it => it.classList.add('hide'));
+  matching.slice(0, gVisibleCount).forEach(it => it.classList.remove('hide'));
+
+  const remaining = matching.length - gVisibleCount;
+  const btn = document.getElementById('g-more-btn');
+  if (remaining > 0) {
+    btn.style.display = 'inline-block';
+    btn.textContent = lang === 'id' ? `Lihat Lebih Banyak (${remaining})` : `Load More (${remaining})`;
+  } else {
+    btn.style.display = 'none';
+  }
+}
+
+function loadMoreG() {
+  gVisibleCount += G_BATCH;
+  applyGalleryVisibility();
+}
+applyGalleryVisibility();
 
 let lbList = [], lbIdx = 0;
 function visibleG() {
