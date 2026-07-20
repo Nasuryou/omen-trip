@@ -1277,6 +1277,7 @@ const CFG = {
     templateId: "template_lwzb29g",
     publicKey: "FTjV4Xfya7eD-_JlA"
   },
+  sheetsWebhook: "https://script.google.com/macros/s/AKfycby_lvNJhG85Y-SXlEPCdQ-jTpGS8Ub3X8g8q31ER19rRc2bPPPzUeM0kCdNPWeR3Lqf/exec",
   paket: [
     {id:1,nama:"Winter Trip",durasi:"One Day Trip",harga:22000,teks:"¥22.000",uang:"JPY",dp:50},
     {id:2,nama:"Hokkaido Trip",durasi:"Open Private Trip",harga:13900000,teks:"Rp 13.900.000",uang:"IDR",dp:50},
@@ -1466,6 +1467,7 @@ function kirimWA() {
   const msg = `Halo Omen Trip! Saya ingin konfirmasi pesanan:\n\n*DETAIL PESANAN*\n• Nama: ${nama}\n• WhatsApp: ${wa}\n• Paket: ${picked.nama} (${picked.durasi})\n• Jumlah: ${jml} orang\n• Tgl Berangkat: ${tglFmt}\n• Total: ${total}\n${cat?'\n*Catatan:* '+cat+'\n':''}\n*PEMBAYARAN DP (${picked.dp}%)*\n• Jumlah DP: ${dp}\n• Transfer ke: Mandiri – 1360036647185 a/n M Khittatul Rohman\n\n_Bukti transfer segera saya kirimkan. Terima kasih!_`;
   window.open('https://wa.me/'+CFG.wa+'?text='+encodeURIComponent(msg),'_blank');
   kirimEmail({nama, wa, jml, tglFmt, total, dp, cat});
+  kirimSheet({nama, wa, jml, tglFmt, total, dp, cat});
   setTimeout(() => goStep(4), 600);
 }
 
@@ -1482,6 +1484,24 @@ function kirimEmail(o) {
     dp: o.dp,
     catatan: o.cat || '-'
   }).catch(err => console.error('EmailJS gagal mengirim:', err));
+}
+
+function kirimSheet(o) {
+  if (!CFG.sheetsWebhook) return;
+  fetch(CFG.sheetsWebhook, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: JSON.stringify({
+      nama: o.nama,
+      whatsapp: o.wa,
+      paket: picked.nama + ' (' + picked.durasi + ')',
+      jumlah: o.jml + ' orang',
+      tanggal: o.tglFmt,
+      total: o.total,
+      dp: o.dp,
+      catatan: o.cat || '-'
+    })
+  }).catch(err => console.error('Gagal mencatat ke Google Sheets:', err));
 }
 
 function tanyaWA(paket) {
