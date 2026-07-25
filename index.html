@@ -1285,7 +1285,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js" integrity="sha384-SALc35EccAf6RzGw4iNsyj7kTPr33K7RoGzYu+7heZhT8s0GZouafRiCg1qy44AS" crossorigin="anonymous"></script>
 <script>
 const CFG = {
   wa: "818095803259",
@@ -1451,6 +1451,10 @@ function goStep(n) {
   document.getElementById('booking').scrollIntoView({behavior:'smooth'});
 }
 
+function escapeHtml(str) {
+  return str.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
 function renderSum() {
   const nama = document.getElementById('f-nama').value.trim();
   const jml = parseInt(document.getElementById('f-jml').value);
@@ -1461,7 +1465,7 @@ function renderSum() {
   const L = lang === 'id'
     ? {nama:'Nama',paket:'Paket',jml:'Jumlah',tgl:'Tgl Berangkat',harga:'Harga/Orang',total:'Total',dp:'Total DP'}
     : {nama:'Name',paket:'Package',jml:'People',tgl:'Departure',harga:'Price/Person',total:'Total',dp:'Total Deposit'};
-  document.getElementById('sum-content').innerHTML = `<div class="sum-card"><div class="sum-row"><span class="sl">${L.nama}</span><span class="sv">${nama}</span></div><div class="sum-row"><span class="sl">${L.paket}</span><span class="sv">${picked.nama}</span></div><div class="sum-row"><span class="sl">${L.jml}</span><span class="sv">${jml} ${lang==='id'?'orang':'people'}</span></div><div class="sum-row"><span class="sl">${L.tgl}</span><span class="sv">${tglFmt}</span></div><div class="sum-row"><span class="sl">${L.harga}</span><span class="sv">${picked.teks}</span></div><div class="sum-row"><span class="sl">${L.total}</span><span class="sv">${total}</span></div></div><div class="dp-bar"><span class="dp-label">${L.dp} (${picked.dp}%)</span><span class="dp-amount">${dp}</span></div>`;
+  document.getElementById('sum-content').innerHTML = `<div class="sum-card"><div class="sum-row"><span class="sl">${L.nama}</span><span class="sv">${escapeHtml(nama)}</span></div><div class="sum-row"><span class="sl">${L.paket}</span><span class="sv">${picked.nama}</span></div><div class="sum-row"><span class="sl">${L.jml}</span><span class="sv">${jml} ${lang==='id'?'orang':'people'}</span></div><div class="sum-row"><span class="sl">${L.tgl}</span><span class="sv">${tglFmt}</span></div><div class="sum-row"><span class="sl">${L.harga}</span><span class="sv">${picked.teks}</span></div><div class="sum-row"><span class="sl">${L.total}</span><span class="sv">${total}</span></div></div><div class="dp-bar"><span class="dp-label">${L.dp} (${picked.dp}%)</span><span class="dp-amount">${dp}</span></div>`;
   document.getElementById('b-nominal').textContent = dp;
 }
 
