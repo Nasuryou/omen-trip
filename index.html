@@ -59,8 +59,8 @@ nav.scrolled{padding:.75rem 2rem;box-shadow:0 6px 28px rgba(13,31,45,.08)}
 .lang-toggle{display:flex;border:1px solid var(--border);border-radius:24px;overflow:hidden;font-size:.74rem;background:white}
 .lang-btn{padding:5px 14px;cursor:pointer;background:transparent;border:none;font-family:'DM Sans',sans-serif;color:var(--muted);transition:.2s;letter-spacing:.05em}
 .lang-btn.active{background:var(--ice-800);color:white}
-.nav-back{display:none;align-items:center;gap:.5rem;background:white;border:1px solid var(--border);color:var(--muted);padding:.5rem 1rem;border-radius:24px;font-size:.78rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s}
-.nav-back:hover{border-color:var(--ice-700);color:var(--ice-800)}
+.nav-back{display:none;align-items:center;gap:.4rem;background:var(--gold);border:none;color:var(--ink);padding:.55rem 1.15rem;border-radius:24px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.25s;box-shadow:0 4px 14px rgba(184,160,112,.35)}
+.nav-back:hover{background:#a68d5c;transform:translateY(-1px);box-shadow:0 8px 20px rgba(184,160,112,.45)}
 .nav-back.show{display:flex}
 .nav-cta{background:var(--ice-800);color:white;padding:.55rem 1.3rem;border-radius:24px;font-size:.82rem;text-decoration:none;font-weight:500;transition:.25s;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.02em;box-shadow:0 4px 14px rgba(26,58,82,.22)}
 .nav-cta:hover{background:var(--ink);transform:translateY(-1px);box-shadow:0 8px 20px rgba(26,58,82,.3)}
@@ -79,10 +79,13 @@ nav.scrolled{padding:.75rem 2rem;box-shadow:0 6px 28px rgba(13,31,45,.08)}
 .hero-tag{display:inline-block;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);color:white;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;padding:.5rem 1.3rem;border-radius:24px;margin-bottom:2.25rem;font-weight:500}
 .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,6vw,4.8rem);font-weight:300;line-height:1;color:white;margin-bottom:1rem;letter-spacing:-.01em;text-shadow:0 2px 24px rgba(0,0,0,.25)}
 .hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
-.hero-rinen{font-family:'Noto Serif JP','Cormorant Garamond',serif;font-size:clamp(.98rem,1.7vw,1.32rem);font-weight:300;color:#fff;max-width:640px;line-height:2;margin:0 auto .9rem;letter-spacing:.04em;text-shadow:0 2px 20px rgba(0,0,0,.35)}
-.hero-sub{font-family:'DM Sans',sans-serif;font-size:.95rem;color:rgba(255,255,255,.86);max-width:520px;line-height:1.7;margin:0 auto .7rem;font-weight:400}
-.hero-sub-note{font-family:'DM Sans',sans-serif;font-size:.78rem;color:rgba(255,255,255,.6);max-width:460px;line-height:1.65;margin:0 auto 1.75rem;font-weight:300;letter-spacing:.01em}
+.hero-rinen{font-family:'Noto Serif JP','Cormorant Garamond',serif;font-size:clamp(.98rem,1.7vw,1.32rem);font-weight:300;color:var(--ice-800);max-width:640px;line-height:2;margin:0 auto .9rem;letter-spacing:.04em}
+.hero-sub{font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--ink);max-width:520px;line-height:1.7;margin:0 auto .7rem;font-weight:400}
+.hero-sub-note{font-family:'DM Sans',sans-serif;font-size:.78rem;color:var(--muted);max-width:460px;line-height:1.65;margin:0 auto 1.75rem;font-weight:300;letter-spacing:.01em}
 .hero-actions{display:flex;gap:.85rem;flex-wrap:wrap;justify-content:center}
+
+/* HERO INTRO — plain-background section below the hero photo */
+.hero-intro{background:linear-gradient(180deg,var(--white) 0%,var(--ice-50) 100%);padding:3.5rem 2rem 3rem;text-align:center}
 .btn-main{background:var(--gold);color:var(--ink);padding:1rem 2.3rem;border-radius:32px;text-decoration:none;font-weight:600;font-size:.92rem;transition:.3s cubic-bezier(.2,.7,.3,1);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.02em;box-shadow:0 8px 28px rgba(184,160,112,.35)}
 .btn-main:hover{background:#c9b587;transform:translateY(-3px);box-shadow:0 14px 36px rgba(184,160,112,.45)}
 .btn-outline{background:rgba(255,255,255,.1);backdrop-filter:blur(8px);color:white;padding:1rem 2.3rem;border-radius:32px;text-decoration:none;font-weight:500;font-size:.92rem;border:1.5px solid rgba(255,255,255,.55);transition:.3s cubic-bezier(.2,.7,.3,1);cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.02em}
@@ -103,9 +106,9 @@ nav.scrolled{padding:.75rem 2rem;box-shadow:0 6px 28px rgba(13,31,45,.08)}
 .pkg-quick-soon{opacity:.6}
 @keyframes pkgPulse{0%,100%{box-shadow:0 0 0 0 rgba(184,160,112,0)}30%{box-shadow:0 0 0 8px rgba(184,160,112,.28)}}
 .pkg-pulse{animation:pkgPulse 1.1s ease-out 2}
-.hero-stats{display:flex;gap:2.5rem;margin-top:2rem;flex-wrap:nowrap;justify-content:center;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.2);width:100%;max-width:600px}
-.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.3rem;font-weight:500;color:white;line-height:1;letter-spacing:-.02em}
-.stat-label{font-size:.68rem;color:rgba(255,255,255,.72);letter-spacing:.15em;text-transform:uppercase;margin-top:6px;font-weight:500}
+.hero-stats{display:flex;gap:2.5rem;margin:0 auto;flex-wrap:nowrap;justify-content:center;padding-top:1.5rem;border-top:1px solid var(--border);width:100%;max-width:600px}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.3rem;font-weight:500;color:var(--ice-800);line-height:1;letter-spacing:-.02em}
+.stat-label{font-size:.68rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-top:6px;font-weight:500}
 
 /* SECTIONS */
 section{padding:6.5rem 2rem}
@@ -120,14 +123,15 @@ section{padding:6.5rem 2rem}
 .inclusions{background:linear-gradient(135deg,#e8f4fa 0%,#d0eaf5 40%,#b8ddf0 100%);border-top:1px solid #b0d5ea;border-bottom:1px solid #b0d5ea;padding:3.5rem 2rem;position:relative;overflow:hidden}
 .inclusions::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(255,255,255,.4) 0%,transparent 70%)}
 .inclusions-inner{max-width:1140px;margin:0 auto;position:relative}
-.inc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2rem}
-.inc-item{text-align:center;color:var(--ice-800)}
-.inc-icon-wrap{width:76px;height:76px;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.7);border-radius:22px;background:linear-gradient(160deg,#ffffff 0%,var(--ice-100) 100%);color:var(--ice-800);font-size:2.1rem;box-shadow:0 10px 24px rgba(20,60,85,.14),inset 0 1px 0 rgba(255,255,255,.8);transition:.3s cubic-bezier(.2,.7,.3,1);overflow:hidden}
-.inc-icon-wrap img{width:100%;height:100%;object-fit:cover;border-radius:20px}
-.inc-item:hover .inc-icon-wrap{transform:translateY(-5px) scale(1.04);box-shadow:0 16px 32px rgba(20,60,85,.2),inset 0 1px 0 rgba(255,255,255,.8)}
-.inc-icon-wrap svg{width:28px;height:28px}
-.inc-label{font-size:.8rem;font-weight:500;line-height:1.4;color:var(--ice-900);letter-spacing:.02em}
-.inc-sub{font-size:.7rem;color:var(--muted);margin-top:4px;letter-spacing:.04em}
+.inc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.1rem}
+.inc-item{display:flex;align-items:center;gap:1rem;text-align:left;color:var(--ice-800);background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.85);border-radius:var(--radius-lg);padding:1.1rem 1.25rem;box-shadow:0 6px 20px rgba(20,60,85,.08);transition:.3s cubic-bezier(.2,.7,.3,1)}
+.inc-item:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(20,60,85,.16)}
+.inc-icon-wrap{width:58px;height:58px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.7);border-radius:16px;background:linear-gradient(160deg,#ffffff 0%,var(--ice-100) 100%);color:var(--ice-800);font-size:1.7rem;box-shadow:inset 0 1px 0 rgba(255,255,255,.8);overflow:hidden}
+.inc-icon-wrap img{width:100%;height:100%;object-fit:cover;border-radius:15px}
+.inc-icon-wrap svg{width:24px;height:24px}
+.inc-text{min-width:0}
+.inc-label{font-size:.85rem;font-weight:600;line-height:1.35;color:var(--ice-900);letter-spacing:.01em}
+.inc-sub{font-size:.72rem;color:var(--muted);margin-top:3px;letter-spacing:.02em}
 
 /* ABOUT */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
@@ -139,8 +143,11 @@ section{padding:6.5rem 2rem}
 .about-badge{position:absolute;bottom:1.5rem;left:1.5rem;background:white;border-radius:var(--radius-sm);padding:.85rem 1.2rem;box-shadow:var(--shadow)}
 .about-badge-num{font-family:'Cormorant Garamond',serif;font-size:1.85rem;font-weight:600;color:var(--ice-800);line-height:1}
 .about-badge-text{font-size:.68rem;color:var(--muted);margin-top:3px;letter-spacing:.08em;text-transform:uppercase}
-.about-sign{margin-top:1.6rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:var(--gold)}
+.about-sign{margin-top:1.6rem;display:flex;align-items:center;gap:1rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:var(--gold)}
 .about-sign small{display:block;font-family:'DM Sans',sans-serif;font-style:normal;font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:.35rem}
+.about-sign-ig{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;flex-shrink:0;border-radius:50%;border:1px solid var(--border);color:var(--ice-700);transition:.25s}
+.about-sign-ig:hover{background:var(--ice-800);color:white;border-color:var(--ice-800);transform:translateY(-2px)}
+.about-sign-ig svg{width:16px;height:16px}
 .feature-row{display:flex;align-items:flex-start;gap:1.1rem;margin-bottom:1.4rem}
 .feature-icon{width:58px;height:58px;border-radius:16px;background:var(--ice-100);border:1px solid var(--ice-200);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--ice-700);overflow:hidden;box-shadow:0 6px 16px rgba(20,60,85,.1)}
 .feature-icon img{width:100%;height:100%;object-fit:cover;border-radius:14px}
@@ -490,11 +497,15 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
 @media(max-width:600px){
   .detail-hero-content{padding:2rem 1.5rem 2.5rem}
   .detail-body{padding:2.5rem 1.25rem 4rem}
-  nav{padding:1rem 1.25rem}
+  nav{padding:.85rem 1.1rem}
+  .nav-right{gap:.5rem}
+  .nav-back span{display:none}
+  .nav-back{padding:.6rem;width:40px;height:40px;justify-content:center;border-radius:50%}
+  .nav-cta{padding:.55rem 1rem;font-size:.76rem}
   .team-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
   .fg-row{grid-template-columns:1fr}
-  .inc-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem}
+  .inc-grid{grid-template-columns:1fr;gap:.9rem}
   .hero{padding:7rem 1.5rem 4rem;min-height:90vh}
   .hero-sub{font-size:.82rem;max-width:340px}
   .hero-sub-note{font-size:.72rem;max-width:320px}
@@ -610,9 +621,6 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
 
   <div class="hero-tag" data-id="Japan Travel Specialist · Since 2020" data-en="Japan Travel Specialist · Since 2020">Japan Travel Specialist · Since 2020</div>
   <h1 data-id="Jelajahi Jepang<br><em>Seperti Warga Lokal</em>" data-en="Discover Japan<br><em>Like a Local</em>">Jelajahi Jepang<br><em>Seperti Warga Lokal</em></h1>
-  <p class="hero-rinen">私たちは、おもてなしの心を使命とし、あなたをまだ見ぬ雪景色へ導きます。</p>
-  <p class="hero-sub" data-id="Semangat Omotenashi (keramahan khas Jepang) menuntun Anda ke pemandangan tak terlupakan." data-en="The spirit of Omotenashi — Japan's hospitality — guides you to unforgettable scenery.">Semangat Omotenashi (keramahan khas Jepang) menuntun Anda ke pemandangan tak terlupakan.</p>
-  <p class="hero-sub-note" data-id="Penjemputan, transportasi, dokumentasi foto &amp; video, hingga pemandu lokal — semua kami siapkan untuk Anda." data-en="Pick-up, transportation, photo &amp; video, to a local guide — all prepared so you can simply enjoy the moment.">Penjemputan, transportasi, dokumentasi foto &amp; video, hingga pemandu lokal — semua kami siapkan untuk Anda.</p>
   <div class="hero-actions">
     <button class="btn-outline" onclick="scrollToId('about')" data-id="Tentang Kami" data-en="About Us">Tentang Kami</button>
     <div class="pkg-quick-wrap">
@@ -639,6 +647,13 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
     </div>
     <button class="btn-outline" onclick="scrollToId('gallery')" data-id="Galeri" data-en="Gallery">Galeri</button>
   </div>
+</section>
+
+<!-- HERO INTRO — omotenashi tagline, description & stats, moved off the hero photo -->
+<section class="hero-intro">
+  <p class="hero-rinen">私たちは、おもてなしの心を使命とし、あなたをまだ見ぬ雪景色へ導きます。</p>
+  <p class="hero-sub" data-id="Semangat Omotenashi (keramahan khas Jepang) menuntun Anda ke pemandangan tak terlupakan." data-en="The spirit of Omotenashi — Japan's hospitality — guides you to unforgettable scenery.">Semangat Omotenashi (keramahan khas Jepang) menuntun Anda ke pemandangan tak terlupakan.</p>
+  <p class="hero-sub-note" data-id="Penjemputan, transportasi, dokumentasi foto &amp; video, hingga pemandu lokal — semua kami siapkan untuk Anda." data-en="Pick-up, transportation, photo &amp; video, to a local guide — all prepared so you can simply enjoy the moment.">Penjemputan, transportasi, dokumentasi foto &amp; video, hingga pemandu lokal — semua kami siapkan untuk Anda.</p>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">1000+</div><div class="stat-label" data-id="Wisatawan Puas" data-en="Happy Travelers">Wisatawan Puas</div></div>
     <div class="stat"><div class="stat-num">5+</div><div class="stat-label" data-id="Tahun Pengalaman" data-en="Years Experience">Tahun Pengalaman</div></div>
@@ -650,12 +665,12 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
 <div class="inclusions">
   <div class="inclusions-inner">
     <div class="inc-grid">
-      <div class="inc-item"><div class="inc-icon-wrap"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/icon-bus-transport.png" alt="" loading="lazy"></div><div class="inc-label" data-id="Jemput &amp; Antar" data-en="Pick-up &amp; Drop-off">Jemput &amp; Antar</div><div class="inc-sub" data-id="Tanpa angkutan umum" data-en="No public transport">Tanpa angkutan umum</div></div>
-      <div class="inc-item"><div class="inc-icon-wrap"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/icon-photography.png" alt="" loading="lazy"></div><div class="inc-label" data-id="Foto &amp; Video Gratis" data-en="Free Photo &amp; Video">Foto &amp; Video Gratis</div><div class="inc-sub" data-id="Kenangan terbaik" data-en="Best memories">Kenangan terbaik</div></div>
-      <div class="inc-item"><div class="inc-icon-wrap"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/icon-tour-guide.png" alt="" loading="lazy"></div><div class="inc-label" data-id="Tour Guide Lokal" data-en="Local Tour Guide">Tour Guide Lokal</div><div class="inc-sub" data-id="Berbahasa Indonesia" data-en="Indonesian-speaking">Berbahasa Indonesia</div></div>
-      <div class="inc-item"><div class="inc-icon-wrap"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/icon-snack-break.png" alt="" loading="lazy"></div><div class="inc-label" data-id="Makanan Kecil" data-en="Light Snacks">Makanan Kecil</div><div class="inc-sub" data-id="Selama perjalanan" data-en="During the trip">Selama perjalanan</div></div>
-      <div class="inc-item"><div class="inc-icon-wrap">📖</div><div class="inc-label" data-id="Photo Book" data-en="Photo Book">Photo Book</div><div class="inc-sub" data-id="Khusus Private Tour" data-en="For Private Tour">Khusus Private Tour</div></div>
-      <div class="inc-item"><div class="inc-icon-wrap"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/icon-travel-clock.png" alt="" loading="lazy"></div><div class="inc-label" data-id="Waktu Bebas" data-en="Free Time">Waktu Bebas</div><div class="inc-sub" data-id="Eksplorasi sendiri" data-en="Explore on your own">Eksplorasi sendiri</div></div>
+      <div class="inc-item"><div class="inc-icon-wrap"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/icon-tour-guide.png" alt="" loading="lazy"></div><div class="inc-text"><div class="inc-label" data-id="Tour Guide Lokal" data-en="Local Tour Guide">Tour Guide Lokal</div><div class="inc-sub" data-id="Berbahasa Indonesia" data-en="Indonesian-speaking">Berbahasa Indonesia</div></div></div>
+      <div class="inc-item"><div class="inc-icon-wrap"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/icon-bus-transport.png" alt="" loading="lazy"></div><div class="inc-text"><div class="inc-label" data-id="Jemput &amp; Antar" data-en="Pick-up &amp; Drop-off">Jemput &amp; Antar</div><div class="inc-sub" data-id="Tanpa angkutan umum" data-en="No public transport">Tanpa angkutan umum</div></div></div>
+      <div class="inc-item"><div class="inc-icon-wrap"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/icon-photography.png" alt="" loading="lazy"></div><div class="inc-text"><div class="inc-label" data-id="Foto &amp; Video Gratis" data-en="Free Photo &amp; Video">Foto &amp; Video Gratis</div><div class="inc-sub" data-id="Kenangan terbaik" data-en="Best memories">Kenangan terbaik</div></div></div>
+      <div class="inc-item"><div class="inc-icon-wrap"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/icon-snack-break.png" alt="" loading="lazy"></div><div class="inc-text"><div class="inc-label">Limited Winter Snack</div><div class="inc-sub" data-id="Selama perjalanan" data-en="During the trip">Selama perjalanan</div></div></div>
+      <div class="inc-item"><div class="inc-icon-wrap">📖</div><div class="inc-text"><div class="inc-label" data-id="Photo Book" data-en="Photo Book">Photo Book</div><div class="inc-sub" data-id="Khusus Private Tour" data-en="For Private Tour">Khusus Private Tour</div></div></div>
+      <div class="inc-item"><div class="inc-icon-wrap"><img src="https://raw.githubusercontent.com/Nasuryou/omen-trip/main/icon-travel-clock.png" alt="" loading="lazy"></div><div class="inc-text"><div class="inc-label" data-id="Waktu Bebas" data-en="Free Time">Waktu Bebas</div><div class="inc-sub" data-id="Eksplorasi sendiri" data-en="Explore on your own">Eksplorasi sendiri</div></div></div>
     </div>
   </div>
 </div>
@@ -675,7 +690,10 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
           <div class="section-tag" data-id="Kisah Kami" data-en="Our Story">Kisah Kami</div>
           <h2 class="section-title" data-id="Lahir dari Cinta pada<br><em>Jepang</em>" data-en="Born from a Love of<br><em>Japan</em>">Lahir dari Cinta pada<br><em>Jepang</em></h2>
           <p class="section-sub" data-id="Omen Trip bermula dari satu keyakinan sederhana: bahwa setiap orang berhak merasakan Jepang seperti seorang tamu terhormat, bukan sekadar pengunjung yang lewat. Sejak 2020, tim kami yang tinggal dan bekerja langsung di Jepang telah menemani lebih dari 1000 wisatawan menemukan sisi Jepang yang jarang terlihat — dengan kehangatan omotenashi di setiap langkah." data-en="Omen Trip began with one simple belief: that everyone deserves to feel Japan as an honored guest, not merely a passing visitor. Since 2020, our team living and working in Japan has accompanied over 1000 travelers in discovering a rarely-seen side of Japan — with the warmth of omotenashi at every step.">Omen Trip bermula dari satu keyakinan sederhana: bahwa setiap orang berhak merasakan Jepang seperti seorang tamu terhormat, bukan sekadar pengunjung yang lewat. Sejak 2020, tim kami yang tinggal dan bekerja langsung di Jepang telah menemani lebih dari 1000 wisatawan menemukan sisi Jepang yang jarang terlihat — dengan kehangatan omotenashi di setiap langkah.</p>
-          <div class="about-sign">Omen<small data-id="Founder &amp; CEO, Omen Trip" data-en="Founder &amp; CEO, Omen Trip">Founder &amp; CEO, Omen Trip</small></div>
+          <div class="about-sign">
+            <div>Omen<small data-id="Founder &amp; CEO, Omen Trip" data-en="Founder &amp; CEO, Omen Trip">Founder &amp; CEO, Omen Trip</small></div>
+            <a class="about-sign-ig" href="https://instagram.com/omen_said" target="_blank" rel="noopener" aria-label="Instagram @omen_said"><svg class="ico"><use href="#i-instagram"/></svg></a>
+          </div>
         </div>
         <a class="btn-profile-download" href="Omen-Trip-Company-Profile.pdf" download="Omen-Trip-Company-Profile.pdf">
           <svg class="ico"><use href="#i-download"/></svg>
@@ -1057,7 +1075,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Jemput &amp; antar (tanpa angkutan umum)" data-en="Pick-up &amp; drop-off (no public transport)">Jemput &amp; antar (tanpa angkutan umum)</span></div>
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Tour guide berbahasa Indonesia" data-en="Indonesian-speaking tour guide">Tour guide berbahasa Indonesia</span></div>
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Foto &amp; video gratis" data-en="Free photos &amp; videos">Foto &amp; video gratis</span></div>
-            <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Makanan kecil selama trip" data-en="Light snacks during trip">Makanan kecil selama trip</span></div>
+            <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Limited Winter Snack selama trip" data-en="Limited Winter Snack during the trip">Limited Winter Snack selama trip</span></div>
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Waktu bebas di setiap destinasi" data-en="Free time at each destination">Waktu bebas di setiap destinasi</span></div>
           </div>
           <button class="btn-book" onclick="goToBooking(1)" data-id="Pesan Paket Ini" data-en="Book This Package">Pesan Paket Ini</button>
@@ -1138,7 +1156,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Transportasi selama trip" data-en="Transportation during trip">Transportasi selama trip</span></div>
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Tour guide berbahasa Indonesia" data-en="Indonesian-speaking tour guide">Tour guide berbahasa Indonesia</span></div>
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Foto &amp; video gratis" data-en="Free photos &amp; videos">Foto &amp; video gratis</span></div>
-            <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Makanan kecil selama trip" data-en="Light snacks during trip">Makanan kecil selama trip</span></div>
+            <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Limited Winter Snack selama trip" data-en="Limited Winter Snack during the trip">Limited Winter Snack selama trip</span></div>
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon" style="color:var(--muted)">✗</span><span style="color:var(--muted)" data-id="Tiket pesawat (tidak termasuk)" data-en="Flight (not included)">Tiket pesawat (tidak termasuk)</span></div>
           </div>
           <button class="btn-book" onclick="goToBooking(2)" data-id="Pesan Paket Ini" data-en="Book This Package">Pesan Paket Ini</button>
@@ -1251,7 +1269,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Tour guide berbahasa Indonesia" data-en="Indonesian-speaking tour guide">Tour guide berbahasa Indonesia</span></div>
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Foto &amp; video gratis" data-en="Free photos &amp; videos">Foto &amp; video gratis</span></div>
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Photo book eksklusif" data-en="Exclusive photo book">Photo book eksklusif</span></div>
-            <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Makanan kecil selama trip" data-en="Light snacks during trip">Makanan kecil selama trip</span></div>
+            <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Limited Winter Snack selama trip" data-en="Limited Winter Snack during the trip">Limited Winter Snack selama trip</span></div>
             <div class="sidebar-inc-item"><span class="sidebar-inc-icon">✓</span><span data-id="Konsultasi itinerary gratis" data-en="Free itinerary consultation">Konsultasi itinerary gratis</span></div>
           </div>
           <button class="btn-book" onclick="goToBooking(3)" data-id="Konsultasi &amp; Pesan" data-en="Consult &amp; Book">Konsultasi &amp; Pesan</button>
@@ -1267,7 +1285,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js" integrity="sha384-SALc35EccAf6RzGw4iNsyj7kTPr33K7RoGzYu+7heZhT8s0GZouafRiCg1qy44AS" crossorigin="anonymous"></script>
 <script>
 const CFG = {
   wa: "818095803259",
@@ -1433,6 +1451,10 @@ function goStep(n) {
   document.getElementById('booking').scrollIntoView({behavior:'smooth'});
 }
 
+function escapeHtml(str) {
+  return str.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
 function renderSum() {
   const nama = document.getElementById('f-nama').value.trim();
   const jml = parseInt(document.getElementById('f-jml').value);
@@ -1443,7 +1465,7 @@ function renderSum() {
   const L = lang === 'id'
     ? {nama:'Nama',paket:'Paket',jml:'Jumlah',tgl:'Tgl Berangkat',harga:'Harga/Orang',total:'Total',dp:'Total DP'}
     : {nama:'Name',paket:'Package',jml:'People',tgl:'Departure',harga:'Price/Person',total:'Total',dp:'Total Deposit'};
-  document.getElementById('sum-content').innerHTML = `<div class="sum-card"><div class="sum-row"><span class="sl">${L.nama}</span><span class="sv">${nama}</span></div><div class="sum-row"><span class="sl">${L.paket}</span><span class="sv">${picked.nama}</span></div><div class="sum-row"><span class="sl">${L.jml}</span><span class="sv">${jml} ${lang==='id'?'orang':'people'}</span></div><div class="sum-row"><span class="sl">${L.tgl}</span><span class="sv">${tglFmt}</span></div><div class="sum-row"><span class="sl">${L.harga}</span><span class="sv">${picked.teks}</span></div><div class="sum-row"><span class="sl">${L.total}</span><span class="sv">${total}</span></div></div><div class="dp-bar"><span class="dp-label">${L.dp} (${picked.dp}%)</span><span class="dp-amount">${dp}</span></div>`;
+  document.getElementById('sum-content').innerHTML = `<div class="sum-card"><div class="sum-row"><span class="sl">${L.nama}</span><span class="sv">${escapeHtml(nama)}</span></div><div class="sum-row"><span class="sl">${L.paket}</span><span class="sv">${picked.nama}</span></div><div class="sum-row"><span class="sl">${L.jml}</span><span class="sv">${jml} ${lang==='id'?'orang':'people'}</span></div><div class="sum-row"><span class="sl">${L.tgl}</span><span class="sv">${tglFmt}</span></div><div class="sum-row"><span class="sl">${L.harga}</span><span class="sv">${picked.teks}</span></div><div class="sum-row"><span class="sl">${L.total}</span><span class="sv">${total}</span></div></div><div class="dp-bar"><span class="dp-label">${L.dp} (${picked.dp}%)</span><span class="dp-amount">${dp}</span></div>`;
   document.getElementById('b-nominal').textContent = dp;
 }
 
