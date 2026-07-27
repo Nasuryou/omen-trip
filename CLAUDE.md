@@ -41,8 +41,9 @@ not relative paths like `Shirakawa 6.jpg`. When adding or renaming images used b
 
 The site behaves like a multi-page app but is really one document with several `<div class="page" id="page-*">` blocks that are toggled with CSS (`display:none` / `.active`). There is no router and no URL-based navigation — `showPage(name)` in the inline `<script>` just swaps which `.page` element is visible and scrolls to top:
 
-- `page-home` — the landing page: hero, inclusions strip, about, packages grid, "how to book" steps, team, and the booking form.
+- `page-home` — the landing page: hero, inclusions strip, about, packages grid, "how to book" steps, a teaser for the trip photo/video access feature, team, and the booking form.
 - `page-winter`, `page-hokkaido`, `page-private` — detail pages for each tour package (hero, photo gallery, destinations, itinerary timeline, departure city options, sticky price sidebar).
+- `page-galeri` — lets a past customer look up their trip's Google Drive photo/video folder by departure date (see "Trip photo/video access" below).
 
 Navigation between these is done via `onclick="showPage('winter')"` etc., not `<a href>`. The `hokkaido` detail page additionally has season tabs (`switchSeason('spring'|'summer'|'autumn'|'winter')`) that toggle `.season-content` blocks (`#sc-spring`, `#sc-summer`, ...).
 
@@ -61,6 +62,15 @@ Package data (name, duration, price, currency, deposit %) lives in a single JS o
 - `tanyaWA(paket)` — same pattern as `kirimWA` but simpler: just a "ask about this package" WhatsApp deep link from a detail page sidebar (no email/sheet logging).
 
 If you change a package's price or name, update it in `CFG.paket` (used by the booking form) **and** in the corresponding hardcoded display copy in the packages grid / detail page / sidebar — these are not currently derived from a single source of truth.
+
+## Trip photo/video access (`page-galeri`)
+
+Customers receive their trip photos/videos as a Google Drive folder, shared one folder per departure date (never two different packages depart the same date, so date alone is a unique key). Rather than hardcoding every date→folder link in `index.html` (which would expose the full list to anyone viewing page source), the lookup goes through a small external Google Apps Script "web app" whose URL lives in `CFG.driveLookup`:
+
+- The site owner maintains a Google Sheet (one row per departure date, columns: date, Drive folder link) and a bound Apps Script `doGet(e)` that reads `e.parameter.tanggal` (an ISO `YYYY-MM-DD` string) and returns `{found, link}` as JSON — only the one matching link, never the full list. That script is not part of this repo; it lives in the owner's Google account.
+- `cariGaleri()` (in `page-galeri`) reads the `#galeri-tgl` date input, calls `CFG.driveLookup?tanggal=...`, and renders a loading/found/not-found state into `#galeri-result`. It's guarded the same way as `CFG.emailjs`: if `CFG.driveLookup` is still the `"PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE"` placeholder, it shows a "service not active yet, contact us on WhatsApp" message instead of fetching.
+- Any returned link is validated (`/^https:\/\//`) and HTML-escaped via `escapeHtml()` before being rendered, and a `waGaleri()` WhatsApp fallback is always shown alongside the form.
+- Entry points into `page-galeri`: a teaser section on `page-home` (`#galeri-akses`) and a footer link, both calling `showPage('galeri')`.
 
 ## Icons
 

@@ -421,6 +421,13 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
 .btn-book:hover{background:var(--ink);box-shadow:0 10px 26px rgba(26,58,82,.3);transform:translateY(-2px)}
 .btn-wa-small{width:100%;padding:.78rem;background:#25d366;color:white;border:none;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-weight:500;font-size:.85rem;cursor:pointer;transition:.25s;display:flex;align-items:center;justify-content:center;gap:7px;margin-top:.65rem}
 .btn-wa-small:hover{background:#1fb85a}
+.galeri-result{margin-top:1.1rem;padding:1rem 1.15rem;border-radius:var(--radius-sm);font-size:.85rem;line-height:1.6;text-align:center}
+.galeri-result:empty{display:none}
+.galeri-result.gr-loading{background:var(--ice-100);color:var(--muted)}
+.galeri-result.gr-found{background:rgba(37,211,102,.1);border:1.5px solid rgba(37,211,102,.35);color:var(--ink)}
+.galeri-result.gr-empty{background:rgba(200,60,60,.08);border:1.5px solid rgba(200,60,60,.25);color:var(--ink)}
+.galeri-result .btn-drive{display:inline-flex;align-items:center;gap:8px;margin-top:.65rem;padding:.7rem 1.4rem;background:var(--ice-800);color:white;border-radius:32px;text-decoration:none;font-weight:500;font-size:.85rem;transition:.25s}
+.galeri-result .btn-drive:hover{background:var(--ink)}
 .sidebar-note{font-size:.73rem;color:var(--muted);text-align:center;margin-top:.85rem;line-height:1.6}
 
 /* AMBIENT SNOW */
@@ -855,6 +862,20 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
   </div>
 </section>
 
+<!-- ACCESS TRIP PHOTOS/VIDEOS -->
+<section id="galeri-akses">
+  <div class="section-inner">
+    <div class="section-head" style="text-align:center;max-width:580px;margin:0 auto 1.75rem">
+      <div class="section-tag" data-id="Layanan Eksklusif" data-en="Exclusive Service">Layanan Eksklusif</div>
+      <h2 class="section-title" data-id="Foto &amp; Video <em>Trip Anda</em>" data-en="Your Trip <em>Photos &amp; Videos</em>">Foto &amp; Video <em>Trip Anda</em></h2>
+      <p class="section-sub" style="margin:0 auto" data-id="Sudah selesai trip bersama kami? Akses foto dan video dokumentasi perjalanan Anda kapan saja langsung dari sini." data-en="Finished your trip with us? Access your travel photo and video documentation anytime, right here.">Sudah selesai trip bersama kami? Akses foto dan video dokumentasi perjalanan Anda kapan saja langsung dari sini.</p>
+    </div>
+    <div style="text-align:center">
+      <button class="btn-form btn-form-primary" style="max-width:280px;margin:0 auto;display:inline-flex;align-items:center;justify-content:center;gap:8px" onclick="showPage('galeri')"><svg class="ico"><use href="#i-camera"/></svg> <span data-id="Akses Foto &amp; Video Saya" data-en="Access My Photos &amp; Videos">Akses Foto &amp; Video Saya</span></button>
+    </div>
+  </div>
+</section>
+
 <!-- TEAM -->
 <section id="team">
   <div class="section-inner">
@@ -991,12 +1012,36 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
     <div class="footer-grid">
       <div><div class="footer-brand">Omen<span>Trip</span> 🇯🇵</div><p class="footer-desc" data-id="Japan travel specialist melayani wisatawan Indonesia sejak 2020. Tim kami berbasis langsung di Jepang." data-en="Japan travel specialist serving Indonesian travelers since 2020. Our team is based directly in Japan.">Japan travel specialist melayani wisatawan Indonesia sejak 2020. Tim kami berbasis langsung di Jepang.</p></div>
       <div class="footer-col"><h5 data-id="Paket" data-en="Packages">Paket</h5><a onclick="showPage('winter')">Winter Trip</a><a onclick="showPage('hokkaido')">Hokkaido Trip</a><a onclick="showPage('private')">Private Tour Guide</a><a style="opacity:.5;cursor:default" data-id="Autumn Trip 2026 (Segera)" data-en="Autumn Trip 2026 (Soon)">Autumn Trip 2026 (Segera)</a></div>
-      <div class="footer-col"><h5 data-id="Kontak" data-en="Contact">Kontak</h5><a>Instagram: @omen_said</a><a>WhatsApp: +81 80-9580-3259</a><a href="mailto:japan@omentrip.com">Email: japan@omentrip.com</a><a onclick="scrollToId('about')" data-id="Tentang Kami" data-en="About Us">Tentang Kami</a><a onclick="goToBooking(null)" data-id="Pesan Sekarang" data-en="Book Now">Pesan Sekarang</a></div>
+      <div class="footer-col"><h5 data-id="Kontak" data-en="Contact">Kontak</h5><a>Instagram: @omen_said</a><a>WhatsApp: +81 80-9580-3259</a><a href="mailto:japan@omentrip.com">Email: japan@omentrip.com</a><a onclick="scrollToId('about')" data-id="Tentang Kami" data-en="About Us">Tentang Kami</a><a onclick="showPage('galeri')" data-id="Foto &amp; Video Trip" data-en="Trip Photos &amp; Videos">Foto &amp; Video Trip</a><a onclick="goToBooking(null)" data-id="Pesan Sekarang" data-en="Book Now">Pesan Sekarang</a></div>
     </div>
     <div class="footer-bottom"><span>© 2025 Omen Trip. <span data-id="PT Omen Wisata Indonesia · Terdaftar di Indonesia." data-en="PT Omen Wisata Indonesia · Registered in Indonesia.">PT Omen Wisata Indonesia · Terdaftar di Indonesia.</span></span><span data-id="Made with care for Japan lovers" data-en="Made with care for Japan lovers">Made with care for Japan lovers</span></div>
   </div>
 </footer>
 </div><!-- end page-home -->
+
+<!-- PAGE GALERI AKSES -->
+<div class="page page-enter" id="page-galeri">
+  <div class="section-inner" style="padding:7.5rem 2rem 5rem;max-width:640px">
+    <div class="section-head" style="text-align:center;margin:0 auto 2.25rem">
+      <div class="section-tag" data-id="Layanan Eksklusif" data-en="Exclusive Service">Layanan Eksklusif</div>
+      <h1 class="section-title" data-id="Foto &amp; Video <em>Trip Anda</em>" data-en="Your Trip <em>Photos &amp; Videos</em>">Foto &amp; Video <em>Trip Anda</em></h1>
+      <p class="section-sub" style="margin:0 auto" data-id="Masukkan tanggal keberangkatan trip Anda untuk membuka folder Google Drive berisi foto dan video dokumentasi perjalanan." data-en="Enter your trip's departure date to open the Google Drive folder with your travel photo and video documentation.">Masukkan tanggal keberangkatan trip Anda untuk membuka folder Google Drive berisi foto dan video dokumentasi perjalanan.</p>
+    </div>
+
+    <div class="fg">
+      <label data-id="Tanggal Keberangkatan" data-en="Departure Date">Tanggal Keberangkatan</label>
+      <input type="date" id="galeri-tgl">
+    </div>
+    <button class="btn-form btn-form-primary" id="galeri-btn" onclick="cariGaleri()" data-id="Cari Folder Saya" data-en="Find My Folder">Cari Folder Saya</button>
+
+    <div id="galeri-result" class="galeri-result"></div>
+
+    <div style="margin-top:2.5rem;text-align:center">
+      <p class="fg-hint" style="margin-bottom:.6rem" data-id="Tidak menemukan foto Anda atau ada kendala? Hubungi kami langsung." data-en="Can't find your photos or running into an issue? Contact us directly.">Tidak menemukan foto Anda atau ada kendala? Hubungi kami langsung.</p>
+      <button class="btn-wa-small" style="max-width:260px;margin:0 auto" onclick="waGaleri()"><svg class="ico"><use href="#i-message"/></svg> WhatsApp</button>
+    </div>
+  </div>
+</div>
 
 <!-- PAGE WINTER -->
 <div class="page page-enter" id="page-winter">
@@ -1296,6 +1341,7 @@ const CFG = {
     publicKey: "FTjV4Xfya7eD-_JlA"
   },
   sheetsWebhook: "https://script.google.com/macros/s/AKfycby_lvNJhG85Y-SXlEPCdQ-jTpGS8Ub3X8g8q31ER19rRc2bPPPzUeM0kCdNPWeR3Lqf/exec",
+  driveLookup: "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE",
   paket: [
     {id:1,nama:"Winter Trip",durasi:"One Day Trip",harga:22000,teks:"¥22.000",uang:"JPY",dp:50},
     {id:2,nama:"Hokkaido Trip",durasi:"Open Private Trip",harga:13900000,teks:"Rp 13.900.000",uang:"IDR",dp:50},
@@ -1312,6 +1358,9 @@ let picked = null;
 let calViewYear = new Date().getFullYear();
 let calViewMonth = new Date().getMonth();
 let calSelectedISO = '';
+
+const galeriTglInput = document.getElementById('galeri-tgl');
+if (galeriTglInput) galeriTglInput.max = new Date().toISOString().slice(0,10);
 
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active','page-enter'));
@@ -1529,6 +1578,53 @@ function kirimSheet(o) {
 function tanyaWA(paket) {
   const msg = `Halo Omen Trip! Saya ingin menanyakan lebih lanjut tentang paket *${paket}*. Boleh minta info lengkapnya?`;
   window.open('https://wa.me/'+CFG.wa+'?text='+encodeURIComponent(msg),'_blank');
+}
+
+function waGaleri() {
+  const msg = 'Halo Omen Trip! Saya ingin menanyakan folder foto/video trip saya.';
+  window.open('https://wa.me/'+CFG.wa+'?text='+encodeURIComponent(msg),'_blank');
+}
+
+function cariGaleri() {
+  const tgl = document.getElementById('galeri-tgl').value;
+  const result = document.getElementById('galeri-result');
+  const btn = document.getElementById('galeri-btn');
+  const t = (id, en) => lang === 'id' ? id : en;
+
+  if (!tgl) {
+    result.className = 'galeri-result gr-empty';
+    result.textContent = t('Pilih tanggal keberangkatan terlebih dahulu.', 'Please select a departure date first.');
+    return;
+  }
+
+  if (!CFG.driveLookup || CFG.driveLookup === 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE') {
+    result.className = 'galeri-result gr-empty';
+    result.textContent = t('Layanan ini belum aktif. Hubungi kami via WhatsApp untuk mendapatkan foto & video Anda.', "This service isn't active yet. Contact us via WhatsApp to get your photos & videos.");
+    return;
+  }
+
+  result.className = 'galeri-result gr-loading';
+  result.textContent = t('Mencari folder Anda...', 'Looking up your folder...');
+  btn.disabled = true;
+
+  fetch(CFG.driveLookup + '?tanggal=' + encodeURIComponent(tgl))
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.found && typeof data.link === 'string' && /^https:\/\//.test(data.link)) {
+        result.className = 'galeri-result gr-found';
+        result.innerHTML = t('Folder Anda ditemukan!', 'Your folder was found!')
+          + `<br><a class="btn-drive" href="${escapeHtml(data.link)}" target="_blank" rel="noopener">`
+          + t('Buka Google Drive', 'Open Google Drive') + '</a>';
+      } else {
+        result.className = 'galeri-result gr-empty';
+        result.textContent = t('Folder untuk tanggal ini belum tersedia. Hubungi kami via WhatsApp.', 'No folder available for this date yet. Contact us via WhatsApp.');
+      }
+    })
+    .catch(() => {
+      result.className = 'galeri-result gr-empty';
+      result.textContent = t('Terjadi kendala saat memuat. Coba lagi atau hubungi kami via WhatsApp.', 'Something went wrong loading this. Try again or contact us via WhatsApp.');
+    })
+    .finally(() => { btn.disabled = false; });
 }
 
 function resetForm() {
