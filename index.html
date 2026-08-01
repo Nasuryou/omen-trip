@@ -1563,6 +1563,12 @@ function hMinusDate(tglISO, days) {
   return d.toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'});
 }
 
+// Peak season (Dec/Jan/Feb departures) gets a short H-7 window; other months get H-30.
+function reserveDeadlineDays(tglISO) {
+  const m = new Date(tglISO).getMonth(); // 0=Jan ... 11=Dec
+  return (m === 11 || m === 0 || m === 1) ? 7 : 30;
+}
+
 function resetBookingType() {
   bookingType = null;
   document.getElementById('bt-reserve').classList.remove('sel');
@@ -1587,10 +1593,11 @@ function chooseBookingType(type) {
   document.getElementById('bt-note-dp').style.display = type === 'dp' ? 'block' : 'none';
   if (type === 'reserve') {
     const tgl = document.getElementById('f-tgl').value;
-    const deadline = hMinusDate(tgl, 7);
+    const days = reserveDeadlineDays(tgl);
+    const deadline = hMinusDate(tgl, days);
     document.getElementById('bt-reserve-note').textContent = lang === 'id'
-      ? `Mohon konfirmasi & transfer DP paling lambat ${deadline} (H-7 sebelum keberangkatan), agar slot tidak dialihkan ke tamu lain.`
-      : `Please confirm & transfer the deposit by ${deadline} (7 days before departure), so your slot isn't released to another guest.`;
+      ? `Mohon konfirmasi & transfer DP paling lambat ${deadline} (H-${days} sebelum keberangkatan), agar slot tidak dialihkan ke tamu lain.`
+      : `Please confirm & transfer the deposit by ${deadline} (${days} days before departure), so your slot isn't released to another guest.`;
   }
 }
 
@@ -1625,7 +1632,8 @@ function kirimReservasi() {
   const cat = document.getElementById('f-catatan').value.trim();
   const tglFmt = tgl ? new Date(tgl).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}) : '-';
   const total = fmt(picked, jml);
-  const deadline = hMinusDate(tgl, 7);
+  const days = reserveDeadlineDays(tgl);
+  const deadline = hMinusDate(tgl, days);
   const tipe = 'Reservasi (Tanpa DP)';
   const msg = `Halo Omen Trip! Saya ingin booking slot dulu untuk paket berikut (belum bayar DP):\n\n*DETAIL BOOKING*\n• Tipe: ${tipe}\n• Nama: ${nama}\n• WhatsApp: ${wa}\n• Paket: ${picked.nama} (${picked.durasi})\n• Jumlah: ${jml} orang\n• Tgl Berangkat: ${tglFmt}\n• Estimasi Total: ${total}\n${cat?'\n*Catatan:* '+cat+'\n':''}\n_Mohon konfirmasi ketersediaan slot. Saya akan transfer DP paling lambat ${deadline}. Terima kasih!_`;
   window.open('https://wa.me/'+CFG.wa+'?text='+encodeURIComponent(msg),'_blank');
