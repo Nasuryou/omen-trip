@@ -932,7 +932,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
           <div class="fs-sep"></div>
           <div class="fs" id="fs2"><div class="fs-num">2</div><span class="fs-label" data-id="Data Diri" data-en="Your Info">Data Diri</span></div>
           <div class="fs-sep"></div>
-          <div class="fs" id="fs3"><div class="fs-num">3</div><span class="fs-label" data-id="Konfirmasi" data-en="Confirm">Konfirmasi</span></div>
+          <div class="fs" id="fs3"><div class="fs-num">3</div><span class="fs-label" data-id="Bayar DP" data-en="Pay Deposit">Bayar DP</span></div>
           <div class="fs-sep"></div>
           <div class="fs" id="fs4"><div class="fs-num">✓</div><span class="fs-label" data-id="Selesai" data-en="Done">Selesai</span></div>
         </div>
@@ -977,56 +977,27 @@ footer{background:var(--ink);color:rgba(255,255,255,.62);padding:3.5rem 2rem 2re
         </div>
         <div class="form-sec" id="fsec-3">
           <div id="sum-content"></div>
-          <div style="font-size:.82rem;font-weight:500;margin-bottom:.85rem" data-id="Pilih cara booking:" data-en="Choose how to book:">Pilih cara booking:</div>
-          <div class="form-pkg-grid">
-            <div class="form-pkg" id="bt-reserve" onclick="chooseBookingType('reserve')">
-              <div class="form-pkg-chk">✓</div>
-              <div class="form-pkg-name" data-id="Booking Dulu, Bayar Nanti" data-en="Reserve Now, Pay Later">Booking Dulu, Bayar Nanti</div>
-              <div class="form-pkg-dur" data-id="Amankan slot tanpa bayar dulu. Tim kami follow up untuk konfirmasi &amp; DP mendekati keberangkatan." data-en="Secure your slot without paying yet. Our team will follow up for confirmation &amp; deposit closer to departure.">Amankan slot tanpa bayar dulu. Tim kami follow up untuk konfirmasi &amp; DP mendekati keberangkatan.</div>
-            </div>
-            <div class="form-pkg" id="bt-dp" onclick="chooseBookingType('dp')">
-              <div class="form-pkg-chk">✓</div>
-              <div class="form-pkg-name" data-id="Booking + Bayar DP Sekarang" data-en="Book + Pay Deposit Now">Booking + Bayar DP Sekarang</div>
-              <div class="form-pkg-dur" data-id="Slot langsung terkonfirmasi begitu DP kami terima." data-en="Your slot is confirmed immediately once we receive the deposit.">Slot langsung terkonfirmasi begitu DP kami terima.</div>
-            </div>
+          <div class="bank-card">
+            <div class="bank-title" data-id="Transfer DP ke Rekening" data-en="Transfer Deposit to Account">Transfer DP ke Rekening</div>
+            <div class="bank-row"><span class="bk" data-id="Bank" data-en="Bank">Bank</span><span class="bv">Mandiri</span></div>
+            <div class="bank-row norek"><span class="bk" data-id="No. Rekening" data-en="Account No.">No. Rekening</span><span class="bv"><span id="b-norek">1360036647185</span><button class="copy-btn" onclick="copyNorek()" data-id="Salin" data-en="Copy">Salin</button></span></div>
+            <div class="bank-row"><span class="bk" data-id="Atas Nama" data-en="Account Name">Atas Nama</span><span class="bv">M Khittatul Rohman</span></div>
+            <div class="bank-row"><span class="bk" data-id="Nominal" data-en="Amount">Nominal</span><span class="bv" id="b-nominal" style="color:var(--ice-800)">-</span></div>
           </div>
-
-          <div id="bt-reserve-block" style="display:none">
-            <div class="bank-card">
-              <div class="bank-title" data-id="Slot Sementara Dipegang" data-en="Slot Temporarily Held">Slot Sementara Dipegang</div>
-              <p style="font-size:.79rem;color:var(--muted);line-height:1.7;margin:0" id="bt-reserve-note"></p>
-            </div>
-          </div>
-
-          <div id="bt-dp-block" style="display:none">
-            <div class="bank-card">
-              <div class="bank-title" data-id="Transfer DP ke Rekening" data-en="Transfer Deposit to Account">Transfer DP ke Rekening</div>
-              <div class="bank-row"><span class="bk" data-id="Bank" data-en="Bank">Bank</span><span class="bv">Mandiri</span></div>
-              <div class="bank-row norek"><span class="bk" data-id="No. Rekening" data-en="Account No.">No. Rekening</span><span class="bv"><span id="b-norek">1360036647185</span><button class="copy-btn" onclick="copyNorek()" data-id="Salin" data-en="Copy">Salin</button></span></div>
-              <div class="bank-row"><span class="bk" data-id="Atas Nama" data-en="Account Name">Atas Nama</span><span class="bv">M Khittatul Rohman</span></div>
-              <div class="bank-row"><span class="bk" data-id="Nominal" data-en="Amount">Nominal</span><span class="bv" id="b-nominal" style="color:var(--ice-800)">-</span></div>
-            </div>
-          </div>
-
+          <p style="font-size:.79rem;color:var(--muted);margin-bottom:1rem;line-height:1.7" data-id="Setelah transfer, klik tombol di bawah untuk konfirmasi ke WhatsApp kami." data-en="After transferring, click below to send confirmation to our WhatsApp.">Setelah transfer, klik tombol di bawah untuk konfirmasi ke WhatsApp kami.</p>
           <button class="btn-form btn-form-back" onclick="goStep(2)" data-id="← Kembali" data-en="← Back">← Kembali</button>
-          <button class="btn-form btn-form-wa" id="bt-submit-reserve" style="display:none" onclick="kirimReservasi()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            <span data-id="Kirim Booking ke WhatsApp" data-en="Send Reservation via WhatsApp">Kirim Booking ke WhatsApp</span>
-          </button>
-          <button class="btn-form btn-form-wa" id="bt-submit-dp" style="display:none" onclick="kirimWA()">
+          <button class="btn-form btn-form-wa" onclick="kirimWA()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             <span data-id="Kirim Konfirmasi ke WhatsApp" data-en="Send Confirmation via WhatsApp">Kirim Konfirmasi ke WhatsApp</span>
           </button>
-          <div class="form-note" id="bt-note-reserve" style="display:none" data-id="Tim kami akan menghubungi Anda untuk konfirmasi lebih lanjut." data-en="Our team will contact you for further confirmation.">Tim kami akan menghubungi Anda untuk konfirmasi lebih lanjut.</div>
-          <div class="form-note" id="bt-note-dp" style="display:none" data-id="Sertakan foto bukti transfer saat mengirim pesan WA." data-en="Attach transfer proof when sending WA message.">Sertakan foto bukti transfer saat mengirim pesan WA.</div>
+          <div class="form-note" data-id="Sertakan foto bukti transfer saat mengirim pesan WA." data-en="Attach transfer proof when sending WA message.">Sertakan foto bukti transfer saat mengirim pesan WA.</div>
         </div>
         <div class="form-sec" id="fsec-4">
           <div class="success-wrap">
             <div class="success-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1a3a52" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
             <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;margin-bottom:.5rem" data-id="Pesanan Terkirim!" data-en="Order Sent!">Pesanan Terkirim!</h3>
             <p style="color:var(--muted);font-size:.85rem" data-id="Tim Omen Trip akan segera menghubungi Anda via WhatsApp." data-en="The Omen Trip team will contact you shortly via WhatsApp.">Tim Omen Trip akan segera menghubungi Anda via WhatsApp.</p>
-            <div class="next-steps" id="next-steps-dp"><h4 data-id="Langkah Selanjutnya:" data-en="Next Steps:">Langkah Selanjutnya:</h4><ol><li data-id="Transfer DP sesuai nominal" data-en="Transfer the deposit as specified">Transfer DP sesuai nominal</li><li data-id="Kirim bukti transfer via WA" data-en="Send transfer proof via WhatsApp">Kirim bukti transfer via WA</li><li data-id="Tunggu konfirmasi maks. 24 jam" data-en="Wait for confirmation (max. 24 hours)">Tunggu konfirmasi maks. 24 jam</li><li data-id="Selamat menikmati Jepang!" data-en="Enjoy Japan!">Selamat menikmati Jepang!</li></ol></div>
-            <div class="next-steps" id="next-steps-reserve" style="display:none"><h4 data-id="Langkah Selanjutnya:" data-en="Next Steps:">Langkah Selanjutnya:</h4><ol><li data-id="Tim kami akan menghubungi Anda untuk konfirmasi" data-en="Our team will contact you to confirm">Tim kami akan menghubungi Anda untuk konfirmasi</li><li data-id="Transfer DP sebelum batas waktu yang diinformasikan" data-en="Transfer the deposit before the informed deadline">Transfer DP sebelum batas waktu yang diinformasikan</li><li data-id="Slot terkonfirmasi penuh setelah DP diterima" data-en="Slot is fully confirmed once the deposit is received">Slot terkonfirmasi penuh setelah DP diterima</li><li data-id="Selamat menikmati Jepang!" data-en="Enjoy Japan!">Selamat menikmati Jepang!</li></ol></div>
+            <div class="next-steps"><h4 data-id="Langkah Selanjutnya:" data-en="Next Steps:">Langkah Selanjutnya:</h4><ol><li data-id="Transfer DP sesuai nominal" data-en="Transfer the deposit as specified">Transfer DP sesuai nominal</li><li data-id="Kirim bukti transfer via WA" data-en="Send transfer proof via WhatsApp">Kirim bukti transfer via WA</li><li data-id="Tunggu konfirmasi maks. 24 jam" data-en="Wait for confirmation (max. 24 hours)">Tunggu konfirmasi maks. 24 jam</li><li data-id="Selamat menikmati Jepang!" data-en="Enjoy Japan!">Selamat menikmati Jepang!</li></ol></div>
             <button class="btn-form btn-form-primary" style="max-width:200px;margin:0 auto;display:block" onclick="resetForm()" data-id="Pesan Lagi" data-en="Book Again">Pesan Lagi</button>
           </div>
         </div>
@@ -1384,7 +1355,6 @@ if (window.emailjs && CFG.emailjs.publicKey !== "YOUR_EMAILJS_PUBLIC_KEY") {
 
 let lang = 'id';
 let picked = null;
-let bookingType = null;
 let calViewYear = new Date().getFullYear();
 let calViewMonth = new Date().getMonth();
 let calSelectedISO = '';
@@ -1519,7 +1489,6 @@ function goStep(n) {
     }
     if (!checkWinterDate(tgl)) return;
     renderSum();
-    resetBookingType();
   }
   document.querySelectorAll('.form-sec').forEach(s => s.classList.remove('active'));
   document.getElementById('fsec-'+n).classList.add('active');
@@ -1557,61 +1526,6 @@ function copyNorek() {
   });
 }
 
-function hMinusDate(tglISO, days) {
-  const d = new Date(tglISO);
-  d.setDate(d.getDate() - days);
-  return d.toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'});
-}
-
-// Peak season (Dec/Jan/Feb departures) gets a short H-7 window; other months get H-30.
-function reserveDeadlineDays(tglISO) {
-  const m = new Date(tglISO).getMonth(); // 0=Jan ... 11=Dec
-  return (m === 11 || m === 0 || m === 1) ? 7 : 30;
-}
-
-function hMinusISO(tglISO, days) {
-  const d = new Date(tglISO);
-  d.setDate(d.getDate() - days);
-  return d.toISOString().slice(0, 10);
-}
-
-function resetBookingType() {
-  bookingType = null;
-  document.getElementById('bt-reserve').classList.remove('sel');
-  document.getElementById('bt-dp').classList.remove('sel');
-  document.getElementById('bt-reserve-block').style.display = 'none';
-  document.getElementById('bt-dp-block').style.display = 'none';
-  document.getElementById('bt-submit-reserve').style.display = 'none';
-  document.getElementById('bt-submit-dp').style.display = 'none';
-  document.getElementById('bt-note-reserve').style.display = 'none';
-  document.getElementById('bt-note-dp').style.display = 'none';
-}
-
-function chooseBookingType(type) {
-  bookingType = type;
-  document.getElementById('bt-reserve').classList.toggle('sel', type === 'reserve');
-  document.getElementById('bt-dp').classList.toggle('sel', type === 'dp');
-  document.getElementById('bt-reserve-block').style.display = type === 'reserve' ? 'block' : 'none';
-  document.getElementById('bt-dp-block').style.display = type === 'dp' ? 'block' : 'none';
-  document.getElementById('bt-submit-reserve').style.display = type === 'reserve' ? 'flex' : 'none';
-  document.getElementById('bt-submit-dp').style.display = type === 'dp' ? 'flex' : 'none';
-  document.getElementById('bt-note-reserve').style.display = type === 'reserve' ? 'block' : 'none';
-  document.getElementById('bt-note-dp').style.display = type === 'dp' ? 'block' : 'none';
-  if (type === 'reserve') {
-    const tgl = document.getElementById('f-tgl').value;
-    const days = reserveDeadlineDays(tgl);
-    const deadline = hMinusDate(tgl, days);
-    document.getElementById('bt-reserve-note').textContent = lang === 'id'
-      ? `Mohon konfirmasi & transfer DP paling lambat ${deadline} (H-${days} sebelum keberangkatan), agar slot tidak dialihkan ke tamu lain.`
-      : `Please confirm & transfer the deposit by ${deadline} (${days} days before departure), so your slot isn't released to another guest.`;
-  }
-}
-
-function showNextSteps(type) {
-  document.getElementById('next-steps-dp').style.display = type === 'dp' ? 'block' : 'none';
-  document.getElementById('next-steps-reserve').style.display = type === 'reserve' ? 'block' : 'none';
-}
-
 function kirimWA() {
   const nama = document.getElementById('f-nama').value.trim();
   const wa = document.getElementById('f-wa').value.trim();
@@ -1621,32 +1535,10 @@ function kirimWA() {
   const tglFmt = tgl ? new Date(tgl).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}) : '-';
   const total = fmt(picked, jml);
   const dp = fmtDP(picked, jml);
-  const tipe = 'Booking + Bayar DP';
-  const msg = `Halo Omen Trip! Saya ingin konfirmasi pesanan:\n\n*DETAIL PESANAN*\n• Tipe: ${tipe}\n• Nama: ${nama}\n• WhatsApp: ${wa}\n• Paket: ${picked.nama} (${picked.durasi})\n• Jumlah: ${jml} orang\n• Tgl Berangkat: ${tglFmt}\n• Total: ${total}\n${cat?'\n*Catatan:* '+cat+'\n':''}\n*PEMBAYARAN DP (${picked.dp}%)*\n• Jumlah DP: ${dp}\n• Transfer ke: Mandiri – 1360036647185 a/n M Khittatul Rohman\n\n_Bukti transfer segera saya kirimkan. Terima kasih!_`;
+  const msg = `Halo Omen Trip! Saya ingin konfirmasi pesanan:\n\n*DETAIL PESANAN*\n• Nama: ${nama}\n• WhatsApp: ${wa}\n• Paket: ${picked.nama} (${picked.durasi})\n• Jumlah: ${jml} orang\n• Tgl Berangkat: ${tglFmt}\n• Total: ${total}\n${cat?'\n*Catatan:* '+cat+'\n':''}\n*PEMBAYARAN DP (${picked.dp}%)*\n• Jumlah DP: ${dp}\n• Transfer ke: Mandiri – 1360036647185 a/n M Khittatul Rohman\n\n_Bukti transfer segera saya kirimkan. Terima kasih!_`;
   window.open('https://wa.me/'+CFG.wa+'?text='+encodeURIComponent(msg),'_blank');
-  kirimEmail({nama, wa, jml, tglFmt, total, dp, cat, tipe});
-  kirimSheet({nama, wa, jml, tgl, total, dp, cat, tipe});
-  showNextSteps('dp');
-  setTimeout(() => goStep(4), 600);
-}
-
-function kirimReservasi() {
-  const nama = document.getElementById('f-nama').value.trim();
-  const wa = document.getElementById('f-wa').value.trim();
-  const jml = parseInt(document.getElementById('f-jml').value);
-  const tgl = document.getElementById('f-tgl').value;
-  const cat = document.getElementById('f-catatan').value.trim();
-  const tglFmt = tgl ? new Date(tgl).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}) : '-';
-  const total = fmt(picked, jml);
-  const days = reserveDeadlineDays(tgl);
-  const deadline = hMinusDate(tgl, days);
-  const deadlineISO = hMinusISO(tgl, days);
-  const tipe = 'Reservasi (Tanpa DP)';
-  const msg = `Halo Omen Trip! Saya ingin booking slot dulu untuk paket berikut (belum bayar DP):\n\n*DETAIL BOOKING*\n• Tipe: ${tipe}\n• Nama: ${nama}\n• WhatsApp: ${wa}\n• Paket: ${picked.nama} (${picked.durasi})\n• Jumlah: ${jml} orang\n• Tgl Berangkat: ${tglFmt}\n• Estimasi Total: ${total}\n${cat?'\n*Catatan:* '+cat+'\n':''}\n_Mohon konfirmasi ketersediaan slot. Saya akan transfer DP paling lambat ${deadline}. Terima kasih!_`;
-  window.open('https://wa.me/'+CFG.wa+'?text='+encodeURIComponent(msg),'_blank');
-  kirimEmail({nama, wa, jml, tglFmt, total, dp:'-', cat, tipe});
-  kirimSheet({nama, wa, jml, tgl, total, dp:'-', cat, tipe, batasKonfirmasiISO: deadlineISO});
-  showNextSteps('reserve');
+  kirimEmail({nama, wa, jml, tglFmt, total, dp, cat});
+  kirimSheet({nama, wa, jml, tgl, total, dp, cat});
   setTimeout(() => goStep(4), 600);
 }
 
@@ -1661,8 +1553,7 @@ function kirimEmail(o) {
     tanggal: o.tglFmt,
     total: o.total,
     dp: o.dp,
-    catatan: o.cat || '-',
-    tipe_booking: o.tipe || '-'
+    catatan: o.cat || '-'
   }).catch(err => console.error('EmailJS gagal mengirim:', err));
 }
 
@@ -1678,9 +1569,7 @@ function kirimSheet(o) {
       hargaSatuan: picked.harga,
       jumlah: o.jml,
       tanggalISO: o.tgl,
-      catatan: o.cat || '-',
-      tipeBooking: o.tipe || '-',
-      batasKonfirmasiISO: o.batasKonfirmasiISO || ''
+      catatan: o.cat || '-'
     })
   }).catch(err => console.error('Gagal mencatat ke Google Sheets:', err));
 }
@@ -1744,7 +1633,6 @@ function resetForm() {
   ['f-nama','f-wa','f-catatan'].forEach(id => document.getElementById(id).value = '');
   ['f-jml','f-tgl'].forEach(id => document.getElementById(id).value = '');
   applyDateRule();
-  resetBookingType();
   goStep(1);
 }
 
