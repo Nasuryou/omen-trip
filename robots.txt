@@ -4,5 +4,7 @@ Allow: /
 # Private preview — keep out of search engines
 Disallow: /premium.html
 Disallow: /premium-assets/
+# Source-only copy of the Apps Script webhook — not part of the live site
+Disallow: /apps-script/
 
 Sitemap: https://omentrip.com/sitemap.xml

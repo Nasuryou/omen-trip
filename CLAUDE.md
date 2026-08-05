@@ -11,13 +11,14 @@ Omen Trip is the marketing/booking website for a Japan travel agency (Indonesian
 - `index.html` — the whole live site: all CSS (in a `<style>` block in `<head>`), all markup, and all JS (in a `<script>` block at the end of `<body>`).
 - `premium.html` — a standalone redesign preview, **not linked from `index.html` and not part of the live site's navigation**. Kept out of search indexing via `robots.txt` and its own `<meta name="robots" content="noindex, nofollow">`. Unlike `index.html`, it's a single-scroll landing page (no `showPage`/multi-step booking form) with its own inline `setLang`/`reserve`/`toggleFaq` JS, and it references images via **relative paths into `premium-assets/`** rather than the `raw.githubusercontent.com` convention below. Treat it as an isolated file — don't assume changes to `index.html` conventions apply here or vice versa.
 - `premium-assets/` — `.webp` images used only by `premium.html`.
+- `apps-script/` — source-only copy of the Google Apps Script webhook that receives bookings (`booking-webhook.gs`) plus its deploy/troubleshooting guide (`README.md`). **Nothing here executes on the live site** — the running copy lives in the owner's Google account (`japan@omentrip.com`); this is version control for it. See "Booking → Google Sheets" below.
 - `*.jpg` / `*.jpeg` / `*.JPG` / `*.png` — trip photos referenced by `index.html`, stored at the repo root.
 - `Omen-Trip-Company-Profile.pdf` — a static company profile document, linked directly from the site.
 - `CNAME` — GitHub Pages custom domain config (`omentrip.com`).
 - `sitemap.xml` — SEO sitemap for the anchor-based sections on the home page.
-- `robots.txt` — allows crawling of the live site but disallows `/premium.html` and `/premium-assets/`.
+- `robots.txt` — allows crawling of the live site but disallows `/premium.html`, `/premium-assets/`, and `/apps-script/`.
 
-There is no `src/`, no shared `assets/` folder for the live site, no config files — everything lives flat at the repo root.
+Apart from `premium-assets/` and `apps-script/`, there is no `src/`, no shared `assets/` folder for the live site, and no config files — everything lives flat at the repo root.
 
 ## Development workflow
 
@@ -58,10 +59,21 @@ Package data (name, duration, price, currency, deposit %) lives in a single JS o
 - `pickPkg(id)` — select a package (looks it up in `CFG.paket`).
 - `goStep(n)` — advance/validate the 4-step form (package → personal info → deposit payment info → done), toggling `.form-sec` / `.fs` (step indicator) elements.
 - `renderSum()` / `fmt()` / `fmtDP()` — compute and render the order summary and deposit amount (JPY prices formatted `ja-JP`, IDR prices formatted `id-ID`).
-- `kirimWA()` — the submit action for step 3. It builds a formatted order message and opens `wa.me/<CFG.wa>?text=...` (WhatsApp) so the customer confirms the booking directly with the team, then fires two best-effort side notifications in parallel: `kirimEmail()` (EmailJS, via `CFG.emailjs.{serviceId,templateId,publicKey}`, guarded by a check that the public key isn't still the `"YOUR_EMAILJS_PUBLIC_KEY"` placeholder) and `kirimSheet()` (a `fetch(CFG.sheetsWebhook, {mode:'no-cors', ...})` POST to a Google Apps Script webhook that logs the order to a Google Sheet). Both are fire-and-forget — errors are only `console.error`'d, never surfaced to the user, and WhatsApp remains the real confirmation channel; there is still no real backend/database.
+- `kirimWA()` — the submit action for step 3. It builds a formatted order message, fires two best-effort side notifications — `kirimSheet()` and `kirimEmail()` (EmailJS, via `CFG.emailjs.{serviceId,templateId,publicKey}`, guarded by a check that the public key isn't still the `"YOUR_EMAILJS_PUBLIC_KEY"` placeholder) — and only *then* opens `wa.me/<CFG.wa>?text=...` so the customer confirms the booking directly with the team. **Keep that order**: on mobile, opening the `wa.me` link backgrounds the tab and can cancel a request that hasn't left yet. Both notifications are fire-and-forget — errors are only `console.error`'d, never surfaced to the user, and WhatsApp remains the real confirmation channel; there is still no real backend/database.
 - `tanyaWA(paket)` — same pattern as `kirimWA` but simpler: just a "ask about this package" WhatsApp deep link from a detail page sidebar (no email/sheet logging).
 
 If you change a package's price or name, update it in `CFG.paket` (used by the booking form) **and** in the corresponding hardcoded display copy in the packages grid / detail page / sidebar — these are not currently derived from a single source of truth.
+
+## Booking → Google Sheets (`kirimSheet` + `CFG.sheetsWebhook`)
+
+`kirimSheet()` POSTs the order as JSON to `CFG.sheetsWebhook`, a Google Apps Script web app that writes it into **two** spreadsheets owned by `japan@omentrip.com`: `Customer_Recap_Data` (sheet `Data Tamu & Pembayaran` — the working recap) and `Omen Trip - Data Pesanan` (sheet `Bookings` — the raw log). One deployment, two destinations; the script's source is checked in at `apps-script/booking-webhook.gs`.
+
+Two rules keep this working — both have broken it in the past:
+
+- **The payload is a superset, on purpose.** It carries raw values (`jumlah`, `hargaSatuan`, `mataUang`, `tanggalISO`, `totalAngka`, `dpAngka`) *and* pre-formatted display strings (`tanggal`, `total`, `dp`). The recap sheet needs real numbers and dates; the `Bookings` log stores the formatted text verbatim. Adding a field is safe; **renaming or removing one silently blanks the matching spreadsheet columns**, because the script reads by field name and never sees an error.
+- **Redeploying must reuse the existing deployment.** In Apps Script, `Deploy → Manage deployments → ✏️ Edit → Version: New version` keeps the same `/exec` URL. Choosing `New deployment` mints a *new* URL and silently orphans the one in `CFG.sheetsWebhook`. Access must be **"Anyone"**, not "Anyone with a Google account".
+
+The request is sent via `navigator.sendBeacon` (with a `fetch(..., {mode:'no-cors', keepalive:true})` fallback) so it survives the tab being backgrounded by the WhatsApp hand-off. `no-cors`/beacon means the response is unreadable by design — **failures are invisible in the browser**. To verify a change actually lands, check the Apps Script **Executions** log, not the browser console. `apps-script/README.md` has the full deploy and troubleshooting checklist.
 
 ## Trip photo/video access (`page-galeri`)
 
