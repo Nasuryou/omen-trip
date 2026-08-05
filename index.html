@@ -1340,7 +1340,7 @@ const CFG = {
     templateId: "template_lwzb29g",
     publicKey: "FTjV4Xfya7eD-_JlA"
   },
-  sheetsWebhook: "https://script.google.com/macros/s/AKfycby0qTtZ1qpCg_3OAt2WQuUJb_GbplIOkPgy0q105Xy4lEDGwrDeYY0_wjnuTntpsvr3Wg/exec",
+  sheetsWebhook: "https://script.google.com/macros/s/AKfycbyK37IbUwyTILAaz3tyEi1iBp1qw7M043_F0965Lfkr06RpudMLZHWRGvKSasWNW9QBvg/exec",
   driveLookup: "https://script.google.com/macros/s/AKfycbztcbgvEziXlfx-QTneZZ934B9r6XKprbUqlRy0RkQY2JZcVK5vLruoZL8BQi2ayUak/exec",
   paket: [
     {id:1,nama:"Winter Trip",durasi:"One Day Trip",harga:22000,teks:"¥22.000",uang:"JPY",dp:50},
@@ -1536,9 +1536,11 @@ function kirimWA() {
   const total = fmt(picked, jml);
   const dp = fmtDP(picked, jml);
   const msg = `Halo Omen Trip! Saya ingin konfirmasi pesanan:\n\n*DETAIL PESANAN*\n• Nama: ${nama}\n• WhatsApp: ${wa}\n• Paket: ${picked.nama} (${picked.durasi})\n• Jumlah: ${jml} orang\n• Tgl Berangkat: ${tglFmt}\n• Total: ${total}\n${cat?'\n*Catatan:* '+cat+'\n':''}\n*PEMBAYARAN DP (${picked.dp}%)*\n• Jumlah DP: ${dp}\n• Transfer ke: Mandiri – 1360036647185 a/n M Khittatul Rohman\n\n_Bukti transfer segera saya kirimkan. Terima kasih!_`;
-  window.open('https://wa.me/'+CFG.wa+'?text='+encodeURIComponent(msg),'_blank');
+  // Catat dulu, buka WhatsApp belakangan: di HP, membuka wa.me langsung
+  // membuat tab ini ke background dan bisa membatalkan request yang belum terkirim.
+  kirimSheet({nama, wa, jml, tgl, tglFmt, total, dp, cat});
   kirimEmail({nama, wa, jml, tglFmt, total, dp, cat});
-  kirimSheet({nama, wa, jml, tgl, total, dp, cat});
+  window.open('https://wa.me/'+CFG.wa+'?text='+encodeURIComponent(msg),'_blank');
   setTimeout(() => goStep(4), 600);
 }
 
@@ -1557,21 +1559,40 @@ function kirimEmail(o) {
   }).catch(err => console.error('EmailJS gagal mengirim:', err));
 }
 
+// Payload untuk Apps Script di apps-script/booking-webhook.gs. Sengaja mengirim
+// nilai mentah DAN nilai terformat: script penerima boleh memakai yang mana pun,
+// jadi mengubah tampilan di sini tidak lagi mengosongkan kolom di spreadsheet.
 function kirimSheet(o) {
-  if (!CFG.sheetsWebhook) return;
-  fetch(CFG.sheetsWebhook, {
-    method: 'POST',
-    mode: 'no-cors',
-    body: JSON.stringify({
-      nama: o.nama,
-      whatsapp: o.wa,
-      paket: picked.nama,
-      hargaSatuan: picked.harga,
-      jumlah: o.jml,
-      tanggalISO: o.tgl,
-      catatan: o.cat || '-'
-    })
-  }).catch(err => console.error('Gagal mencatat ke Google Sheets:', err));
+  if (!CFG.sheetsWebhook || CFG.sheetsWebhook === 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE') return;
+  const jml = Number(o.jml) || 0;
+  const totalAngka = picked.harga * jml;
+  const body = JSON.stringify({
+    // Mentah — dipakai untuk menulis angka & tanggal asli ke Customer_Recap_Data.
+    nama: o.nama,
+    whatsapp: o.wa,
+    paket: picked.nama,
+    durasi: picked.durasi,
+    jumlah: jml,
+    hargaSatuan: picked.harga,
+    mataUang: picked.uang,
+    dpPersen: picked.dp,
+    totalAngka: totalAngka,
+    dpAngka: Math.round(totalAngka * picked.dp / 100),
+    tanggalISO: o.tgl,
+    catatan: o.cat || '-',
+    // Terformat — dipakai apa adanya oleh log "Omen Trip - Data Pesanan".
+    tanggal: o.tglFmt,
+    total: o.total,
+    dp: o.dp
+  });
+  // sendBeacon dijamin browser tetap terkirim walau halaman langsung ditinggalkan
+  // ke WhatsApp; text/plain menghindari preflight CORS yang ditolak Apps Script.
+  try {
+    const blob = new Blob([body], {type: 'text/plain;charset=UTF-8'});
+    if (navigator.sendBeacon && navigator.sendBeacon(CFG.sheetsWebhook, blob)) return;
+  } catch (e) { /* lanjut ke fetch di bawah */ }
+  fetch(CFG.sheetsWebhook, {method: 'POST', mode: 'no-cors', keepalive: true, body: body})
+    .catch(err => console.error('Gagal mencatat ke Google Sheets:', err));
 }
 
 function tanyaWA(paket) {
