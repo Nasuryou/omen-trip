@@ -19,6 +19,12 @@ var REKAP_SHEET = 'Data Tamu & Pembayaran';
 var LOG_ID      = '1yKO-rJJvotdqTi-UePvaPK-ESN2GUouScGWhY2lxelE';
 var LOG_SHEET   = 'Bookings';
 
+// Naikkan setiap kali kode ini diubah. doGet menampilkannya, jadi dengan
+// membuka URL /exec di browser langsung terlihat apakah deployment live sudah
+// memakai kode terbaru — tesWebhook di editor selalu menjalankan kode editor,
+// bukan versi yang di-deploy, sehingga tidak bisa membuktikan hal itu.
+var VERSI = '2026-09-28-utc';
+
 // ---------------------------------------------------------------------------
 // Entry point
 // ---------------------------------------------------------------------------
@@ -30,6 +36,7 @@ var LOG_SHEET   = 'Bookings';
 function doGet() {
   return json({
     ok: true,
+    versi: VERSI,
     pesan: 'Webhook Omen Trip aktif. Booking dikirim lewat POST.',
     tujuan: [REKAP_SHEET, LOG_SHEET]
   });
@@ -44,7 +51,7 @@ function doPost(e) {
     return json({ok: false, error: 'Payload bukan JSON: ' + err});
   }
 
-  var hasil = {ok: true, rekap: null, log: null};
+  var hasil = {ok: true, versi: VERSI, rekap: null, log: null};
 
   // Dua tujuan ditulis terpisah supaya satu spreadsheet bermasalah
   // tidak ikut menggagalkan pencatatan ke spreadsheet yang lain.

@@ -48,9 +48,18 @@ Script di akun Google `japan@omentrip.com`.
 6. **Tes dari editor:** pilih fungsi `tesWebhook` di dropdown atas, klik `Run`.
    Harus muncul satu baris "TES WEBHOOK — hapus baris ini" di **kedua**
    spreadsheet. Hapus baris tes itu setelah dicek.
-7. **Tes deployment-nya hidup:** buka URL `/exec` langsung di browser. Harus
-   muncul `{"ok":true,"pesan":"Webhook Omen Trip aktif...` — kalau yang muncul
-   halaman login Google, berarti `Who has access` masih salah (ulangi langkah 5).
+7. **Tes deployment-nya hidup DAN memakai kode terbaru:** buka URL `/exec`
+   langsung di browser. Harus muncul `{"ok":true,"versi":"...",...}` dengan
+   `versi` **sama persis** dengan `var VERSI` di bagian atas script.
+   - Muncul halaman login Google → `Who has access` masih salah (ulangi langkah 5).
+   - `versi` tidak ada / beda → deployment masih menjalankan versi lama.
+     Ulangi langkah 5 dan pastikan memilih **New version**, pada deployment
+     yang URL-nya sama dengan `CFG.sheetsWebhook` di `index.html`.
+
+   ⚠️ `tesWebhook` (langkah 6) selalu menjalankan kode yang ada **di editor**,
+   bukan versi yang di-deploy. Jadi `tesWebhook` bisa benar sementara booking
+   dari website masih salah. Hanya cek `versi` di langkah ini yang membuktikan
+   website sudah memakai kode terbaru.
 8. Kalau URL `/exec`-nya berubah (karena membuat deployment baru), update
    `CFG.sheetsWebhook` di `index.html` dengan URL yang baru.
 
