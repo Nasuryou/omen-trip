@@ -206,11 +206,19 @@ function opsiDropdown(sh, baris, kolom, awalan) {
   return awalan;
 }
 
-/** "2026-12-25" → Date jam 12 siang, supaya tidak geser hari karena timezone. */
+/**
+ * "2026-12-25" → Date jam 12 siang UTC. Dikunci ke UTC (bukan zona waktu
+ * proyek script) supaya tanggal yang tersimpan tidak bergantung pada zona
+ * waktu proyek Apps Script vs. zona waktu spreadsheet — kalau keduanya beda
+ * cukup jauh, Date yang dibuat di zona waktu lokal bisa tampil mundur/maju
+ * satu hari saat dirender Sheets. Jam 12 siang UTC aman untuk zona waktu
+ * manapun yang dipakai kedua belah pihak (Indonesia/Jepang jauh dari batas
+ * ±12 jam ke UTC).
+ */
 function tanggalDari(iso) {
   var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ''));
   if (!m) return iso || '';
-  return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]), 12, 0, 0);
+  return new Date(Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3]), 12, 0, 0));
 }
 
 function angka(v) {
