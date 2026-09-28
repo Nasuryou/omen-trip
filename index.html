@@ -1850,47 +1850,56 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') showLb(lbIdx - 1);
 });
 
-/* ============ WINTER TRIP: tanggal hanya 19 Des - 28 Feb ============ */
+/* ============ WINTER TRIP: hanya tanggal keberangkatan yang dibuka ============ */
+/* Akhir pekan & hari libur musim 2026/2027. Musim berikutnya: tambahkan tanggalnya di sini. */
+const WINTER_DATES = [
+  '2026-12-27', '2026-12-28', '2026-12-29', '2026-12-30', '2026-12-31',
+  '2027-01-02', '2027-01-03', '2027-01-09', '2027-01-10', '2027-01-11',
+  '2027-01-16', '2027-01-17', '2027-01-23', '2027-01-24', '2027-01-30', '2027-01-31',
+  '2027-02-06', '2027-02-07', '2027-02-11', '2027-02-12', '2027-02-13', '2027-02-14',
+  '2027-02-20', '2027-02-21', '2027-02-27', '2027-02-28'
+];
 function isoDate(d) {
   const m = String(d.getMonth() + 1).padStart(2, '0');
   const day = String(d.getDate()).padStart(2, '0');
   return d.getFullYear() + '-' + m + '-' + day;
 }
-/* Menentukan musim dingin yang masih berlaku, otomatis tiap tahun. */
-function winterWindow() {
-  const today = new Date(); today.setHours(0, 0, 0, 0);
-  const tomorrow = new Date(today);
-  tomorrow.setDate(today.getDate() + 1);
-  const y = tomorrow.getFullYear();
-  let start = new Date(y - 1, 11, 19);   /* 19 Des tahun lalu */
-  let end   = new Date(y, 1, 28);        /* 28 Feb tahun ini  */
-  if (tomorrow > end) {                  /* musim itu sudah lewat -> ambil musim berikutnya */
-    start = new Date(y, 11, 19);
-    end   = new Date(y + 1, 1, 28);
-  }
-  return { min: (tomorrow > start ? tomorrow : start), max: end };
+function parseISO(iso) {
+  const [Y, M, D] = iso.split('-').map(Number);
+  return new Date(Y, M - 1, D);
+}
+/* Tanggal Winter Trip yang masih bisa dipesan (mulai besok). */
+function winterDates() {
+  const tomorrow = new Date(); tomorrow.setHours(0, 0, 0, 0);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const t = isoDate(tomorrow);
+  return WINTER_DATES.filter(iso => iso >= t);
 }
 function fmtTgl(d) {
   return d.toLocaleDateString(lang === 'id' ? 'id-ID' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 }
-/* Pengaman: tolak tanggal di luar musim meski state ditembus manual. */
+/* Pengaman: tolak tanggal yang tidak dibuka meski state ditembus manual. */
 function checkWinterDate(tgl) {
   if (!picked || picked.id !== 1) return true;
-  const w = winterWindow();
-  if (tgl >= isoDate(w.min) && tgl <= isoDate(w.max)) return true;
+  if (winterDates().includes(tgl)) return true;
   alert(lang === 'id'
-    ? 'Winter Trip hanya tersedia ' + fmtTgl(w.min) + ' sampai ' + fmtTgl(w.max) + '.\nSilakan pilih tanggal dalam rentang tersebut.'
-    : 'Winter Trip is only available ' + fmtTgl(w.min) + ' to ' + fmtTgl(w.max) + '.\nPlease choose a date within this range.');
+    ? 'Tanggal ini tidak tersedia untuk Winter Trip.\nSilakan pilih salah satu tanggal yang aktif di kalender (akhir pekan & hari libur).'
+    : 'This date is not available for Winter Trip.\nPlease choose one of the active dates on the calendar (weekends & holidays).');
   return false;
 }
 
-/* ============ CUSTOM CALENDAR — hari di luar rentang tidak bisa diklik ============ */
+/* ============ CUSTOM CALENDAR — hari yang tidak dibuka tidak bisa diklik ============ */
 function calBounds() {
   if (picked && picked.id === 1) {           /* 1 = Winter Trip */
-    const w = winterWindow();
-    return { min: w.min, max: w.max, restricted: true };
+    const dates = winterDates();
+    return {
+      min: dates.length ? parseISO(dates[0]) : null,
+      max: dates.length ? parseISO(dates[dates.length - 1]) : null,
+      allowed: new Set(dates),
+      restricted: true
+    };
   }
-  return { min: null, max: null, restricted: false };
+  return { min: null, max: null, allowed: null, restricted: false };
 }
 
 function toggleCal(e) {
@@ -1931,7 +1940,7 @@ function renderCal() {
 
   const prevBtn = document.getElementById('cal-prev');
   const nextBtn = document.getElementById('cal-next');
-  if (bounds.restricted) {
+  if (bounds.restricted && bounds.min) {
     prevBtn.disabled = calViewYear === bounds.min.getFullYear() && calViewMonth === bounds.min.getMonth();
     nextBtn.disabled = calViewYear === bounds.max.getFullYear() && calViewMonth === bounds.max.getMonth();
   } else {
@@ -1943,8 +1952,6 @@ function renderCal() {
   const firstDay = new Date(calViewYear, calViewMonth, 1).getDay();
   const daysInMonth = new Date(calViewYear, calViewMonth + 1, 0).getDate();
   const todayISO = isoDate(new Date());
-  const minISO = bounds.restricted ? isoDate(bounds.min) : null;
-  const maxISO = bounds.restricted ? isoDate(bounds.max) : null;
 
   for (let i = 0; i < firstDay; i++) {
     grid.insertAdjacentHTML('beforeend', '<span class="cal-day empty"></span>');
@@ -1952,7 +1959,7 @@ function renderCal() {
   for (let d = 1; d <= daysInMonth; d++) {
     const dateObj = new Date(calViewYear, calViewMonth, d);
     const iso = isoDate(dateObj);
-    const disabled = bounds.restricted && (iso < minISO || iso > maxISO);
+    const disabled = bounds.restricted && !bounds.allowed.has(iso);
     const classes = ['cal-day'];
     if (disabled) classes.push('disabled');
     if (iso === todayISO) classes.push('today');
@@ -1984,15 +1991,23 @@ function applyDateRule() {
   calSelectedISO = document.getElementById('f-tgl').value || '';
   const bounds = calBounds();
   if (bounds.restricted) {
-    if (calSelectedISO && (calSelectedISO < isoDate(bounds.min) || calSelectedISO > isoDate(bounds.max))) {
+    if (calSelectedISO && !bounds.allowed.has(calSelectedISO)) {
       calSelectedISO = '';
     }
-    calViewYear = bounds.min.getFullYear();
-    calViewMonth = bounds.min.getMonth();
+    const viewFrom = bounds.min || new Date();
+    calViewYear = viewFrom.getFullYear();
+    calViewMonth = viewFrom.getMonth();
     if (hint) {
       hint.style.display = 'block';
-      hint.textContent = (lang === 'id' ? 'Winter Trip hanya tersedia ' : 'Winter Trip is only available ')
-        + fmtTgl(bounds.min) + (lang === 'id' ? ' sampai ' : ' to ') + fmtTgl(bounds.max);
+      if (bounds.min) {
+        hint.textContent = lang === 'id'
+          ? 'Winter Trip hanya berangkat di akhir pekan & hari libur (' + fmtTgl(bounds.min) + ' – ' + fmtTgl(bounds.max) + '). Pilih tanggal yang aktif di kalender.'
+          : 'Winter Trip departs on weekends & holidays only (' + fmtTgl(bounds.min) + ' – ' + fmtTgl(bounds.max) + '). Pick an active date on the calendar.';
+      } else {
+        hint.textContent = lang === 'id'
+          ? 'Jadwal Winter Trip berikutnya belum dibuka. Hubungi kami via WhatsApp.'
+          : 'The next Winter Trip schedule is not open yet. Contact us via WhatsApp.';
+      }
     }
   } else {
     if (calSelectedISO) {
